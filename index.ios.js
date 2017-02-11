@@ -4,29 +4,30 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import{ Provider } from 'react-redux'
+import store from './store'
+import { Scene, Router, TabBar, Modal, Schema, Actions, Reducer, ActionConst } from 'react-native-router-flux'
+import Landing from './components/Landing'
+
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 
 export default class Growlr extends Component {
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Provider store={ store }>
+
+
+        <Landing />
+
+    </Provider>
     );
   }
 }
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FDF7EB',
   },
   welcome: {
     fontSize: 20,
