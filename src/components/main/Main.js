@@ -17,13 +17,7 @@ class Main extends Component {
             <Text onPress={Actions.profileView}> Profile</Text>
             <Text onPress={Actions.petDetailView}> PetDetail</Text>
             <Text onPress={Actions.matchView}> Match View</Text>
-            <PetCard
-              name='Scruffles'
-              age='100'
-              shortDesc='Scruffles was my slave name'
-              imageUrl='https://all-that-is-interesting.com/wordpress/wp-content/uploads/2012/08/ugly-cat-sphynx-2.jpg'
-            />
-
+            
 
           </View>
 
