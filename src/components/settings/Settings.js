@@ -36,14 +36,28 @@ class Settings extends Component {
     updateUserInput() {}
 
     render() {
+      var modalBackgroundStyle = {
+      backgroundColor: this.props.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
+    };
+    var innerContainerTransparentStyle = this.props.transparent
+      ? {backgroundColor: '#fff', padding: 20}
+      : null;
+    var activeButtonStyle = {
+      backgroundColor: '#ddd'
+    };
         return (
             <ScrollView>
                 <View style={styles.container}>
 
-                    {/* <Modal animationType={this.props.animationType} transparent={this.props.transparent} visible={this.props.modalVisible} // onRequestClose={() => this._setModalVisible(false)
-                }} supportedOrientations={supportedOrientationsPickerValues[this.props.selectedSupportedOrientation]} // onOrientationChange={evt => this.setState({currentOrientation: evt.nativeEvent.orientation})
-                }}>
-                        <View style={[styles.container, modalBackgroundStyle]}>
+                    <Modal
+                      animationType={this.props.animationType}
+                      transparent={this.props.transparent}
+                      visible={this.props.modalVisible}
+                      onRequestClose={() => this._setModalVisible(false)}
+                // }} supportedOrientations={supportedOrientationsPickerValues[this.props.selectedSupportedOrientation]} // onOrientationChange={evt => this.setState({currentOrientation: evt.nativeEvent.orientation})
+                // }}
+                    >
+                        <View style={[styles.modalContainer, modalBackgroundStyle]}>
                             <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
                                 <Text>This modal was presented {this.props.animationType === 'none'
                                         ? 'without'
@@ -51,22 +65,26 @@ class Settings extends Component {
                                     animation.</Text>
                                 <Text>It is currently displayed in {this.props.currentOrientation}
                                     mode.</Text>
-                                <Button // onPress={this._setModalVisible.bind(this, false)
-                            }} style={styles.modalButton}>
+                                <Button
+                                  onPress={this._setModalVisible.bind(this,false)}
+                                  title="Close"
+                                  color="#000"
+                                  style={styles.modalButton}
+                                  >
                                     Close
                                 </Button>
                             </View>
                         </View>
-                    </Modal> */}
+                    </Modal>
 
                     <View style={styles.showMe}>
                         <Button onPress={this._setModalVisible.bind(this, true)} title="modalButton" color = "#000"></Button>
-                        <Button
+                        {/* <Button  ---- testing button feature ----
                           onPress={onButtonPress}
                           title="Button Title"
                           color="#841584"
                           accessibilityLabel="this is a test button"
-                          ></Button>
+                          ></Button> */}
                     </View>
                     <View style={styles.showMe}>
                         <Text>Search Distance</Text>
@@ -127,12 +145,51 @@ const mapDispatchToActionCreators = {
 };
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  innerContainer: {
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  row: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+  rowTitle: {
+    flex: 1,
+    fontWeight: 'bold',
+  },
+  button: {
+    borderRadius: 5,
+    flexGrow: 1,
+    height: 44,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  buttonText: {
+    fontSize: 18,
+    margin: 5,
+    textAlign: 'center',
+  },
+  modalButton: {
+    marginTop: 10,
+  },
+  pickerItem: {
+    fontSize: 16,
+  },
     container: {
         marginTop: 64,
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#FDF7EB'
     },
+
     welcome: {
         fontSize: 20,
         textAlign: 'center',
