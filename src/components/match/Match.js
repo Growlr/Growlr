@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
 // import {updateMain} from '../actions/updateMainPageActions'
 
-import {StyleSheet, Text, View, TextInput, ScrollView} from 'react-native'
+import {StyleSheet, Text, View, TextInput, ScrollView, Image} from 'react-native';
 
 class Match extends Component {
 
@@ -22,7 +22,13 @@ class Match extends Component {
             <Text onPress={Actions.matchView}> Match</Text>
             <Text onPress={Actions.settingsView}> Settings</Text>
 
+            <View>
+              <Image
+                style={{width: 75, height: 75, margin: 20, borderRadius: 40}}
+                source={{uri: 'https://pbs.twimg.com/profile_images/1634021833/50258_211053130451_5559002_n_400x400.jpg'}} />
 
+              <Text style={{marginLeft: 20}}>Message message message message</Text>
+            </View>
           </View>
 
         )
