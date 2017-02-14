@@ -20,7 +20,7 @@ class Main extends Component {
             <Text onPress={Actions.profileView}> Profile</Text>
             <Text onPress={Actions.petDetailView}> PetDetail</Text>
             <Text onPress={Actions.matchView}> Match View</Text>
-
+            <Text onPress={Actions.settingsView}> Settings</Text>
 
           </View>
 
