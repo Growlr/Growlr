@@ -10,6 +10,7 @@ import PetDetail from './components/petDetail/PetDetail'
 import Profile from './components/profile/Profile'
 import Match from './components/match/Match'
 import Settings from './components/settings/Settings'
+import MyCamera from './components/camera/MyCamera'
 
 import {
   AppRegistry,
@@ -32,6 +33,7 @@ export default class Growlr extends Component {
             <Scene key="petDetailView" component={PetDetail} title="Pet Details"/>
             <Scene key="matchView" component={Match} title="Match View"/>
             <Scene key="settingsView" component={Settings} title="Settings View"/>
+            <Scene key="myCamera" component={MyCamera} title="Camera View"/>
           </Scene>
         </Router>
       </Provider>
