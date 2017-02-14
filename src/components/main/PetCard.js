@@ -12,6 +12,7 @@ import { mainStyle } from './mainStyle'
     <ScrollView>
 
       <Image
+        alignSelf='center'
         style={{width: width-10, height: height-200}}
         source={{uri: props.imageUrl}}
       />
