@@ -5,7 +5,7 @@ import {Actions} from 'react-native-router-flux';
 
 import {StyleSheet, Text, View, TextInput, Image, ScrollView, Dimensions, TouchableHighlight} from 'react-native'
 
-class Main extends Component {
+class PetDetail extends Component {
 
 
     render() {
@@ -44,4 +44,4 @@ const mapDispatchToActionCreators = {
     // updateMain: updateMain
 };
 
-export default connect(mapStateToProps, mapDispatchToActionCreators)(Main)
+export default connect(mapStateToProps, mapDispatchToActionCreators)(PetDetail)
