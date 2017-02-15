@@ -13,7 +13,8 @@ import {
     Modal,
     Button,
     Alert,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Slider
 } from 'react-native'
 
 const onButtonPress = () => {
@@ -22,6 +23,9 @@ const onButtonPress = () => {
 
 class Settings extends Component {
 
+    _setSearchDistance = (value) => {
+      this.props.updateSettings({searchDistance:value})
+    }
     _setModalVisible = (visible) => {
       this.props.updateSettings({modalVisible:visible})
     };
@@ -132,9 +136,24 @@ class Settings extends Component {
                     {/* ----- End Show Me Option ----  */}
 
 
-                    <View style={styles.default}>
+                    {/* ----- Start Search Distance Option ----  */}
+
+
+                    <View style={[styles.default, {height: 70}]}>
                         <Text>Search Distance</Text>
+                        <Text> {this.props.searchDistance} </Text>
+
+                        <Slider
+                          step= {1}
+                          value= {this.props.searchDistance}
+                          minimumValue={this.props.searchDistanceMin}
+                          maximumValue={this.props.searchDistanceMax}
+                          onValueChange={(value) => this._setSearchDistance(value)}
+                        ></Slider>
                     </View>
+
+                    {/* ----- End Search Distance Option ----  */}
+
                     <View style={styles.default}>
                         <Text>Age</Text>
                     </View>
@@ -183,7 +202,11 @@ mapStateToProps = (state) => {
       modalVisible: state.settingsPage.modalVisible,
       transparent: state.settingsPage.transparent,
       selectedSupportedOrientation: state.settingsPage.selectedSupportedOrientation,
-      currentOrientation: state.settingsPage.currentOrientation}
+      currentOrientation: state.settingsPage.currentOrientation,
+      searchDistance: state.settingsPage.searchDistance,
+      searchDistanceMin: state.settingsPage.searchDistanceMin,
+      searchDistanceMax: state.settingsPage.searchDistanceMax
+    }
 }
 
 const mapDispatchToActionCreators = {
