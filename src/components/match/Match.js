@@ -10,13 +10,25 @@ import {
   View,
   TextInput,
   ScrollView,
-  Image} from 'react-native';
+  Image,
+  Dimensions,
+  TouchableHighlight,
+  Modal} from 'react-native';
 
 class Match extends Component {
+  state = {
+      modalVisible: false,
+  };
+
+  setModalVisible(visible){
+      this.setState({modalVisible: visible});
+  }
 
     updateUserInput() {}
 
     render() {
+        let {width, height} = Dimensions.get('window');
+
         return (
           <View>
             <View style={{alignItems:
@@ -44,8 +56,36 @@ class Match extends Component {
                 source={{uri: 'https://images.moviepilot.com/images/c_limit,q_auto,w_710/th8bptyjpgp8qvohvvrq/carlton-a-fresh-prince-spin-off-and-more-possible-spin-offs-of-popular-90s-sitcoms.jpg'}} />
 
               <Text style={styles.matchName}>Carlton</Text>
-              <Text style={styles.moreInfo}>More Info</Text>
+              <View style={styles.moreInfo}>
+              <TouchableHighlight onPress={() => this.setModalVisible(true)}>
+                  <Text style={{'color': 'lightgray'}}>More Info</Text>
+              </TouchableHighlight>
+              </View>
+
             </View>
+            <View>
+          <Modal
+              transparent={true}
+              visible={this.state.modalVisible}>
+
+              <View style={styles.modalBackground}>
+
+                  <View style={styles.modalContainer}>
+                  <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
+                      <Text style ={{position:'absolute', top: -10, left: -175}}>X</Text>
+                  </TouchableHighlight>
+
+                      <Text>Contact us regarding</Text>
+                      <Text>the adoption process!</Text>
+                      <Text>(801) 261-2919</Text>
+
+
+                  </View>
+              </View>
+          </Modal>
+          </View>
+
+
 
             <Text style={styles.match}>Matches</Text>
 
@@ -55,7 +95,11 @@ class Match extends Component {
                 source={{uri: 'https://pbs.twimg.com/profile_images/1634021833/50258_211053130451_5559002_n_400x400.jpg'}} />
 
               <Text style={styles.matchName}>Scruffles Human</Text>
-              <Text style={styles.moreInfo}>More Info</Text>
+              <View style={styles.moreInfo}>
+              <TouchableHighlight onPress={() => this.setModalVisible(true)}>
+                  <Text style={{'color': 'lightgray'}}>More Info</Text>
+              </TouchableHighlight>
+              </View>
             </View>
 
             <View style={styles.bottomBorder}>
@@ -64,7 +108,11 @@ class Match extends Component {
                 source={{uri: 'https://yt3.ggpht.com/-iMljpF2Y-CQ/AAAAAAAAAAI/AAAAAAAAAAA/1-Uj5vogKcM/s900-c-k-no-mo-rj-c0xffffff/photo.jpg'}} />
 
               <Text style={styles.matchName}>Nacho</Text>
-              <Text style={styles.moreInfo}>More Info</Text>
+              <View style={styles.moreInfo}>
+              <TouchableHighlight onPress={() => this.setModalVisible(true)}>
+                  <Text style={{'color': 'lightgray'}}>More Info</Text>
+              </TouchableHighlight>
+              </View>
             </View>
             </ScrollView>
           </View>
@@ -120,8 +168,6 @@ const styles = StyleSheet.create({
     marginLeft: 110,
     position: 'absolute',
     top: 60,
-    fontSize: 16,
-    color: 'lightgray',
     borderColor: 'gray'
   },
   topBorder: {
@@ -132,6 +178,18 @@ const styles = StyleSheet.create({
   bottomBorder: {
     borderBottomWidth: 0.4,
     borderBottomColor: 'lightgray'
+  },
+  modalBackground: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  },
+  modalContainer: {
+    backgroundColor: '#fff',
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 250,
+    marginBottom: 250,
+    borderRadius: 5
   }
 })
 
