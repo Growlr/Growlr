@@ -7,13 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
-
     "react": "^15.4.2",
     "react-native": "^0.41.2",
     "react-native-camera": "^0.6.0",
-    "react-native-swiper": "^1.5.4",
     "react-native-cli": "^2.0.1",
+    "react-native-multi-slider": "^0.3.5",
     "react-native-router-flux": "^3.37.0",
+    "react-native-swiper": "^1.5.4",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "watchman": "^0.1.8"

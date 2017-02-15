@@ -17,14 +17,30 @@ import {
     Slider
 } from 'react-native'
 
+import MultiSlider from '../../../node_modules/react-native-multi-slider/Slider.js';
+import customMarker from '../../../node_modules/react-native-multi-slider/customMarker.js';
+
 const onButtonPress = () => {
   Alert.alert('Button has been pressed!');
 };
 
 class Settings extends Component {
 
+    SliderOneValuesChangeStart = ()=>{
+      this.props.updateSettings({sliderChanging:true})
+    }
+    SliderOneValuesChange = (values)=>{
+      this.props.updateSettings({setAgeLow:values[0]})
+      this.props.updateSettings({setAgeHigh:values[1]})
+    }
+    SliderOneValuesChangeFinish = ()=>{
+      this.props.updateSettings({sliderChanging:false})
+    }
     _setSearchDistance = (value) => {
       this.props.updateSettings({searchDistance:value})
+    }
+    _setAge = (value) => {
+      this.props.updateSettings({setAge:value})
     }
     _setModalVisible = (visible) => {
       this.props.updateSettings({modalVisible:visible})
@@ -154,9 +170,41 @@ class Settings extends Component {
 
                     {/* ----- End Search Distance Option ----  */}
 
-                    <View style={styles.default}>
-                        <Text>Age</Text>
+                    {/* ----- Start Age Option ----  */}
+
+                    <View style={[styles.default, {height: 70}]}>
+
+                        <Text>AgeMultiSlider - Low:{this.props.setAgeLow} - High:{this.props.setAgeHigh}  </Text>
+                        <Text></Text>
+                        <MultiSlider
+                          values={[10,90]}
+                          min={this.props.setAgeMin}
+                          max={this.props.setAgeMax}
+                          sliderLength={300}
+                          onValuesChangeStart={this.SliderOneValuesChangeStart}
+                          onValuesChange={this.SliderOneValuesChange}
+                          onValuesChangeFinish={this.SliderOneValuesChangeFinish}
+
+                        />
+
+                        {/* ---- if we want to only use the default slider props
+                        uncomment the code below ----- */}
+
+                        {/* <Text>Age:{this.props.setAge}</Text> */}
+
+                        {/* <Slider
+                          step= {1}
+                          value= {this.props.setAge}
+                          minimumValue={this.props.setAgeMin}
+                          maximumValue={this.props.setAgeMax}
+                          onValueChange={(value) => this._setAge(value)}
+                        ></Slider> */}
+
                     </View>
+
+                    {/* ----- End Age Option ----  */}
+
+
                     <View style={styles.default}>
                         <Text>Show me on Growlr</Text>
                     </View>
@@ -205,7 +253,12 @@ mapStateToProps = (state) => {
       currentOrientation: state.settingsPage.currentOrientation,
       searchDistance: state.settingsPage.searchDistance,
       searchDistanceMin: state.settingsPage.searchDistanceMin,
-      searchDistanceMax: state.settingsPage.searchDistanceMax
+      searchDistanceMax: state.settingsPage.searchDistanceMax,
+      setAge: state.settingsPage.setAge,
+      setAgeLow: state.settingsPage.setAgeLow,
+      setAgeHigh: state.settingsPage.setAgeHigh,
+      setAgeMin: state.settingsPage.setAgeMin,
+      setAgeMax: state.settingsPage.setAgeMax
     }
 }
 
