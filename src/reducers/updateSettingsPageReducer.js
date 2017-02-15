@@ -10,6 +10,11 @@ const initialState = {
   searchDistance: 50,
   searchDistanceMin: 1,
   searchDistanceMax: 100,
+  setAge: 50,
+  setAgeLow: 10,
+  setAgeHigh: 90,
+  setAgeMin: 1,
+  setAgeMax: 100,
 }
 
 
