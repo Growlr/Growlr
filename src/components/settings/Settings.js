@@ -12,7 +12,8 @@ import {
     ScrollView,
     Modal,
     Button,
-    Alert
+    Alert,
+    TouchableWithoutFeedback
 } from 'react-native'
 
 const onButtonPress = () => {
@@ -49,6 +50,36 @@ class Settings extends Component {
             <ScrollView>
                 <View style={styles.container}>
 
+                    {/* ----- Start Show Me Option ----  */}
+
+                    <View style={styles.default}>
+                        <Text>Show Me</Text>
+
+                        <TouchableWithoutFeedback onPress={this._setModalVisible.bind(this, true)}>
+                            <View >
+
+                              <View style={styles.rowWrap}>
+                                <View style={styles.rowItem}><Text>Dogs</Text></View>
+
+                                <View style={styles.rowItem}><Text style={styles.rowItem, styles.rowItemArrow}>></Text></View>
+                              </View>
+
+
+                            </View>
+
+
+                        </TouchableWithoutFeedback>
+                        {/* <Button onPress={this._setModalVisible.bind(this, true)} title="modalButton" color = "#000"></Button> */}
+                        {/* <Button  ---- testing button feature ----
+                          onPress={onButtonPress}
+                          title="Button Title"
+                          color="#841584"
+                          accessibilityLabel="this is a test button"
+                          ></Button> */}
+                    </View>
+
+                      {/* ---- Show Me Modal -----  */}
+
                     <Modal
                       animationType={this.props.animationType}
                       transparent={this.props.transparent}
@@ -58,60 +89,75 @@ class Settings extends Component {
                 // }}
                     >
                         <View style={[styles.modalContainer, modalBackgroundStyle]}>
-                            <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
-                                <Text>This modal was presented {this.props.animationType === 'none'
-                                        ? 'without'
-                                        : 'with'}
-                                    animation.</Text>
-                                <Text>It is currently displayed in {this.props.currentOrientation}
-                                    mode.</Text>
-                                <Button
+                            <View style={styles.rowWrap}>
+                              <View>
+                                <Text
                                   onPress={this._setModalVisible.bind(this,false)}
-                                  title="Close"
+                                  title="< Settings"
                                   color="#000"
                                   style={styles.modalButton}
                                   >
-                                    Close
-                                </Button>
+                                    {"< Settings"}
+                                </Text>
+                              </View>
+                              <View>
+                                <Text style={styles.modalButton}> Show Me </Text>
+                              </View>
+                              <Text></Text>
+                            </View>
+                            <View style={{flex:9}}>
+                              <View style={styles.test}>
+                                  <View>
+                                    <Text>Dogs</Text>
+                                  </View>
+                                  <View>
+                                    <Text>Cats</Text>
+                                  </View>
+                                  <View>
+                                    <Text>Birds</Text>
+                                  </View>
+                                  <View>
+                                    <Text>Exotic</Text>
+                                  </View>
+                              </View>
+                              <View style={styles.test}>
+                                <Text> Discription text </Text>
+                                <Text> We welcome multi pet familes for, but if you want only a specific breed you can do that here </Text>
+                                <Text> Learn More  about dogs and cats </Text>
+                              </View>
                             </View>
                         </View>
                     </Modal>
 
-                    <View style={styles.showMe}>
-                        <Button onPress={this._setModalVisible.bind(this, true)} title="modalButton" color = "#000"></Button>
-                        {/* <Button  ---- testing button feature ----
-                          onPress={onButtonPress}
-                          title="Button Title"
-                          color="#841584"
-                          accessibilityLabel="this is a test button"
-                          ></Button> */}
-                    </View>
-                    <View style={styles.showMe}>
+                    {/* ----- End Show Me Option ----  */}
+
+
+                    <View style={styles.default}>
                         <Text>Search Distance</Text>
                     </View>
-                    <View style={styles.showMe}>
+                    <View style={styles.default}>
                         <Text>Age</Text>
                     </View>
-                    <View style={styles.showMe}>
+                    <View style={styles.default}>
                         <Text>Show me on Growlr</Text>
                     </View>
-                    <View style={styles.showMe}>
+                    <View style={styles.default}>
                         <Text>App Settings</Text>
                     </View>
-                    <View style={styles.showMe}>
+                    <View style={styles.default}>
                         <Text>Km. / Mi.</Text>
                     </View>
-                    <View style={styles.showMe}>
+                    <View style={styles.default}>
                         <Text>Contact Us</Text>
                         <Text>Help & Support</Text>
                     </View>
-                    <View style={styles.showMe}>
+                    <View style={styles.default}>
                         <Text>Legal</Text>
                         <Text>Licenses</Text>
                         <Text>Privecy Policy</Text>
                         <Text>Terms of Service</Text>
                     </View>
-                    <View style={styles.showMe}>
+                    <View style={styles.default}>
                         <Text>Logout</Text>
                     </View>
 
@@ -145,7 +191,29 @@ const mapDispatchToActionCreators = {
 };
 
 const styles = StyleSheet.create({
+  test:{
+    flex:2
+  },
+  rowWrap:{
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+
+  },
+  rowItem:{
+    flex:1,
+    height: 20
+  },
+  rowItemArrow:{
+    alignSelf: 'flex-end'
+  },
+  selectRow:{
+    flex:1,
+    flexDirection: 'row',
+    backgroundColor: '#a0f',
+  },
   modalContainer: {
+    backgroundColor: '#a0f',
     flex: 1,
     justifyContent: 'center',
     padding: 20,
@@ -195,7 +263,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         margin: 10
     },
-    showMe: {
+    default: {
         margin: 10,
         height: 50,
         width: 300,
