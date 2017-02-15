@@ -1,9 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {updateMatches} from '../../actions/updateMatchesPageActions';
 import {Actions} from 'react-native-router-flux';
 // import {updateMain} from '../actions/updateMainPageActions'
 
-import {StyleSheet, Text, View, TextInput, ScrollView, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  ScrollView,
+  Image} from 'react-native';
 
 class Match extends Component {
 
@@ -29,9 +36,8 @@ class Match extends Component {
                 placeholder={"Search Matches"} value={this.props.text}/>
               </View>
             </View>
-
+            <ScrollView>
             <Text style={styles.match}>New Matches</Text>
-
             <View style={styles.bottomBorder}>
               <Image
                 style={styles.matchImage}
@@ -60,6 +66,7 @@ class Match extends Component {
               <Text style={styles.matchName}>Nacho</Text>
               <Text style={styles.moreInfo}>More Info</Text>
             </View>
+            </ScrollView>
           </View>
 
         )
