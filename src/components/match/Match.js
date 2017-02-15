@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateMatches} from '../../actions/updateMatchesPageActions';
+import Communications from 'react-native-communications';
 import {Actions} from 'react-native-router-flux';
 // import {updateMain} from '../actions/updateMainPageActions'
 
@@ -72,12 +73,12 @@ class Match extends Component {
 
                   <View style={styles.modalContainer}>
                   <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
-                      <Text style ={{position:'absolute', top: -10, left: -175}}>X</Text>
+                      <Text style ={styles.closeModal}>X</Text>
                   </TouchableHighlight>
 
                       <Text>Contact us regarding</Text>
                       <Text>the adoption process!</Text>
-                      <Text>(801) 261-2919</Text>
+                      <Text> onPress={() => Communications.phonecall('8012612919', true)}(801) 261-2919</Text>
 
 
                   </View>
@@ -180,7 +181,8 @@ const styles = StyleSheet.create({
     borderBottomColor: 'lightgray'
   },
   modalBackground: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    height: 1000
   },
   modalContainer: {
     backgroundColor: '#fff',
@@ -189,7 +191,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 250,
     marginBottom: 250,
+    marginLeft: 20,
+    marginRight: 20,
     borderRadius: 5
+  },
+  closeModal: {
+    position:'absolute',
+    top: -10,
+    left: -150
   }
 })
 
