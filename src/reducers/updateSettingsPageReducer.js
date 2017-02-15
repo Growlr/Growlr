@@ -15,9 +15,6 @@ const initialState = {
   setAgeHigh: 90,
   setAgeMin: 1,
   setAgeMax: 100,
-<<<<<<< HEAD
-  showOnGrowlr: true
-=======
   showOnGrowlr: true,
   notificationNewMatch: true,
   notificationMessages: true,
@@ -25,7 +22,6 @@ const initialState = {
   notificationSuperLikes: true,
   notificationInAppVibrations: false,
   notificationInAppSounds: false
->>>>>>> master
 }
 
 

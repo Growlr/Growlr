@@ -14,6 +14,7 @@ import {
   Image,
   Dimensions,
   TouchableHighlight,
+  TouchableOpacity,
   Modal} from 'react-native';
 
 class Match extends Component {
@@ -72,14 +73,14 @@ class Match extends Component {
               <View style={styles.modalBackground}>
 
                   <View style={styles.modalContainer}>
-                  <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
+                    <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
                       <Text style ={styles.closeModal}>X</Text>
-                  </TouchableHighlight>
-
+                    </TouchableHighlight>
                       <Text>Contact us regarding</Text>
                       <Text>the adoption process!</Text>
-                      <Text> onPress={() => Communications.phonecall('8012612919', true)}(801) 261-2919</Text>
-
+                      <TouchableOpacity onPress={() => Communications.phonecall('8012612919', true)}>
+                        <Text>(801) 261-2919</Text>
+                      </TouchableOpacity>
 
                   </View>
               </View>

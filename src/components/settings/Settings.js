@@ -30,8 +30,6 @@ class Settings extends Component {
     _ToggleShowMeOnGrowlr = (value)=>{
       this.props.updateSettings({showOnGrowlr:value})
     }
-<<<<<<< HEAD
-=======
     _ToggleNotificationNewMatch = (value)=>{
       this.props.updateSettings({notificationNewMatch:value})
     }
@@ -50,7 +48,6 @@ class Settings extends Component {
     _TogglenotificationInAppSounds = (value)=>{
       this.props.updateSettings({notificationInAppSounds:value})
     }
->>>>>>> master
     SliderOneValuesChangeStart = ()=>{
       this.props.updateSettings({sliderChanging:true})
     }
@@ -232,11 +229,7 @@ class Settings extends Component {
                     {/* ----- Start Show On Growlr Option ----  */}
 
 
-<<<<<<< HEAD
-                    <View style={styles.default}>
-=======
                     <View  style={[styles.default, {height: 70}]}>
->>>>>>> master
                         <Text>Show me on Growlr</Text>
                         <Switch
                           onValueChange={(value) => this._ToggleShowMeOnGrowlr(value)}
@@ -246,10 +239,6 @@ class Settings extends Component {
 
                     {/* ----- End Show On Growlr Option ----  */}
 
-<<<<<<< HEAD
-                    <View style={styles.default}>
-                        <Text>App Settings</Text>
-=======
                     <View  style={[styles.default, {height: 280}]}>
                         <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
                           <Text>New Matches</Text>
@@ -295,7 +284,6 @@ class Settings extends Component {
                         </View>
 
 
->>>>>>> master
                     </View>
                     <View style={styles.default}>
                         <Text>Km. / Mi.</Text>
@@ -345,9 +333,6 @@ mapStateToProps = (state) => {
       setAgeHigh: state.settingsPage.setAgeHigh,
       setAgeMin: state.settingsPage.setAgeMin,
       setAgeMax: state.settingsPage.setAgeMax,
-<<<<<<< HEAD
-      showOnGrowlr: state.settingsPage.showOnGrowlr
-=======
       showOnGrowlr: state.settingsPage.showOnGrowlr,
       notificationNewMatch: state.settingsPage.notificationNewMatch,
       notificationMessages: state.settingsPage.notificationMessages,
@@ -355,7 +340,6 @@ mapStateToProps = (state) => {
       notificationSuperLikes: state.settingsPage.notificationSuperLikes,
       notificationInAppVibrations: state.settingsPage.notificationInAppVibrations,
       notificationInAppSounds: state.settingsPage.notificationInAppSounds
->>>>>>> master
     }
 }
 
