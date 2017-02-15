@@ -18,6 +18,7 @@ class Profile extends Component {
             <Text> Profile</Text>
             <Text onPress={Actions.landingPage}> landing</Text>
             <Text onPress={Actions.mainView}> Discover</Text>
+            <Text onPress={Actions.settingsView}> Settings </Text>
 
 
           </View>

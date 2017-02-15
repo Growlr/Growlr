@@ -12,8 +12,8 @@ class Landing extends Component {
     render() {
         return (
         <View>
-          <Text>{this.props.userInput}</Text>
           <Text style={{marginTop: 80}}>NOOOW Halp</Text>
+          <Text>{this.props.userInput}</Text>
           <Text onPress={Actions.mainView}> theis is a button</Text>
         </View>
 
@@ -23,6 +23,7 @@ class Landing extends Component {
 }
 
 mapStateToProps = (state) => {
+    console.log(state.landingPage);
     return {userInput: state.landingPage.userInput}
 }
 

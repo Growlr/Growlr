@@ -7,12 +7,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "~15.4.0",
-    "react-native": "0.41.2",
-    "react-native-router-flux": "^3.37.0",
+
+    "react": "^15.4.2",
+    "react-native": "^0.41.2",
+    "react-native-camera": "^0.6.0",
     "react-native-swiper": "^1.5.4",
+    "react-native-cli": "^2.0.1",
+    "react-native-router-flux": "^3.37.0",
     "react-redux": "^5.0.2",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "watchman": "^0.1.8"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
