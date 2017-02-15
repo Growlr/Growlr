@@ -38,7 +38,6 @@ class Match extends Component {
             </View>
             <ScrollView>
             <Text style={styles.match}>New Matches</Text>
-
             <View style={styles.bottomBorder}>
               <Image
                 style={styles.matchImage}
