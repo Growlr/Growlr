@@ -15,6 +15,7 @@ const initialState = {
   setAgeHigh: 90,
   setAgeMin: 1,
   setAgeMax: 100,
+  showOnGrowlr: true
 }
 
 
