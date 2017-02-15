@@ -30,6 +30,27 @@ class Settings extends Component {
     _ToggleShowMeOnGrowlr = (value)=>{
       this.props.updateSettings({showOnGrowlr:value})
     }
+<<<<<<< HEAD
+=======
+    _ToggleNotificationNewMatch = (value)=>{
+      this.props.updateSettings({notificationNewMatch:value})
+    }
+    _ToggleNotificationMessages = (value)=>{
+      this.props.updateSettings({notificationMessages:value})
+    }
+    _ToggleNotificationMessageLikes = (value)=>{
+      this.props.updateSettings({notificationMessageLikes:value})
+    }
+    _TogglenotificationSuperLikes = (value)=>{
+      this.props.updateSettings({notificationSuperLikes:value})
+    }
+    _ToggleNotificationInAppVibrations = (value)=>{
+      this.props.updateSettings({notificationInAppVibrations:value})
+    }
+    _TogglenotificationInAppSounds = (value)=>{
+      this.props.updateSettings({notificationInAppSounds:value})
+    }
+>>>>>>> master
     SliderOneValuesChangeStart = ()=>{
       this.props.updateSettings({sliderChanging:true})
     }
@@ -211,7 +232,11 @@ class Settings extends Component {
                     {/* ----- Start Show On Growlr Option ----  */}
 
 
+<<<<<<< HEAD
                     <View style={styles.default}>
+=======
+                    <View  style={[styles.default, {height: 70}]}>
+>>>>>>> master
                         <Text>Show me on Growlr</Text>
                         <Switch
                           onValueChange={(value) => this._ToggleShowMeOnGrowlr(value)}
@@ -221,8 +246,56 @@ class Settings extends Component {
 
                     {/* ----- End Show On Growlr Option ----  */}
 
+<<<<<<< HEAD
                     <View style={styles.default}>
                         <Text>App Settings</Text>
+=======
+                    <View  style={[styles.default, {height: 280}]}>
+                        <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
+                          <Text>New Matches</Text>
+                          <Switch
+                            onValueChange={(value) => this._ToggleNotificationNewMatch(value)}
+                            value={this.props.notificationNewMatch}
+                          />
+                        </View>
+                        <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
+                          <Text>Messages</Text>
+                          <Switch
+                            onValueChange={(value) => this._ToggleNotificationMessages(value)}
+                            value={this.props.notificationMessages}
+                          />
+                        </View>
+                        <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
+                          <Text>Message Likes</Text>
+                          <Switch
+                            onValueChange={(value) => this._ToggleNotificationMessageLikes(value)}
+                            value={this.props.notificationMessageLikes}
+                          />
+                        </View>
+                        <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
+                          <Text>Super Likes</Text>
+                          <Switch
+                            onValueChange={(value) => this._TogglenotificationSuperLikes(value)}
+                            value={this.props.notificationSuperLikes}
+                          />
+                        </View>
+                        <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
+                          <Text>In-App Vibrations</Text>
+                          <Switch
+                            onValueChange={(value) => this._ToggleNotificationInAppVibrations(value)}
+                            value={this.props.notificationInAppVibrations}
+                          />
+                        </View>
+                        <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
+                          <Text>In-App Sounds</Text>
+                          <Switch
+                            onValueChange={(value) => this._TogglenotificationInAppSounds(value)}
+                            value={this.props.notificationInAppSounds}
+                          />
+                        </View>
+
+
+>>>>>>> master
                     </View>
                     <View style={styles.default}>
                         <Text>Km. / Mi.</Text>
@@ -272,7 +345,17 @@ mapStateToProps = (state) => {
       setAgeHigh: state.settingsPage.setAgeHigh,
       setAgeMin: state.settingsPage.setAgeMin,
       setAgeMax: state.settingsPage.setAgeMax,
+<<<<<<< HEAD
       showOnGrowlr: state.settingsPage.showOnGrowlr
+=======
+      showOnGrowlr: state.settingsPage.showOnGrowlr,
+      notificationNewMatch: state.settingsPage.notificationNewMatch,
+      notificationMessages: state.settingsPage.notificationMessages,
+      notificationMessageLikes: state.settingsPage.notificationMessageLikes,
+      notificationSuperLikes: state.settingsPage.notificationSuperLikes,
+      notificationInAppVibrations: state.settingsPage.notificationInAppVibrations,
+      notificationInAppSounds: state.settingsPage.notificationInAppSounds
+>>>>>>> master
     }
 }
 
