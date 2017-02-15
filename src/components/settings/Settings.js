@@ -14,7 +14,8 @@ import {
     Button,
     Alert,
     TouchableWithoutFeedback,
-    Slider
+    Slider,
+    Switch
 } from 'react-native'
 
 import MultiSlider from '../../../node_modules/react-native-multi-slider/Slider.js';
@@ -26,6 +27,9 @@ const onButtonPress = () => {
 
 class Settings extends Component {
 
+    _ToggleShowMeOnGrowlr = (value)=>{
+      this.props.updateSettings({showOnGrowlr:value})
+    }
     SliderOneValuesChangeStart = ()=>{
       this.props.updateSettings({sliderChanging:true})
     }
@@ -204,10 +208,19 @@ class Settings extends Component {
 
                     {/* ----- End Age Option ----  */}
 
+                    {/* ----- Start Show On Growlr Option ----  */}
+
 
                     <View style={styles.default}>
                         <Text>Show me on Growlr</Text>
+                        <Switch
+                          onValueChange={(value) => this._ToggleShowMeOnGrowlr(value)}
+                          value={this.props.showOnGrowlr}
+                        />
                     </View>
+
+                    {/* ----- End Show On Growlr Option ----  */}
+
                     <View style={styles.default}>
                         <Text>App Settings</Text>
                     </View>
@@ -258,7 +271,8 @@ mapStateToProps = (state) => {
       setAgeLow: state.settingsPage.setAgeLow,
       setAgeHigh: state.settingsPage.setAgeHigh,
       setAgeMin: state.settingsPage.setAgeMin,
-      setAgeMax: state.settingsPage.setAgeMax
+      setAgeMax: state.settingsPage.setAgeMax,
+      showOnGrowlr: state.settingsPage.showOnGrowlr
     }
 }
 
