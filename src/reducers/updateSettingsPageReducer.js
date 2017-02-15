@@ -6,7 +6,10 @@ const initialState = {
   modalVisible: false,
   transparent: false,
   selectedSupportedOrientation: 0,
-  currentOrientation: 'unknown'
+  currentOrientation: 'unknown',
+  searchDistance: 50,
+  searchDistanceMin: 1,
+  searchDistanceMax: 100,
 }
 
 
