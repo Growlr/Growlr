@@ -15,6 +15,7 @@ class Landing extends Component {
           <Text style={{marginTop: 80}}>NOOOW Halp</Text>
           <Text>{this.props.userInput}</Text>
           <Text onPress={Actions.mainView}> theis is a button</Text>
+          <Text onPress={Actions.settingsView}> theis is a button fur settings</Text>
         </View>
 
 
