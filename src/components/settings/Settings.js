@@ -14,10 +14,7 @@ import {
 
 import ShowMe from './showMe/ShowMe';
 import SearchDistance from './searchDistance/SearchDistance';
-
-import MultiSlider from '../../../node_modules/react-native-multi-slider/Slider.js';
-import customMarker from '../../../node_modules/react-native-multi-slider/customMarker.js';
-
+import SetAge from './setAge/SetAge';
 
 class Settings extends Component {
 
@@ -42,21 +39,6 @@ class Settings extends Component {
     _TogglenotificationInAppSounds = (value)=>{
       this.props.updateSettings({notificationInAppSounds:value})
     }
-    SliderOneValuesChangeStart = ()=>{
-      this.props.updateSettings({sliderChanging:true})
-    }
-    SliderOneValuesChange = (values)=>{
-      this.props.updateSettings({setAgeLow:values[0]})
-      this.props.updateSettings({setAgeHigh:values[1]})
-    }
-    SliderOneValuesChangeFinish = ()=>{
-      this.props.updateSettings({sliderChanging:false})
-    }
-    _setAge = (value) => {
-      this.props.updateSettings({setAge:value})
-    }
-
-    updateUserInput() {}
 
     render() {
 
@@ -64,51 +46,13 @@ class Settings extends Component {
             <ScrollView>
                 <View style={styles.container}>
 
-                    {/* ----- Start Show Me Option ----  */}
-
                     <ShowMe></ShowMe>
-
-                    {/* ----- End Show Me Option ----  */}
-
-                    {/* ----- Start Search Distance Option ----  */}
 
                     <SearchDistance></SearchDistance>
 
-                    {/* ----- End Search Distance Option ----  */}
+                    <SetAge></SetAge>
 
-                    {/* ----- Start Age Option ----  */}
 
-                    <View style={[styles.default, {height: 70}]}>
-
-                        <Text>AgeMultiSlider - Low:{this.props.setAgeLow} - High:{this.props.setAgeHigh}  </Text>
-                        <Text></Text>
-                        <MultiSlider
-                          values={[10,90]}
-                          min={this.props.setAgeMin}
-                          max={this.props.setAgeMax}
-                          sliderLength={300}
-                          onValuesChangeStart={this.SliderOneValuesChangeStart}
-                          onValuesChange={this.SliderOneValuesChange}
-                          onValuesChangeFinish={this.SliderOneValuesChangeFinish}
-
-                        />
-
-                        {/* ---- if we want to only use the default slider props
-                        uncomment the code below ----- */}
-
-                        {/* <Text>Age:{this.props.setAge}</Text> */}
-
-                        {/* <Slider
-                          step= {1}
-                          value= {this.props.setAge}
-                          minimumValue={this.props.setAgeMin}
-                          maximumValue={this.props.setAgeMax}
-                          onValueChange={(value) => this._setAge(value)}
-                        ></Slider> */}
-
-                    </View>
-
-                    {/* ----- End Age Option ----  */}
 
                     {/* ----- Start Show On Growlr Option ----  */}
 
@@ -204,11 +148,6 @@ class Settings extends Component {
 mapStateToProps = (state) => {
   console.log(state);
     return {
-      setAge: state.settingsPage.setAge,
-      setAgeLow: state.settingsPage.setAgeLow,
-      setAgeHigh: state.settingsPage.setAgeHigh,
-      setAgeMin: state.settingsPage.setAgeMin,
-      setAgeMax: state.settingsPage.setAgeMax,
       showOnGrowlr: state.settingsPage.showOnGrowlr,
       notificationNewMatch: state.settingsPage.notificationNewMatch,
       notificationMessages: state.settingsPage.notificationMessages,
