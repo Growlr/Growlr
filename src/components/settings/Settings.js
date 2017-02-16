@@ -15,6 +15,7 @@ import {
 import ShowMe from './showMe/ShowMe';
 import SearchDistance from './searchDistance/SearchDistance';
 import SetAge from './setAge/SetAge';
+import OnGrowlr from './onGrowlr/OnGrowlr';
 
 class Settings extends Component {
 
