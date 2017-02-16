@@ -70,11 +70,12 @@ class Match extends Component {
               transparent={true}
               visible={this.state.modalVisible}>
 
+<TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
               <View style={styles.modalBackground}>
 
                   <View style={styles.modalContainer}>
                     <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
-                      <Text style ={styles.closeModal}>X</Text>
+                      <Text style ={styles.closeModal}>Close</Text>
                     </TouchableHighlight>
                       <Text>Contact us regarding</Text>
                       <Text>the adoption process!</Text>
@@ -84,6 +85,8 @@ class Match extends Component {
 
                   </View>
               </View>
+              </TouchableHighlight>
+
           </Modal>
           </View>
 
@@ -199,8 +202,7 @@ const styles = StyleSheet.create({
   closeModal: {
     position:'absolute',
     top: -10,
-    left: -150
-  }
+    left: -140  }
 })
 
 // mapStateToProps = (state) => {
