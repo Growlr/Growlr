@@ -19,7 +19,7 @@ class PetCard extends Component{
         let {width, height} = Dimensions.get('window');
 
     return (
-        <View style={{ width: width - 20, borderRadius: 8, overflow: 'hidden', backgroundColor: 'white' }} >
+        <View style={{ width: width - 20, borderRadius: 8, overflow: 'hidden', backgroundColor: 'white', marginTop: -133 }} >
             <TouchableHighlight onPress={() => this.setModalVisible(true)}>
             <Image style={{ height: height/2 + 40 , width: width - 20 }}  source={{uri: this.props.mainImage}}/>
             </TouchableHighlight>
@@ -44,7 +44,6 @@ class PetCard extends Component{
 
                         <View>
                             <Swiper height={240}
-                                    onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
                                     dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
                                     activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
                                     paginationStyle={{
