@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
-// import {updateMain} from '../actions/updateMainPageActions'
+import { updateMain, cardDeclined, cardAccepted } from '../../actions/updateMainPageActions'
 import SwipeCards from 'react-native-swipe-cards'
 
 
@@ -12,26 +12,10 @@ import {StyleSheet, Text, View, TextInput, ScrollView, Modal, TouchableHighlight
 
 
 class Main extends Component {
-    updateUserInput() {}
-        constructor(props){
-        super(props)
-            this.state = {
-                cards: [
-                    {
-                        mainImage:"https://facebook.github.io/react/img/logo_og.png",
-                        name:"Jacob",
-                        age:"23",
-                        desc:"Occupation"
-                    },
-                    {
-                        mainImage:"https://facebook.github.io/react/img/logo_og.png",
-                        name:"Jacob",
-                        age:"23",
-                        desc:"Occupation"
-                    },
-                ]
-            }
-        }
+
+
+cardRemoval = ( card ) => {
+}
 
 
 
@@ -40,8 +24,24 @@ class Main extends Component {
         return (
             <View>
 
-          <View style={{ alignSelf: 'center' }}>
-              <SwipeCards cards={this.state.cards} renderCard={(cardData) => <PetCard { ...cardData }/>}/>
+          <View style={{ marginTop: 0, alignSelf: 'center' }}>
+              <SwipeCards
+                  cards={this.props.cards}
+                  renderCard={(cardData) => <PetCard { ...cardData }/>}
+                  handleYup={(card) => {
+                      this.cardRemoval(card)
+                      this.props.cardAccepted(card)
+                  }}
+                  handleNope={(card) => {
+                      this.cardRemoval(card)
+                      this.props.cardDeclined(card)
+                  }}
+                  cardRemoved={(card) => this.cardRemoval(card)}
+
+
+
+
+              />
           </View>
 
 
@@ -61,12 +61,17 @@ class Main extends Component {
     }
 }
 
-// mapStateToProps = (state) => {
-//     return {userInput: state.landingPage.userInput}
-// }
+mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        cards: state.mainPage.cards
+    }
+ }
 
 const mapDispatchToActionCreators = {
-    // updateMain: updateMain
+    updateMain: updateMain,
+    cardDeclined: cardDeclined,
+    cardAccepted: cardAccepted
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Main)
