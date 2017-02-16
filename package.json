@@ -12,7 +12,7 @@
     "react-native-camera": "^0.6.0",
     "react-native-cli": "^2.0.1",
     "react-native-communications": "^2.2.1",
-    "react-native-facebook-login": "^1.4.0",
+    "react-native-facebook-login": "github:magus/react-native-facebook-login",
     "react-native-multi-slider": "^0.3.5",
     "react-native-router-flux": "^3.37.0",
     "react-native-swipe-cards": "^0.1.0",

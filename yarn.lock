@@ -3033,9 +3033,9 @@ react-native-experimental-navigation@0.26.x:
     fbjs "^0.8.1"
     react-addons-pure-render-mixin "^15.0.2"
 
-react-native-facebook-login@^1.4.0:
+"react-native-facebook-login@github:magus/react-native-facebook-login":
   version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-facebook-login/-/react-native-facebook-login-1.4.0.tgz#b9ec7b05bd9666d7d697d1ecc71a4c82c77f86c9"
+  resolved "https://codeload.github.com/magus/react-native-facebook-login/tar.gz/ea7cce863038a1374896d31c0cf87cec02b04418"
   dependencies:
     itypeof "^1.1.2"
 
