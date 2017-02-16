@@ -2,28 +2,21 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateSettings} from '../../actions/updateSettingsPageActions';
 import {Actions} from 'react-native-router-flux';
-// import {updateMain} from '../actions/updateMainPageActions'
 
 import {
     StyleSheet,
     Text,
     View,
-    TextInput,
     ScrollView,
-    Modal,
-    Button,
-    Alert,
-    TouchableWithoutFeedback,
     Slider,
     Switch
 } from 'react-native'
 
+import ShowMe from './showMe/ShowMe';
+
 import MultiSlider from '../../../node_modules/react-native-multi-slider/Slider.js';
 import customMarker from '../../../node_modules/react-native-multi-slider/customMarker.js';
 
-const onButtonPress = () => {
-  Alert.alert('Button has been pressed!');
-};
 
 class Settings extends Component {
 
@@ -64,118 +57,22 @@ class Settings extends Component {
     _setAge = (value) => {
       this.props.updateSettings({setAge:value})
     }
-    _setModalVisible = (visible) => {
-      this.props.updateSettings({modalVisible:visible})
-    };
-
-    _setAnimationType = (type) => {
-        this.props.updateSettings({animationType: type})
-    };
-
-    _toggleTransparent = () => {
-        this.props.updateSettings({transparent: !this.props.transparent});
-    };
 
     updateUserInput() {}
 
     render() {
-      var modalBackgroundStyle = {
-      backgroundColor: this.props.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
-    };
-    var innerContainerTransparentStyle = this.props.transparent
-      ? {backgroundColor: '#fff', padding: 20}
-      : null;
-    var activeButtonStyle = {
-      backgroundColor: '#ddd'
-    };
+
         return (
             <ScrollView>
                 <View style={styles.container}>
 
                     {/* ----- Start Show Me Option ----  */}
 
-                    <View style={styles.default}>
-                        <Text>Show Me</Text>
-
-                        <TouchableWithoutFeedback onPress={this._setModalVisible.bind(this, true)}>
-                            <View >
-
-                              <View style={styles.rowWrap}>
-                                <View style={styles.rowItem}><Text>Dogs</Text></View>
-
-                                <View style={styles.rowItem}><Text style={styles.rowItem, styles.rowItemArrow}>></Text></View>
-                              </View>
-
-
-                            </View>
-
-
-                        </TouchableWithoutFeedback>
-                        {/* <Button onPress={this._setModalVisible.bind(this, true)} title="modalButton" color = "#000"></Button> */}
-                        {/* <Button  ---- testing button feature ----
-                          onPress={onButtonPress}
-                          title="Button Title"
-                          color="#841584"
-                          accessibilityLabel="this is a test button"
-                          ></Button> */}
-                    </View>
-
-                      {/* ---- Show Me Modal -----  */}
-
-                    <Modal
-                      animationType={this.props.animationType}
-                      transparent={this.props.transparent}
-                      visible={this.props.modalVisible}
-                      onRequestClose={() => this._setModalVisible(false)}
-                // }} supportedOrientations={supportedOrientationsPickerValues[this.props.selectedSupportedOrientation]} // onOrientationChange={evt => this.setState({currentOrientation: evt.nativeEvent.orientation})
-                // }}
-                    >
-                        <View style={[styles.modalContainer, modalBackgroundStyle]}>
-                            <View style={styles.rowWrap}>
-                              <View>
-                                <Text
-                                  onPress={this._setModalVisible.bind(this,false)}
-                                  title="< Settings"
-                                  color="#000"
-                                  style={styles.modalButton}
-                                  >
-                                    {"< Settings"}
-                                </Text>
-                              </View>
-                              <View>
-                                <Text style={styles.modalButton}> Show Me </Text>
-                              </View>
-                              <Text></Text>
-                            </View>
-                            <View style={{flex:9}}>
-                              <View style={styles.test}>
-                                  <View>
-                                    <Text>Dogs</Text>
-                                  </View>
-                                  <View>
-                                    <Text>Cats</Text>
-                                  </View>
-                                  <View>
-                                    <Text>Birds</Text>
-                                  </View>
-                                  <View>
-                                    <Text>Exotic</Text>
-                                  </View>
-                              </View>
-                              <View style={styles.test}>
-                                <Text> Discription text </Text>
-                                <Text> We welcome multi pet familes for, but if you want only a specific breed you can do that here </Text>
-                                <Text> Learn More  about dogs and cats </Text>
-                              </View>
-                            </View>
-                        </View>
-                    </Modal>
+                    <ShowMe></ShowMe>
 
                     {/* ----- End Show Me Option ----  */}
 
-
                     {/* ----- Start Search Distance Option ----  */}
-
 
                     <View style={[styles.default, {height: 70}]}>
                         <Text>Search Distance</Text>
@@ -320,11 +217,6 @@ class Settings extends Component {
 mapStateToProps = (state) => {
   console.log(state);
     return {
-      animationType: state.settingsPage.animationType,
-      modalVisible: state.settingsPage.modalVisible,
-      transparent: state.settingsPage.transparent,
-      selectedSupportedOrientation: state.settingsPage.selectedSupportedOrientation,
-      currentOrientation: state.settingsPage.currentOrientation,
       searchDistance: state.settingsPage.searchDistance,
       searchDistanceMin: state.settingsPage.searchDistanceMin,
       searchDistanceMax: state.settingsPage.searchDistanceMax,
@@ -348,88 +240,23 @@ const mapDispatchToActionCreators = {
 };
 
 const styles = StyleSheet.create({
-  test:{
-    flex:2
-  },
-  rowWrap:{
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-
-  },
-  rowItem:{
-    flex:1,
-    height: 20
-  },
-  rowItemArrow:{
-    alignSelf: 'flex-end'
-  },
-  selectRow:{
-    flex:1,
-    flexDirection: 'row',
-    backgroundColor: '#a0f',
-  },
-  modalContainer: {
-    backgroundColor: '#a0f',
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  innerContainer: {
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  row: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  rowTitle: {
-    flex: 1,
-    fontWeight: 'bold',
-  },
-  button: {
-    borderRadius: 5,
-    flexGrow: 1,
-    height: 44,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  buttonText: {
-    fontSize: 18,
-    margin: 5,
-    textAlign: 'center',
-  },
-  modalButton: {
-    marginTop: 10,
-  },
-  pickerItem: {
-    fontSize: 16,
-  },
+    row: {
+      alignItems: 'center',
+      flex: 1,
+      flexDirection: 'row',
+      marginBottom: 20,
+    },
     container: {
         marginTop: 64,
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#FDF7EB'
     },
-
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10
-    },
     default: {
         margin: 10,
         height: 50,
         width: 300,
         backgroundColor: '#fff'
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5
     }
 });
 
