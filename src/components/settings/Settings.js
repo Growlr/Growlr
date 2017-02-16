@@ -19,9 +19,7 @@ import OnGrowlr from './onGrowlr/OnGrowlr';
 
 class Settings extends Component {
 
-    _ToggleShowMeOnGrowlr = (value)=>{
-      this.props.updateSettings({showOnGrowlr:value})
-    }
+
     _ToggleNotificationNewMatch = (value)=>{
       this.props.updateSettings({notificationNewMatch:value})
     }
@@ -53,18 +51,9 @@ class Settings extends Component {
 
                     <SetAge></SetAge>
 
-
-
                     {/* ----- Start Show On Growlr Option ----  */}
 
-
-                    <View  style={[styles.default, {height: 70}]}>
-                        <Text>Show me on Growlr</Text>
-                        <Switch
-                          onValueChange={(value) => this._ToggleShowMeOnGrowlr(value)}
-                          value={this.props.showOnGrowlr}
-                        />
-                    </View>
+                    <OnGrowlr></OnGrowlr>
 
                     {/* ----- End Show On Growlr Option ----  */}
 
@@ -147,9 +136,7 @@ class Settings extends Component {
 }
 
 mapStateToProps = (state) => {
-  console.log(state);
     return {
-      showOnGrowlr: state.settingsPage.showOnGrowlr,
       notificationNewMatch: state.settingsPage.notificationNewMatch,
       notificationMessages: state.settingsPage.notificationMessages,
       notificationMessageLikes: state.settingsPage.notificationMessageLikes,

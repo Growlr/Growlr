@@ -6,7 +6,8 @@ import {Actions} from 'react-native-router-flux';
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    Switch
 } from 'react-native'
 
 class OnGrowlr extends Component {
