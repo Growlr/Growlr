@@ -25,16 +25,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb{fb605201146350742}</string>
+				<string>fb605201146350742</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>{605201146350742}</string>
+	<string>605201146350742</string>
 	<key>FacebookDisplayName</key>
-	<string>{growlr}</string>
+	<string>growlr</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
