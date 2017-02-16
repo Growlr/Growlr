@@ -13,6 +13,7 @@ import {
 } from 'react-native'
 
 import ShowMe from './showMe/ShowMe';
+import SearchDistance from './searchDistance/SearchDistance';
 
 import MultiSlider from '../../../node_modules/react-native-multi-slider/Slider.js';
 import customMarker from '../../../node_modules/react-native-multi-slider/customMarker.js';
@@ -51,9 +52,6 @@ class Settings extends Component {
     SliderOneValuesChangeFinish = ()=>{
       this.props.updateSettings({sliderChanging:false})
     }
-    _setSearchDistance = (value) => {
-      this.props.updateSettings({searchDistance:value})
-    }
     _setAge = (value) => {
       this.props.updateSettings({setAge:value})
     }
@@ -74,18 +72,7 @@ class Settings extends Component {
 
                     {/* ----- Start Search Distance Option ----  */}
 
-                    <View style={[styles.default, {height: 70}]}>
-                        <Text>Search Distance</Text>
-                        <Text> {this.props.searchDistance} </Text>
-
-                        <Slider
-                          step= {1}
-                          value= {this.props.searchDistance}
-                          minimumValue={this.props.searchDistanceMin}
-                          maximumValue={this.props.searchDistanceMax}
-                          onValueChange={(value) => this._setSearchDistance(value)}
-                        ></Slider>
-                    </View>
+                    <SearchDistance></SearchDistance>
 
                     {/* ----- End Search Distance Option ----  */}
 
@@ -217,9 +204,6 @@ class Settings extends Component {
 mapStateToProps = (state) => {
   console.log(state);
     return {
-      searchDistance: state.settingsPage.searchDistance,
-      searchDistanceMin: state.settingsPage.searchDistanceMin,
-      searchDistanceMax: state.settingsPage.searchDistanceMax,
       setAge: state.settingsPage.setAge,
       setAgeLow: state.settingsPage.setAgeLow,
       setAgeHigh: state.settingsPage.setAgeHigh,
