@@ -16,10 +16,6 @@ import ShowMe from './showMe/ShowMe';
 import SearchDistance from './searchDistance/SearchDistance';
 import SetAge from './setAge/SetAge';
 
-import MultiSlider from '../../../node_modules/react-native-multi-slider/Slider.js';
-import customMarker from '../../../node_modules/react-native-multi-slider/customMarker.js';
-
-
 class Settings extends Component {
 
     _ToggleShowMeOnGrowlr = (value)=>{
@@ -43,21 +39,6 @@ class Settings extends Component {
     _TogglenotificationInAppSounds = (value)=>{
       this.props.updateSettings({notificationInAppSounds:value})
     }
-    SliderOneValuesChangeStart = ()=>{
-      this.props.updateSettings({sliderChanging:true})
-    }
-    SliderOneValuesChange = (values)=>{
-      this.props.updateSettings({setAgeLow:values[0]})
-      this.props.updateSettings({setAgeHigh:values[1]})
-    }
-    SliderOneValuesChangeFinish = ()=>{
-      this.props.updateSettings({sliderChanging:false})
-    }
-    _setAge = (value) => {
-      this.props.updateSettings({setAge:value})
-    }
-
-    updateUserInput() {}
 
     render() {
 
@@ -65,23 +46,13 @@ class Settings extends Component {
             <ScrollView>
                 <View style={styles.container}>
 
-                    {/* ----- Start Show Me Option ----  */}
-
                     <ShowMe></ShowMe>
-
-                    {/* ----- End Show Me Option ----  */}
-
-                    {/* ----- Start Search Distance Option ----  */}
 
                     <SearchDistance></SearchDistance>
 
-                    {/* ----- End Search Distance Option ----  */}
-
-                    {/* ----- Start Age Option ----  */}
-
                     <SetAge></SetAge>
 
-                    {/* ----- End Age Option ----  */}
+
 
                     {/* ----- Start Show On Growlr Option ----  */}
 
@@ -177,11 +148,6 @@ class Settings extends Component {
 mapStateToProps = (state) => {
   console.log(state);
     return {
-      setAge: state.settingsPage.setAge,
-      setAgeLow: state.settingsPage.setAgeLow,
-      setAgeHigh: state.settingsPage.setAgeHigh,
-      setAgeMin: state.settingsPage.setAgeMin,
-      setAgeMax: state.settingsPage.setAgeMax,
       showOnGrowlr: state.settingsPage.showOnGrowlr,
       notificationNewMatch: state.settingsPage.notificationNewMatch,
       notificationMessages: state.settingsPage.notificationMessages,
