@@ -33,6 +33,9 @@ class Match extends Component {
 
         return (
           <View>
+
+          {/* --- Header / NavBar --- */}
+
             <View style={{alignItems:
           'center'}}>
              <Image style={styles.chatImage}
@@ -43,6 +46,9 @@ class Match extends Component {
               source={require('../../img/Growlr_Logo.png')} style={styles.profile}/>
               </TouchableHighlight>
             </View>
+
+            {/* --- Search Bar --- */}
+
             <View style={{alignItems: 'center'}}>
               <View style={styles.topBorder}>
                 <TextInput style={styles.input}
@@ -52,12 +58,14 @@ class Match extends Component {
               </View>
             </View>
             <ScrollView>
+
+            {/* --- New Matches Section --- */}
+
             <Text style={styles.match}>New Matches</Text>
             <View style={styles.bottomBorder}>
               <Image
                 style={styles.matchImage}
                 source={{uri: 'https://images.moviepilot.com/images/c_limit,q_auto,w_710/th8bptyjpgp8qvohvvrq/carlton-a-fresh-prince-spin-off-and-more-possible-spin-offs-of-popular-90s-sitcoms.jpg'}} />
-
               <Text style={styles.matchName}>Carlton</Text>
               <View style={styles.moreInfo}>
               <TouchableOpacity onPress={() => this.setModalVisible(true)}>
@@ -67,6 +75,9 @@ class Match extends Component {
 
             </View>
             <View>
+
+            {/* --- Start of the Modal --- */}
+
           <Modal
               transparent={true}
               visible={this.state.modalVisible}>
@@ -91,7 +102,7 @@ class Match extends Component {
           </Modal>
           </View>
 
-
+          {/* --- Matches Section --- */}
 
             <Text style={styles.match}>Matches</Text>
 
@@ -127,6 +138,7 @@ class Match extends Component {
     }
 }
 
+{/* --- Style Section --- */}
 
 const styles = StyleSheet.create({
   chatImage: {
@@ -202,6 +214,7 @@ const styles = StyleSheet.create({
   },
   closeModal: {
     color: '#D85050',
+    fontWeight: 'bold',
     borderWidth: 1,
     borderColor: '#D85050',
     padding: 5,
@@ -217,9 +230,12 @@ const styles = StyleSheet.create({
   }
 })
 
-// mapStateToProps = (state) => {
-//     return {userInput: state.landingPage.userInput}
-// }
+
+
+
+ mapStateToProps = (state) => {
+   return {userInput: state.landingPage.userInput}
+ }
 
 const mapDispatchToActionCreators = {
     // updateMain: updateMain
