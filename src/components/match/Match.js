@@ -38,9 +38,10 @@ class Match extends Component {
              <Image style={styles.chatImage}
              source={{uri: 'https://www.woofadvisor.com/images/forum.jpg'}} />
 
-              <Image style={styles.profile}
-              onPress={Actions.profileView}
-              source={require('../../img/Growlr_Logo.png')} />
+             <TouchableHighlight onPress={Actions.mainView} style={styles.profile}>
+              <Image
+              source={require('../../img/Growlr_Logo.png')} style={styles.profile}/>
+              </TouchableHighlight>
             </View>
             <View style={{alignItems: 'center'}}>
               <View style={styles.topBorder}>
@@ -59,9 +60,9 @@ class Match extends Component {
 
               <Text style={styles.matchName}>Carlton</Text>
               <View style={styles.moreInfo}>
-              <TouchableHighlight onPress={() => this.setModalVisible(true)}>
+              <TouchableOpacity onPress={() => this.setModalVisible(true)}>
                   <Text style={{'color': 'lightgray'}}>More Info</Text>
-              </TouchableHighlight>
+              </TouchableOpacity>
               </View>
 
             </View>
@@ -70,20 +71,23 @@ class Match extends Component {
               transparent={true}
               visible={this.state.modalVisible}>
 
+              <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
               <View style={styles.modalBackground}>
 
                   <View style={styles.modalContainer}>
-                    <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
-                      <Text style ={styles.closeModal}>X</Text>
-                    </TouchableHighlight>
+                    <TouchableOpacity style={{}} onPress={() => this.setModalVisible(false)}>
+                      <Text style ={styles.closeModal}>Close</Text>
+                    </TouchableOpacity>
                       <Text>Contact us regarding</Text>
                       <Text>the adoption process!</Text>
                       <TouchableOpacity onPress={() => Communications.phonecall('8012612919', true)}>
-                        <Text>(801) 261-2919</Text>
+                        <Text style={styles.tapCall}>(801) 261-2919</Text>
                       </TouchableOpacity>
 
                   </View>
               </View>
+              </TouchableHighlight>
+
           </Modal>
           </View>
 
@@ -134,10 +138,10 @@ const styles = StyleSheet.create({
   },
   profile: {
     position: 'absolute',
-    top: 38,
-    left: 15,
-    width: 17,
-    height: 23
+    top: 15,
+    left: 10,
+    width: 20,
+    height: 27
   },
   input: {
     width: 355,
@@ -186,8 +190,8 @@ const styles = StyleSheet.create({
     height: 1000
   },
   modalContainer: {
-    backgroundColor: '#fff',
-    padding: 20,
+    backgroundColor: '#FFF',
+    padding: 32,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 250,
@@ -197,9 +201,19 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   closeModal: {
+    color: '#D85050',
+    borderWidth: 1,
+    borderColor: '#D85050',
+    padding: 5,
+    borderRadius: 5,
     position:'absolute',
-    top: -10,
-    left: -150
+    top: -12,
+    left: -142
+  },
+  tapCall: {
+    color: '#D85050',
+    paddingTop: 25,
+    fontSize:20
   }
 })
 
