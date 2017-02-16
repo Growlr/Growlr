@@ -14,6 +14,7 @@ import {
 
 import ShowMe from './showMe/ShowMe';
 import SearchDistance from './searchDistance/SearchDistance';
+import SetAge from './setAge/SetAge';
 
 import MultiSlider from '../../../node_modules/react-native-multi-slider/Slider.js';
 import customMarker from '../../../node_modules/react-native-multi-slider/customMarker.js';
@@ -78,35 +79,7 @@ class Settings extends Component {
 
                     {/* ----- Start Age Option ----  */}
 
-                    <View style={[styles.default, {height: 70}]}>
-
-                        <Text>AgeMultiSlider - Low:{this.props.setAgeLow} - High:{this.props.setAgeHigh}  </Text>
-                        <Text></Text>
-                        <MultiSlider
-                          values={[10,90]}
-                          min={this.props.setAgeMin}
-                          max={this.props.setAgeMax}
-                          sliderLength={300}
-                          onValuesChangeStart={this.SliderOneValuesChangeStart}
-                          onValuesChange={this.SliderOneValuesChange}
-                          onValuesChangeFinish={this.SliderOneValuesChangeFinish}
-
-                        />
-
-                        {/* ---- if we want to only use the default slider props
-                        uncomment the code below ----- */}
-
-                        {/* <Text>Age:{this.props.setAge}</Text> */}
-
-                        {/* <Slider
-                          step= {1}
-                          value= {this.props.setAge}
-                          minimumValue={this.props.setAgeMin}
-                          maximumValue={this.props.setAgeMax}
-                          onValueChange={(value) => this._setAge(value)}
-                        ></Slider> */}
-
-                    </View>
+                    <SetAge></SetAge>
 
                     {/* ----- End Age Option ----  */}
 
