@@ -21,11 +21,11 @@ class PetCard extends Component{
     return (
         <View style={{ width: width - 20, borderRadius: 8, overflow: 'hidden', backgroundColor: 'white', marginTop: -133 }} >
             <TouchableHighlight onPress={() => this.setModalVisible(true)}>
-            <Image style={{ height: height/2 + 40 , width: width - 20 }}  source={{uri: this.props.mainImage}}/>
+            <Image style={{ height: height/2 + 40 , width: width - 20 }}  source={{uri: this.props.img_link}}/>
             </TouchableHighlight>
             <View style={{paddingTop: 20, paddingLeft: 15}}>
-                <Text><Text style={{fontWeight: 'bold'}}>{this.props.name},</Text> {this.props.age}</Text>
-                <Text style={{ paddingBottom: 15, fontSize: 14, color: 'gray' }}>{this.props.desc}</Text>
+                <Text><Text style={{fontWeight: 'bold'}}>{this.props.pet_name},</Text> {this.props.age}</Text>
+                <Text style={{ paddingBottom: 15, fontSize: 14, color: 'gray' }}>{this.props.breed}</Text>
             </View>
 
 
@@ -51,7 +51,7 @@ class PetCard extends Component{
           }} loop>
 
                                 <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
-                                    <Image style={{ width, flex: 1}} source={{uri: "https://facebook.github.io/react/img/logo_og.png"}} />
+                                    <Image style={{ width, flex: 1}} source={{uri: this.props.img_link}} />
                                 </TouchableHighlight>
 
                                 <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
@@ -87,4 +87,3 @@ class PetCard extends Component{
 
 
 export default PetCard
-
