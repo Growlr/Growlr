@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
 import { updateMain, cardDeclined, cardAccepted } from '../../actions/updateMainPageActions'
 import SwipeCards from 'react-native-swipe-cards'
+import axios from 'axios'
 
 
 
@@ -16,8 +17,21 @@ class Main extends Component {
 
 cardRemoval = ( card ) => {
 }
+getPets = (update) => {
+  console.log('getPets here');
+  this.props.updateMain(update)
+}
 
 componentDidMount(){
+  axios.get('http://localhost:8005/api/')
+    .then((res,err) => {
+      console.log(res)
+      let petData = res.data
+      this.getPets(petData)
+    }).catch((err) => {
+      console.error('why?', err);
+    })
+
   //axios call
   // .then(data)
   // pass data to the action --> reducer -->store --> new state
