@@ -17,7 +17,11 @@ class Main extends Component {
 cardRemoval = ( card ) => {
 }
 
-
+componentDidMount(){
+  //axios call
+  // .then(data)
+  // pass data to the action --> reducer -->store --> new state
+}
 
     render() {
         let {width, height} = Dimensions.get('window')
