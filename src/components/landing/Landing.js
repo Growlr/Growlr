@@ -5,6 +5,8 @@ import {Actions} from 'react-native-router-flux';
 
 import {StyleSheet, Text, View, TextInput} from 'react-native'
 
+import Login from './Login'
+
 class Landing extends Component {
 
     updateUserInput() {}
@@ -16,6 +18,8 @@ class Landing extends Component {
           <Text>{this.props.userInput}</Text>
           <Text onPress={Actions.mainView}> theis is a button</Text>
           <Text onPress={Actions.settingsView}> theis is a button fur settings</Text>
+          <Text onPress={Actions.matchView}> Match View</Text>
+          <Login />
         </View>
 
 
