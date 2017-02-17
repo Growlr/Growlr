@@ -25,7 +25,7 @@ export default class Growlr extends Component {
   render() {
     return (
       <Provider store={ store }>
-        <Router sceneStyle={{paddingTop: 65}}>
+        <Router >
           <Scene key="root">
             <Scene key="landingPage" component={Landing} title="Landing Page" initial={true}/>
 
