@@ -23,7 +23,7 @@ getPets = (update) => {
 }
 
 componentDidMount(){
-  axios.get('http://localhost:8005/api/')
+  axios.get('http://138.197.144.223/api/')
     .then((res,err) => {
       console.log(res)
       let petData = res.data
