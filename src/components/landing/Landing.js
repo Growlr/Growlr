@@ -5,7 +5,6 @@ import {Actions} from 'react-native-router-flux';
 
 import {StyleSheet, Text, View, TextInput} from 'react-native'
 
-import Login from './Login'
 
 class Landing extends Component {
 
