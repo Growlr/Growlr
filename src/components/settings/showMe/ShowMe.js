@@ -52,16 +52,16 @@ class ShowMe extends Component {
                     <TouchableWithoutFeedback onPress={this._setModalVisible.bind(this, true)}>
                         <View >
                           <View style={styles.rowWrap}>
-                            <View style={styles.rowItem}>
-                              <Text>
-                                {(this.props.Dogs)? 'Dogs, ' : ''}
-                                {(this.props.Cats)? 'Cats, ' : ''}
-                                {(this.props.Hamsters)? 'Hamsters, ' : ''}
-                                {(this.props.Bunnies)? 'Bunnies, ' : ''}
-                                {(this.props.Exotic)? 'Exotic' : ''}
-                              </Text>
-                            </View>
-                            <View style={styles.rowItem}><Text style={styles.rowItem, styles.rowItemArrow}>></Text></View>
+                              <View style={styles.rowItem}>
+                                <Text>
+                                  {(this.props.Dogs)? 'Dogs ' : ''}
+                                  {(this.props.Cats)? 'Cats ' : ''}
+                                  {(this.props.Hamsters)? 'Hamsters ' : ''}
+                                  {(this.props.Bunnies)? 'Bunnies ' : ''}
+                                  {(this.props.Exotic)? 'Exotic' : ''}
+                                </Text>
+                              </View>
+                          <View style={styles.rowItem}><Text style={styles.rowItem, styles.rowItemArrow}>></Text></View>
                           </View>
                         </View>
                     </TouchableWithoutFeedback>
