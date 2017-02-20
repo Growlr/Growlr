@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateMatches} from '../../actions/updateMatchesPageActions';
 import Communications from 'react-native-communications';
+import Matchstyles from './Match';
 import {Actions} from 'react-native-router-flux';
 // import {updateMain} from '../actions/updateMainPageActions';
 
