@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {updateMatches} from '../../actions/updateMatchesPageActions';
 import Communications from 'react-native-communications';
 import {Actions} from 'react-native-router-flux';
-// import {updateMain} from '../actions/updateMainPageActions'
+// import {updateMain} from '../actions/updateMainPageActions';
 
 import {
   StyleSheet,
@@ -19,11 +19,11 @@ import {
 
 class Match extends Component {
   state = {
-      modalVisible: false,
+    modalVisible: false,
   };
 
   setModalVisible(visible){
-      this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible});
   }
 
     updateUserInput() {}
@@ -37,14 +37,14 @@ class Match extends Component {
           {/* --- Header / NavBar --- */}
 
             <View style={{alignItems:
-          'center'}}>
+          'center', marginTop: 60}}>
              <Image style={styles.chatImage}
              source={{uri: 'https://www.woofadvisor.com/images/forum.jpg'}} />
 
-             <TouchableHighlight onPress={Actions.mainView} style={styles.profile}>
+             <TouchableOpacity onPress={Actions.mainView} style={styles.profile}>
               <Image
               source={require('../../img/Growlr_Logo.png')} style={styles.profile}/>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
 
             {/* --- Search Bar --- */}
@@ -63,17 +63,17 @@ class Match extends Component {
 
             <Text style={styles.match}>New Matches</Text>
 
-<TouchableOpacity onPress={() => this.setModalVisible(true)}>
-            <View style={styles.bottomBorder}>
-              <Image
-                style={styles.matchImage}
-                source={{uri: 'https://images.moviepilot.com/images/c_limit,q_auto,w_710/th8bptyjpgp8qvohvvrq/carlton-a-fresh-prince-spin-off-and-more-possible-spin-offs-of-popular-90s-sitcoms.jpg'}} />
-              <Text style={styles.matchName}>Carlton</Text>
-              <View style={styles.moreInfo}>
+              <TouchableOpacity onPress={() => this.setModalVisible(true)}>
+                <View style={styles.bottomBorder}>
+                  <Image
+                  style={styles.matchImage}
+                  source={{uri: 'https://images.moviepilot.com/images/c_limit,q_auto,w_710/th8bptyjpgp8qvohvvrq/carlton-a-fresh-prince-spin-off-and-more-possible-spin-offs-of-popular-90s-sitcoms.jpg'}} />
+                  <Text style={styles.matchName}>Carlton</Text>
+                <View style={styles.moreInfo}>
 
                   <Text style={{'color': 'lightgray'}}>More Info</Text>
+                </View>
               </View>
-            </View>
             </TouchableOpacity>
 
             <View>
@@ -84,7 +84,7 @@ class Match extends Component {
               transparent={true}
               visible={this.state.modalVisible}>
 
-              <TouchableHighlight style={{}} onPress={() => this.setModalVisible(false)}>
+              <TouchableOpacity style={{}} onPress={() => this.setModalVisible(false)}>
               <View style={styles.modalBackground}>
 
                   <View style={styles.modalContainer}>
@@ -99,7 +99,7 @@ class Match extends Component {
 
                   </View>
               </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
 
           </Modal>
           </View>
@@ -108,7 +108,7 @@ class Match extends Component {
 
             <Text style={styles.match}>Matches</Text>
 
-<TouchableHighlight onPress={() => this.setModalVisible(true)}>
+            <TouchableOpacity onPress={() => this.setModalVisible(true)}>
             <View style={styles.bottomBorder}>
               <Image
                 style={styles.matchImage}
@@ -119,9 +119,9 @@ class Match extends Component {
                   <Text style={{'color': 'lightgray'}}>More Info</Text>
               </View>
             </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-<TouchableHighlight onPress={() => this.setModalVisible(true)}>
+            <TouchableOpacity onPress={() => this.setModalVisible(true)}>
             <View style={styles.bottomBorder}>
               <Image
                 style={styles.matchImage}
@@ -133,7 +133,7 @@ class Match extends Component {
                   <Text style={{'color': 'lightgray'}}>More Info</Text>
               </View>
             </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
             </ScrollView>
           </View>
@@ -141,6 +141,8 @@ class Match extends Component {
         )
     }
 }
+
+
 
 {/* --- Style Section --- */}
 
