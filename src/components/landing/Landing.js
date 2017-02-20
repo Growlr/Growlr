@@ -18,7 +18,6 @@ class Landing extends Component {
           <Text onPress={Actions.mainView}> theis is a button</Text>
           <Text onPress={Actions.settingsView}> theis is a button fur settings</Text>
           <Text onPress={Actions.matchView}> Match View</Text>
-          <Login />
         </View>
 
 

@@ -10,7 +10,6 @@ import PetDetail from './components/petDetail/PetDetail'
 import Profile from './components/profile/Profile'
 import Match from './components/match/Match'
 import Settings from './components/settings/Settings'
-import Login from './components/main/Login'
 import {
   AppRegistry,
   StyleSheet,

@@ -1,8 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { updateLogin } from '../../actions/updateLogin'
 import { connect } from 'react-redux'
-
-
+import { View, Text, StyleSheet } from 'react-native'
 
 const { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
@@ -10,32 +9,37 @@ class Login extends Component {
 
   render () {
     var _this = this
-
-
     return (
-      <FBLogin
+      <View>
+        {/* <InfoCarousel /> */}
+        <Text>Welcome to Growlr</Text>
+        <Text>please login to begin</Text>
+        <FBLogin
         style={{ marginBottom: 10 }}
         ref={(fbLogin) => { this.fbLogin = fbLogin }}
         permissions={["email","user_friends"]}
-        logicd nBehavior={FBLoginManager.LoginBehaviors.Native}
+        loginBehavior={FBLoginManager.LoginBehaviors.Native}
         onLogin={function(data){
           console.log("Logged in!");
           console.log(data);
           _this.props.updateLogin({user: data})
+
+
         }}
+
         onLogout={function(){
           console.log("Logged out.");
           _this.props.updateLogin({ user: '' });
         }}
-        // onLoginFound={function(data){
-        //   console.log("Existing login found.");
-        //   console.log(data);
-        //   _this.props.updateLogin({ user : data.credentials });
-        // }}
-        // onLoginNotFound={function(){
-        //   console.log("No user logged in.");
-        //   _this.setState({ user : null });
-        // }}
+        onLoginFound={function(data){
+          console.log("Existing login found.");
+          console.log(data);
+          _this.props.updateLogin({ user: data });
+        }}
+        onLoginNotFound={function(){
+          console.log("No user logged in.");
+          _this.props.updateLogin({ user: null });
+        }}
         onError={function(data){
           console.log("ERROR");
           console.log(data);
@@ -49,6 +53,8 @@ class Login extends Component {
         }}
 
        />
+
+      </View>
     )
 
   }
