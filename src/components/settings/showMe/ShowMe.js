@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {updateSettings} from '../../../actions/updateSettingsPageActions';
-import {Actions} from 'react-native-router-flux';
+import { connect } from 'react-redux'
+import { updateSettings } from '../../../actions/updateSettingsPageActions';
+import { Actions } from 'react-native-router-flux';
 // import {updateMain} from '../actions/updateMainPageActions'
 
 import {
@@ -12,6 +12,8 @@ import {
     Modal,
     TouchableWithoutFeedback
 } from 'react-native'
+
+import PetTypes from './petTypes/PetTypes';
 
 
 class ShowMe extends Component {
@@ -87,24 +89,10 @@ class ShowMe extends Component {
                         </View>
                         <View style={{flex:9}}>
                           <View style={styles.test}>
-                              <View>
-                                <Text>Dogs</Text>
-                              </View>
-                              <View>
-                                <Text>Cats</Text>
-                              </View>
-                              <View>
-                                <Text>Birds</Text>
-                              </View>
-                              <View>
-                                <Text>Exotic</Text>
-                              </View>
+                              <PetTypes></PetTypes>
+
                           </View>
-                          <View style={styles.test}>
-                            <Text> Discription text </Text>
-                            <Text> We welcome multi pet familes for, but if you want only a specific breed you can do that here </Text>
-                            <Text> Learn More  about dogs and cats </Text>
-                          </View>
+
                         </View>
                     </View>
                 </Modal>
