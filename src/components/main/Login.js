@@ -1,16 +1,17 @@
 import React, { PropTypes, Component } from 'react'
+import { updateLogin } from '../../actions/updateLogin'
+import { connect } from 'react-redux'
+
+
 
 const { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      user: ''
-    }
-  }
+
   render () {
     var _this = this
+
+
     return (
       <FBLogin
         style={{ marginBottom: 10 }}
@@ -20,21 +21,21 @@ class Login extends Component {
         onLogin={function(data){
           console.log("Logged in!");
           console.log(data);
-          _this.setState({ user : data.credentials });
+          _this.props.updateLogin({user: data})
         }}
         onLogout={function(){
           console.log("Logged out.");
-          _this.setState({ user : null });
+          _this.props.updateLogin({ user: '' });
         }}
-        onLoginFound={function(data){
-          console.log("Existing login found.");
-          console.log(data);
-          _this.setState({ user : data.credentials });
-        }}
-        onLoginNotFound={function(){
-          console.log("No user logged in.");
-          _this.setState({ user : null });
-        }}
+        // onLoginFound={function(data){
+        //   console.log("Existing login found.");
+        //   console.log(data);
+        //   _this.props.updateLogin({ user : data.credentials });
+        // }}
+        // onLoginNotFound={function(){
+        //   console.log("No user logged in.");
+        //   _this.setState({ user : null });
+        // }}
         onError={function(data){
           console.log("ERROR");
           console.log(data);
@@ -49,7 +50,17 @@ class Login extends Component {
 
        />
     )
+
   }
 }
 
-export default Login
+mapStateToProps = (state) => {
+    console.log(state)
+    return {user: state.login.user}
+}
+
+const mapDispatchToActionCreators = {
+    updateLogin: updateLogin
+};
+
+export default connect(mapStateToProps, mapDispatchToActionCreators)(Login)
