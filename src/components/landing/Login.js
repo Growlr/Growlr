@@ -15,8 +15,8 @@ class Login extends Component {
       <FBLogin
         style={{ marginBottom: 10 }}
         ref={(fbLogin) => { this.fbLogin = fbLogin }}
-        permissions={["public_profile","email","user_friends"]}
-        loginBehavior={FBLoginManager.LoginBehaviors.Native}
+        permissions={["email","user_friends"]}
+        logicd nBehavior={FBLoginManager.LoginBehaviors.Native}
         onLogin={function(data){
           console.log("Logged in!");
           console.log(data);

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {updateSettings} from '../../../actions/updateSettingsPageActions';
-import {Actions} from 'react-native-router-flux';
+import { connect } from 'react-redux'
+import { updateSettings } from '../../../actions/updateSettingsPageActions';
+import { Actions } from 'react-native-router-flux';
 
 import {
     StyleSheet,

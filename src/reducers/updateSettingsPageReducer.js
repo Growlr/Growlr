@@ -21,7 +21,12 @@ const initialState = {
   notificationMessageLikes: true,
   notificationSuperLikes: true,
   notificationInAppVibrations: false,
-  notificationInAppSounds: false
+  notificationInAppSounds: false,
+  searchDogs: true,
+  searchCats: true,
+  searchBunnies: true,
+  searchHamsters: true,
+  searchExotic: true,
 }
 
 
