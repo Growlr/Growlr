@@ -7,16 +7,21 @@ import {
     StyleSheet,
     Text,
     View,
-    Button
+    Button,
+    TouchableHighlight
 } from 'react-native'
 
 class Settings extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={[styles.default, {height: 100}]}>
-                    <Button style={styles.row} title="Kilomiters"></Button>
-                    <Button style={styles.row} title="Miles"></Button>
+                <View style={[styles.default,styles.row]}>
+                    <TouchableHighlight style={styles.buttonLook}>
+                      <Text  style={styles.centerText} >Kilomiters</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.buttonLook}>
+                      <Text style={styles.centerText} >Miles</Text>
+                    </TouchableHighlight>
                 </View>
             </View>
         )
@@ -38,13 +43,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: '#FDF7EB'
     },
     row: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+    },
+    centerText: {
+        textAlign: 'center',
+        color: '#fff'
+    },
+    buttonLook: {
+        backgroundColor: 'blue',
+        borderRadius: 5,
+        padding: 5,
     },
     default: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-around',
         margin: 10,
         height: 50,
         width: 300,

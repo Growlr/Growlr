@@ -7,9 +7,10 @@ import {
     StyleSheet,
     Text,
     View,
-    ScrollView,
-    Button
+    ScrollView
 } from 'react-native'
+
+const {FBLogin} = require ('react-native-facebook-login');
 
 import ShowMe from './showMe/ShowMe';
 import SearchDistance from './searchDistance/SearchDistance';
@@ -45,18 +46,10 @@ class Settings extends Component {
                         <Text>Privecy Policy</Text>
                         <Text>Terms of Service</Text>
                     </View>
-                    <View style={styles.default}>
-                        <Text>Logout</Text>
+                    <View style={[styles.default, {alignItems:'center', justifyContent: 'center', marginBottom: 20}]}>
+                        <FBLogin></FBLogin>
                     </View>
 
-                    <Text onPress={Actions.landingPage}>
-                        Landing</Text>
-                    <Text onPress={Actions.profileView}>
-                        Profile</Text>
-                    <Text onPress={Actions.mainView}>
-                        Main</Text>
-                    <Text onPress={Actions.matchView}>
-                        Main</Text>
 
                 </View>
             </ScrollView>
