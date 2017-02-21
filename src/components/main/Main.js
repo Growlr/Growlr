@@ -5,7 +5,8 @@ import {updateMain, cardDeclined, cardAccepted} from '../../actions/updateMainPa
 import SwipeCards from 'react-native-swipe-cards'
 import axios from 'axios'
 
-import Login from './Login'
+import Login from './Login';
+import NavBar from '../navbar/NavBar'
 
 import PetCard from './PetCard';
 
@@ -51,8 +52,10 @@ class Main extends Component {
         return (
 
             <View>
+
+              <NavBar></NavBar>
+
                 <Modal
-                  animationType={"fade"}
                   transparent={false}
                   visible={this.props.user ? false : true}
                   // visible={true}
@@ -72,8 +75,10 @@ class Main extends Component {
 
                 <View style={{
                     marginTop: 0,
-                    alignSelf: 'center'
+                    alignSelf: 'center',
+
                 }}>
+
                     <SwipeCards
                       cards={this.props.cards}
                       renderCard={(cardData) => <PetCard { ...cardData }/>}
@@ -86,6 +91,7 @@ class Main extends Component {
                         this.props.cardDeclined(card)}
                       }
                       cardRemoved={(card) => this.cardRemoval(card)}
+                      onClickHandler={() => console.log("stuff")}
                     />
                 </View>
 

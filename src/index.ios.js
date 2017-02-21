@@ -10,6 +10,8 @@ import PetDetail from './components/petDetail/PetDetail'
 import Profile from './components/profile/Profile'
 import Match from './components/match/Match'
 import Settings from './components/settings/Settings'
+import Login from './components/main/Login'
+import NavBar from './components/navbar/NavBar'
 import {
   AppRegistry,
   StyleSheet,
@@ -24,10 +26,11 @@ export default class Growlr extends Component {
     return (
       <Provider store={ store }>
         <Router >
-            <Scene key="root">
+            <Scene key="root" >
 
-              <Scene key="mainView" panHandler={null} sceneStyle={{ backgroundColor: 'lightgray'}} component={Main} title="Discover Pets"/>
-              <Scene key="landingPage" component={Landing} title="Landing Page" initial={true} />
+
+              <Scene key="mainView" navBar={ NavBar} navigationBarStyle={{ position: 'absolute', top: 0}} panHandler={null} sceneStyle={{ backgroundColor: 'lightgray'}} component={Main} title="Discover Pets" initial={true}/>
+              <Scene key="landingPage" component={Landing} title="Landing Page" />
               <Scene key="profileView" component={Profile} title="Your Profile"/>
               <Scene key="petDetailView" component={PetDetail} title="Pet Details"/>
               <Scene key="matchView" component={Match} title="Match View"/>

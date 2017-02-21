@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import { View, Text, Image, TouchableHighlight, Dimensions } from 'react-native'
+import {Actions} from 'react-native-router-flux';
 
 class NavBar extends Component {
 
     render(){
         let {width, height} = Dimensions.get('window')
         return (
-            <View style={{ height: 50, paddingTop: 18}}>
+            <View style={{ height: 50, paddingTop: 18, backgroundColor: '#fff'}}>
                 <TouchableHighlight onPress={this.props.leftButtonView}>
                     <Image style={{marginLeft: 5}} source={this.props.leftButton}/>
                 </TouchableHighlight>
@@ -16,6 +17,8 @@ class NavBar extends Component {
                 <TouchableHighlight style={{ position: 'absolute', right: width/2 - 10, top: 18}} onPress={this.props.rightButtonView}>
                     <Image  source={this.props.rightButton}/>
                 </TouchableHighlight>
+                <Text onPress={Actions.settingsView}>Settings</Text>
+
             </View>
         )
     }
