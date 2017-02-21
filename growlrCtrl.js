@@ -61,7 +61,11 @@ const growlrCtrl = {
     },
     AddPet: (req, res) => {
     db.add_pet([req.body.pet_id, req.body.breed, req.body.color, req.body.description, req.body.gender, req.body.pet_name, req.body.owner_id], (err, pet) => {
-
+      if(err){
+        console.error(err)
+      } else {
+        res.send(pet)
+      }
     })
     }
 
