@@ -28,6 +28,7 @@ export default class Growlr extends Component {
         <Router >
             <Scene key="root" >
 
+
               <Scene key="mainView" navBar={ NavBar} navigationBarStyle={{ position: 'absolute', top: 0}} panHandler={null} sceneStyle={{ backgroundColor: 'lightgray'}} component={Main} title="Discover Pets" initial={true}/>
               <Scene key="landingPage" component={Landing} title="Landing Page" />
               <Scene key="profileView" component={Profile} title="Your Profile"/>
