@@ -57,7 +57,6 @@ class Main extends Component {
               <NavBar></NavBar>
 
                 <Modal
-                  animationType={"fade"}
                   transparent={false}
                   visible={this.props.user ? false : true}
                   // visible={true}
@@ -90,6 +89,7 @@ class Main extends Component {
                         this.props.cardDeclined(card)}
                       }
                       cardRemoved={(card) => this.cardRemoval(card)}
+                      onClickHandler={() => console.log("stuff")}
                     />
                 </View>
 

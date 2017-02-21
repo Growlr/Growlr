@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Mystyles from './styles';
 import {updateMatches} from '../../actions/updateMatchesPageActions';
 import Communications from 'react-native-communications';
 import {Actions} from 'react-native-router-flux';
@@ -36,16 +37,16 @@ class MatchModal extends Component {
         visible={this.state.modalVisible}>
 
         <TouchableOpacity style={{}} onPress={() => this.setModalVisible(false)}>
-        <View style={styles.modalBackground}>
+        <View style={Mystyles.modalBackground}>
 
-            <View style={styles.modalContainer}>
+            <View style={Mystyles.modalContainer}>
               <TouchableOpacity style={{}} onPress={() => this.setModalVisible(false)}>
-                <Text style ={styles.closeModal}>Close</Text>
+                <Text style ={Mystyles.closeModal}>Close</Text>
               </TouchableOpacity>
                 <Text>Contact us regarding</Text>
                 <Text>the adoption process!</Text>
                 <TouchableOpacity onPress={() => Communications.phonecall('8012612919', true)}>
-                  <Text style={styles.tapCall}>(801) 261-2919</Text>
+                  <Text style={Mystyles.tapCall}>(801) 261-2919</Text>
                 </TouchableOpacity>
 
             </View>
@@ -60,4 +61,4 @@ class MatchModal extends Component {
 
 }
 
-export default connect(MatchModal)
+export default MatchModal;
