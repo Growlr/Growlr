@@ -9,6 +9,15 @@ const growlrCtrl = {
       } else {res.send(pets)}
     })
   },
+    ReadHumans: (req, res) => {
+    db.get_humans( (err, humans) => {
+      if(err){
+        console.error(err)
+      } else {
+        res.send(humans)
+      }
+    })
+    },
   GetOne: (req, res) => {
     db.get_one([req.params.id], (err, pet) => {
       if (err) {
@@ -60,7 +69,7 @@ const growlrCtrl = {
     })
     },
     AddPet: (req, res) => {
-    db.add_pet([req.body.pet_id, req.body.breed, req.body.color, req.body.description, req.body.gender, req.body.pet_name, req.body.owner_id], (err, pet) => {
+    db.add_pet([req.body.source_link, req.body.img_link, req.body.pet_id, req.body.gender, req.body.breed, req.body.color, req.body.age, req.body.description, req.body.pet_name, req.body.owner_id], (err, pet) => {
       if(err){
         console.error(err)
       } else {
