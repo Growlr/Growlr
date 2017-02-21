@@ -2,10 +2,17 @@ import React, { PropTypes, Component } from 'react'
 import { updateLogin } from '../../actions/updateLogin'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
+import axios from 'axios'
 
 const { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
+
+  componentDidUpdate(){
+
+
+  }
+
 
   render () {
     var _this = this
@@ -16,15 +23,22 @@ class Login extends Component {
         <Text>please login to begin</Text>
         <FBLogin
         style={{ marginBottom: 10 }}
-        ref={(fbLogin) => { this.fbLogin = fbLogin }}
+        ref={(fbLogin) => { this.fbLogin = fbLogin  }}
         permissions={["email","user_friends"]}
         loginBehavior={FBLoginManager.LoginBehaviors.Native}
         onLogin={function(data){
+          // console.log('here, yo');
+          // let user = data.credentials
+          // console.log(user);
+          // let api = `https://graph.facebook.com/v2.4/${user.userId}&access_token=${user.token}`
+          // axios.get(api)
+          //   .then((res) => {
+          //     console.log(res)
+          //
+          //   })
           console.log("Logged in!");
           console.log(data);
           _this.props.updateLogin({user: data})
-
-
         }}
 
         onLogout={function(){
@@ -61,7 +75,6 @@ class Login extends Component {
 }
 
 mapStateToProps = (state) => {
-    console.log(state)
     return {user: state.login.user}
 }
 

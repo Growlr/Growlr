@@ -54,12 +54,15 @@ class Main extends Component {
                 <Modal
                   animationType={"fade"}
                   transparent={false}
-                  // visible={this.props.user ? false : true}
-                  visible={true}
+                  visible={this.props.user ? false : true}
+                  // visible={true}
                 >
+
                   <View
                     style={{flex: 1, alignItems: "center", justifyContent: "center", width: width, height: height, backgroundColor: 'white'}}
                   >
+                    {/* <Image
+                      source={'./Growlr Logo.png'} /> */}
 
                     <Login />
 
