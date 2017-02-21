@@ -8,7 +8,6 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type){
         case UPDATE_MAIN:
-        console.log(action);
             return {...state, cards: action.update}
         case CARD_DECLINE:
             let newDeclinedArray = [ ...state.cards ]
@@ -17,7 +16,6 @@ export default (state = initialState, action) => {
         case CARD_ACCEPTED:
             let newAcceptedArray = [ ...state.cards ]
             newAcceptedArray.shift()
-            console.log(action, 'ACCEPTED')
             return { ...state, cards: newAcceptedArray  }
         default:
             return state

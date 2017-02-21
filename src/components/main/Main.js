@@ -38,8 +38,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://138.197.144.223/api/').then((res) => {
-            console.log(res)
+        axios.get('http://138.197.144.223/api/').then((res, err) => {
             let petData = res.data
             this.getPets(petData)
         }).catch((err) => {
@@ -99,9 +98,12 @@ class Main extends Component {
                   visible={this.props.user ? false : true}
                   // visible={true}
                 >
+
                   <View
                     style={{flex: 1, alignItems: "center", justifyContent: "center", width: width, height: height, backgroundColor: 'white'}}
                   >
+                    {/* <Image
+                      source={'./Growlr Logo.png'} /> */}
 
                     <Login />
 
