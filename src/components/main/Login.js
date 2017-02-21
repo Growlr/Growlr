@@ -4,14 +4,24 @@ import { connect } from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
 import axios from 'axios'
 
+
 const { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
 
-  componentDidUpdate(){
+
+    getUserInfo = () => {
+        axios.get('http://138.197.144.223/api/user/${this.props.user.userId}')
+            .then((res) => {
+                this.props.updateLogin({user: res.data})
+            })
+            .catch((err) => {
+            axios.get('')
+            console.error(err)
+            })
+    }
 
 
-  }
 
 
   render () {

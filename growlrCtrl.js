@@ -47,17 +47,19 @@ const growlrCtrl = {
     db.get_user([req.params.id], (err, user) => {
       if(err){
         console.log(err)
-          db.post_user([req.params.id, req.body.firstname, req.body.lastname, req.body.email, req.body.age, req.body.image], (err, user) => {
-            if(err){
-              console.error(err)
-            } else {
-              res.send(user)
-            }
-          })
       } else {
         res.send(user)
       }
     })
+    },
+    AddUserById: (req, res) => {
+        db.post_user([req.params.id, req.body.firstname, req.body.lastname, req.body.email, req.body.age, req.body.image], (err, user) => {
+            if(err){
+                console.error(err)
+            } else {
+                res.send(user)
+            }
+        })
     },
     GetMatchesById: (req, res) => {
     db.get_matches([req.params.id], (err, matches) => {

@@ -29,6 +29,7 @@ app.get('/api/matches/:id', growlrCtrl.GetMatchesById)
 
 app.post('/api/seen/', growlrCtrl.PostSeen)
 app.post('/api/pet', growlrCtrl.AddPet)
+app.post('/api/user/:id', growlrCtrl.AddUserById)
 
 
 app.listen(port, function(){

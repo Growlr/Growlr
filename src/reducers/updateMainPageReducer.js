@@ -2,7 +2,8 @@ import {UPDATE_MAIN, CARD_DECLINE, CARD_ACCEPTED} from '../actions/updateMainPag
 
 const initialState = {
     main: '',
-    cards: []
+    cards: [],
+    seenId: []
 };
 export default (state = initialState, action) => {
     switch (action.type){
