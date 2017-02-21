@@ -22,7 +22,7 @@ class MatchNavBar extends Component {
     return (
       <View style={{alignItems: 'center', marginTop: 60}}>
         <Image style={Mystyles.chatImage}
-        source={{uri: 'https://www.woofadvisor.com/image/forum.jpg'}} />
+        source={require('../../img/Growlr_Logo.png')} />
 
         <TouchableOpacity
         onPress={Actions.mainView}
