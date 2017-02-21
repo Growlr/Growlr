@@ -61,7 +61,9 @@ class ShowMe extends Component {
                                   {(this.props.Exotic)? 'Exotic' : ''}
                                 </Text>
                               </View>
-                          <View style={styles.rowItem}><Text style={styles.rowItem, styles.rowItemArrow}>></Text></View>
+                              <View style={styles.rowItem2}>
+                                <Text style={styles.rowItem2, styles.rowItemArrow}>></Text>
+                              </View>
                           </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -142,6 +144,10 @@ const styles = StyleSheet.create({
 
     },
     rowItem:{
+      flex:9,
+      height: 20
+    },
+    rowItem2:{
       flex:1,
       height: 20
     },
