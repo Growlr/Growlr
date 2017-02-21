@@ -11,7 +11,7 @@ import {
     TouchableHighlight
 } from 'react-native'
 
-class Settings extends Component {
+class DistanceUnit extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToActionCreators)(Settings)
+export default connect(mapStateToProps, mapDispatchToActionCreators)(DistanceUnit)
