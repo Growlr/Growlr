@@ -15,6 +15,7 @@ import ShowMe from './showMe/ShowMe';
 import SearchDistance from './searchDistance/SearchDistance';
 import SetAge from './setAge/SetAge';
 import OnGrowlr from './onGrowlr/OnGrowlr';
+import DistanceUnit from './distanceUnit/DistanceUnit';
 import Notifications from './notifications/Notifications';
 
 class Settings extends Component {
@@ -30,14 +31,10 @@ class Settings extends Component {
                     <SetAge></SetAge>
                     <OnGrowlr></OnGrowlr>
                     <Notifications></Notifications>
+                    <DistanceUnit></DistanceUnit>
 
                     {/* ----- End Settings Components ----  */}
 
-                    <View style={[styles.default, {height: 100}]}>
-                        <Button title="Ki."></Button>
-                        <Button title="Ki."></Button>
-                        <Text>Km. / Mi.</Text>
-                    </View>
                     <View style={styles.default}>
                         <Text>Contact Us</Text>
                         <Text>Help & Support</Text>

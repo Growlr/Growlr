@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { updateSettings } from '../../actions/updateSettingsPageActions';
+import { updateSettings } from '../../../actions/updateSettingsPageActions';
 import { Actions } from 'react-native-router-flux';
 
 import {
@@ -15,9 +15,8 @@ class Settings extends Component {
         return (
             <View style={styles.container}>
                 <View style={[styles.default, {height: 100}]}>
-                    <Button title="Kilomiters"></Button>
-                    <Button title="Miles"></Button>
-                    <Text>Km. / Mi.</Text>
+                    <Button style={styles.row} title="Kilomiters"></Button>
+                    <Button style={styles.row} title="Miles"></Button>
                 </View>
             </View>
         )
@@ -37,10 +36,13 @@ const mapDispatchToActionCreators = {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 64,
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#FDF7EB'
+    },
+    row: {
+        flex: 1,
+        flexDirection: 'row'
     },
     default: {
         margin: 10,
