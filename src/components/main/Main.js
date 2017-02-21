@@ -69,6 +69,27 @@ class Main extends Component {
             })
     }
 
+    updateNo = (card) => {
+        console.log(this.props.user)
+        console.log(card)
+        let userParsed = Number(this.props.user.userId)
+        console.log(userParsed, card.uniq_id)
+        const noBody = {
+            user_id: userParsed,
+            swipee: card.uniq_id,
+            liked: false
+        }
+        console.log(noBody)
+        axios.post('http://138.197.144.223/api/seen',  noBody)
+            .then((res) => {
+                console.log(res)
+                return res
+            })
+            .catch((err) => {
+            console.error(err)
+            })
+    }
+
 
 
     render() {
@@ -112,6 +133,7 @@ class Main extends Component {
                       }
                       handleNope={(card) => {
                         this.cardRemoval(card)
+                        this.updateNo(card)
                         this.props.cardDeclined(card)}
                       }
                       cardRemoved={(card) => this.cardRemoval(card)}
