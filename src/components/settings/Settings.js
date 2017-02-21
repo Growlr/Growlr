@@ -8,6 +8,7 @@ import {
     Text,
     View,
     ScrollView,
+    Button
 } from 'react-native'
 
 import ShowMe from './showMe/ShowMe';
@@ -32,7 +33,9 @@ class Settings extends Component {
 
                     {/* ----- End Settings Components ----  */}
 
-                    <View style={styles.default}>
+                    <View style={[styles.default, {height: 100}]}>
+                        <Button title="Ki."></Button>
+                        <Button title="Ki."></Button>
                         <Text>Km. / Mi.</Text>
                     </View>
                     <View style={styles.default}>
