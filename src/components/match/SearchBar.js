@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Mystyles from './styles';
 import {updateMatches} from '../../actions/updateMatchesPageActions';
 import {Actions} from 'react-native-router-flux';
 import {
-  StyleSheet,
+  Mystylesheet,
   Text,
   View,
   TextInput,
@@ -21,8 +22,8 @@ class SearchBar extends Component {
     return (
 
       <View style={{alignItems: 'center'}}>
-        <View style={styles.topBorder}>
-          <TextInput style={styles.input}
+        <View style={Mystyles.topBorder}>
+          <TextInput style={Mystyles.input}
           clearTextOnFocus={true}
           onChangeText={(text) =>
           this.setState.bind({text})}
@@ -36,4 +37,4 @@ class SearchBar extends Component {
 
 }
 
-export default connect(SearchBar);
+export default SearchBar;
