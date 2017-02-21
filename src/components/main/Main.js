@@ -47,6 +47,44 @@ class Main extends Component {
 
     }
 
+    updateYes = (card) => {
+        let userParsed = Number(this.props.user.userId)
+        console.log(userParsed, card.uniq_id)
+        const yesBody = {
+            user_id: userParsed,
+            swipee: card.uniq_id,
+            liked: true
+        }
+        console.log(yesBody)
+        axios.post('http://138.197.144.223/api/seen',  yesBody)
+            .then((res) => {
+                return res
+            })
+            .catch((err) => {
+            console.error(err)
+            })
+    }
+
+    updateNo = (card) => {
+        let userParsed = Number(this.props.user.userId)
+        console.log(userParsed, card.uniq_id)
+        const noBody = {
+            user_id: userParsed,
+            swipee: card.uniq_id,
+            liked: false
+        }
+        console.log(noBody)
+        axios.post('http://138.197.144.223/api/seen',  noBody)
+            .then((res) => {
+                return res
+            })
+            .catch((err) => {
+            console.error(err)
+            })
+    }
+
+
+
     render() {
         let {width, height} = Dimensions.get('window')
         return (
@@ -84,10 +122,14 @@ class Main extends Component {
                       renderCard={(cardData) => <PetCard { ...cardData }/>}
                       handleYup={(card) => {
                         this.cardRemoval(card)
+                        this.updateYes(card)
                         this.props.cardAccepted(card)}
+
+
                       }
                       handleNope={(card) => {
                         this.cardRemoval(card)
+                        this.updateNo(card)
                         this.props.cardDeclined(card)}
                       }
                       cardRemoved={(card) => this.cardRemoval(card)}
