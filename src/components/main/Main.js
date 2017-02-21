@@ -53,7 +53,6 @@ class Main extends Component {
 
             <View>
                 <Modal
-                  animationType={"fade"}
                   transparent={false}
                   visible={this.props.user ? false : true}
                   // visible={true}
