@@ -26,16 +26,16 @@ class Login extends Component {
         onLogout={function(){
           console.log("Logged out.");
           _this.props.updateLogin({ user: '' });
-        }}
-        // onLoginFound={function(data){
-        //   console.log("Existing login found.");
-        //   console.log(data);
-        //   _this.props.updateLogin({ user : data.credentials });
-        // }}
-        // onLoginNotFound={function(){
-        //   console.log("No user logged in.");
-        //   _this.setState({ user : null });
-        // }}
+         }}
+         onLoginFound={function(data){
+          console.log("Existing login found.");
+          console.log(data);
+          _this.props.updateLogin({ user : data.credentials });
+         }}
+         onLoginNotFound={function(){
+           console.log("No user logged in.");
+           _this.setState({ user : null });
+         }}
         onError={function(data){
           console.log("ERROR");
           console.log(data);
