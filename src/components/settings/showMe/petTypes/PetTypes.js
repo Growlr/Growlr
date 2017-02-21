@@ -85,8 +85,7 @@ class PetTypes extends Component {
 
               <View >
                 <Text> Discription text </Text>
-                <Text> We welcome multi pet familes for, but if you want only a specific breed you can do that here </Text>
-                <Text> Learn More  about dogs and cats </Text>
+                <Text> We welcome multi pet familes for, but if you want only to see specific types you can make a selection here</Text>
               </View>
             </View>
         )
