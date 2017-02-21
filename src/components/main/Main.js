@@ -83,6 +83,7 @@ class Main extends Component {
                         this.props.cardDeclined(card)}
                       }
                       cardRemoved={(card) => this.cardRemoval(card)}
+                      onClickHandler={() => console.log("stuff")}
                     />
                 </View>
 

@@ -54,24 +54,13 @@ class PetCard extends Component{
                                     <Image style={{ width, flex: 1}} source={{uri: this.props.img_link}} />
                                 </TouchableHighlight>
 
-                                <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
-                                    <Image style={{ width, flex: 1}} source={{uri: "https://facebook.github.io/react/img/logo_og.png"}} />
-                                </TouchableHighlight>
-
-                                <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
-                                    <Image style={{ width, flex: 1}} source={{uri: "https://facebook.github.io/react/img/logo_og.png"}} />
-                                </TouchableHighlight>
-
-                                <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
-                                    <Image style={{ width, flex: 1}} source={{uri: "https://facebook.github.io/react/img/logo_og.png"}} />
-                                </TouchableHighlight>
                             </Swiper>
                         </View>
 
 
                     <View style={{paddingTop: 20, paddingLeft: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
 
-                        <Text><Text style={{fontWeight: 'bold'}}>Jacob,</Text> 23</Text>
+                        <Text><Text style={{fontWeight: 'bold'}}>{this.props.pet_name},</Text> {this.props.age}</Text>
                         <Text style={{ paddingBottom: 5, fontSize: 12, color: 'gray' }}>Occupation</Text>
                         <Text style={{ paddingBottom: 15, fontSize: 10, color: 'gray' }}>Distance from</Text>
                     </View>
