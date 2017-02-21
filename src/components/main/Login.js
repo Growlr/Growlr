@@ -1,12 +1,24 @@
 import React, { PropTypes, Component } from 'react'
 import { updateLogin } from '../../actions/updateLogin'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 
 
 const { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 class Login extends Component {
+
+    getUserInfo = () => {
+        axios.get('http://138.197.144.223/api/user/${this.props.user.userId}')
+            .then((res) => {
+                this.props.updateLogin({user: res.data})
+            })
+            .catch((err) => {
+            axios.get('')
+            console.error(err)
+            })
+    }
 
   render () {
     var _this = this

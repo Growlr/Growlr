@@ -49,8 +49,6 @@ class Main extends Component {
     }
 
     updateYes = (card) => {
-        console.log(this.props.user)
-        console.log(card)
         let userParsed = Number(this.props.user.userId)
         console.log(userParsed, card.uniq_id)
         const yesBody = {
@@ -61,7 +59,6 @@ class Main extends Component {
         console.log(yesBody)
         axios.post('http://138.197.144.223/api/seen',  yesBody)
             .then((res) => {
-                console.log(res)
                 return res
             })
             .catch((err) => {
@@ -70,8 +67,6 @@ class Main extends Component {
     }
 
     updateNo = (card) => {
-        console.log(this.props.user)
-        console.log(card)
         let userParsed = Number(this.props.user.userId)
         console.log(userParsed, card.uniq_id)
         const noBody = {
@@ -82,7 +77,6 @@ class Main extends Component {
         console.log(noBody)
         axios.post('http://138.197.144.223/api/seen',  noBody)
             .then((res) => {
-                console.log(res)
                 return res
             })
             .catch((err) => {
