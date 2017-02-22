@@ -29,6 +29,11 @@ class Login extends Component {
           console.log("Logged in!");
           console.log(data);
           _this.props.updateLogin({user: data})
+          axios.post('/api/login/', data)
+            .then((res) => {
+              console.log('you did it');
+              console.log(res);
+            })
         }}
 
         onLogout={function(){
@@ -39,6 +44,11 @@ class Login extends Component {
           console.log("Existing login found.");
           console.log(data);
           _this.props.updateLogin({ user: data });
+          axios.post('/api/login/', data)
+            .then((res) => {
+              console.log('you did it');
+              console.log(res);
+            })
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");
