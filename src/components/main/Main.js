@@ -92,6 +92,9 @@ class Main extends Component {
             <View>
 
               <NavBar></NavBar>
+                <View>
+                    <Text onPress={Actions.ownerView}>Change to Owner</Text>
+                </View>
 
                 <Modal
                   transparent={false}
