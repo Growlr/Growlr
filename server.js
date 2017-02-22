@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive')
-import axios from 'axios'
+const axios = require('axios')
 
 
 
@@ -67,21 +67,12 @@ app.post('/api/login/', function (req, res){
                           }
                     })
           })
-        }}
-
-//         db.postUser([req.body], function(er, newUser){
-//           if(er){
-//             res.status(500).json(er)
-//           }
-//           else {
-//             res.status(200).json(newUser)
-//
-//           }
-//         })
-//       } else { res.status(200).json(user[0])}
-//     }
-//   })
-// })
+        } else{
+          console.log('there was a user on the db');
+          return user
+        }
+      }
+      })})
 
 
 
