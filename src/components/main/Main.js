@@ -32,6 +32,7 @@ class Main extends Component {
 
 
         getUserInfo = () => {
+          let postBody = {}
           console.log('getUserInfo Firing');
           console.log(this.props);
             axios.get(`http://138.197.144.223/api/user/${this.props.user.userId}`)
@@ -39,11 +40,11 @@ class Main extends Component {
                     this.props.updateLogin({user: res.data})
                 })
                 .catch((err) => {
-                  console.log(err);
-                axios.get(`http://graph.facebook.com/v2.8/${this.props.user.userId}?fields=first_name,last_name,email,picture,gender&redirect=false&access_token=${this.props.user.token}`)
+                  console.log('heres the catch');
+                axios.get(`https://graph.facebook.com/v2.8/${this.props.user.credentials.userId}?fields=first_name,last_name,email,picture,gender&redirect=false&access_token=${this.props.user.credentials.token}`)
                   .then((res) => {
                     console.log(res);
-                    const postBody = {
+                     return postBody = {
                       fid: res.data.id,
                       firstname: res.data.first_name,
                       lastname: res.data.last_name,
@@ -51,13 +52,15 @@ class Main extends Component {
                       gender: res.data.gender,
                       image: res.data.picture.data.url
                     }
-
-                    axios.post(`http://138.197.144.223/api/user/${this.props.user.userId}`, postBody)
-                      .then((res) => {
-                        console.log('wut it is');
-                        console.log(res);
-                      })
-                  })
+                  }).then((postBody) => {
+                    console.log(postBody);
+                    axios.post(`http://138.197.144.223/api/user/${postBody.fid}`, postBody)
+                    .then((res) => {
+                      console.log('wut it is');
+                      console.log(res);
+                    })
+                  }
+                    )
                 console.error(err)
                 })
         }
