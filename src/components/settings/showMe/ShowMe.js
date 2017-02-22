@@ -33,7 +33,7 @@ class ShowMe extends Component {
 
     render() {
         var modalBackgroundStyle = {
-          backgroundColor: this.props.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
+          backgroundColor: this.props.transparent ? 'rgba(0, 0, 0, 0.5)' : '#F5F5F5',
         };
         var innerContainerTransparentStyle = this.props.transparent
           ? {backgroundColor: '#fff', padding: 20}
@@ -147,9 +147,7 @@ const styles = StyleSheet.create({
         hight: 1
       },
       shadowRadius: 1,
-      shadowOpacity: 1000
-      // borderWidth: .25,
-      // borderColor: '#ccc'
+      shadowOpacity: 100
     },
     test:{
       borderRadius: 5,
@@ -160,10 +158,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
-    rowItem:{
-      flex:9,
-      height: 20
-    },
+
     fontDefault:{
       fontSize: 13
     },
@@ -178,6 +173,10 @@ const styles = StyleSheet.create({
     },
     fontParagraph:{
       color: '#555'
+    },
+    rowItem:{
+      flex:9,
+      height: 20
     },
     rowItem2:{
       flex:1,
