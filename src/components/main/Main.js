@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
-import {updateMain, cardDeclined, cardAccepted} from '../../actions/updateMainPageActions'
+import {updateMain, cardDeclined, cardAccepted, updateSwiperId} from '../../actions/updateMainPageActions'
 import SwipeCards from 'react-native-swipe-cards'
 import axios from 'axios'
 
@@ -38,17 +38,26 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://138.197.144.223/api/').then((res, err) => {
-            let petData = res.data
-            this.getPets(petData)
-        }).catch((err) => {
-            console.error('why?', err);
-        })
+        console.log(this.props.cards.length)
+        if(this.props.cards.length == 0) {
+            console.log('getting pets')
+            axios.get('http://138.197.144.223/api/').then((res, err) => {
+                let petData = res.data
+                this.getPets(petData)
+            }).catch((err) => {
+                console.error('why?', err);
+            })
+        }
 
     }
 
     updateYes = (card) => {
-        let userParsed = Number(this.props.user.userId)
+        console.log(this.props.swiperId)
+        let userParsed = Number(this.props.swiperId.id)
+        if(!this.props.swiperId.id){
+            userParsed = Number(this.props.user.credentials.userId)
+        }
+
         console.log(userParsed, card.uniq_id)
         const yesBody = {
             user_id: userParsed,
@@ -66,7 +75,12 @@ class Main extends Component {
     }
 
     updateNo = (card) => {
-        let userParsed = Number(this.props.user.userId)
+        console.log(card, this.props.swiperId.id)
+        let userParsed = Number(this.props.swiperId.id)
+        if(!this.props.swiperId.id){
+            userParsed = Number(this.props.user.credentials.userId)
+        }
+
         console.log(userParsed, card.uniq_id)
         const noBody = {
             user_id: userParsed,
@@ -93,7 +107,14 @@ class Main extends Component {
 
               <NavBar></NavBar>
                 <View>
-                    <Text onPress={Actions.ownerView}>Change to Owner</Text>
+                    <Text onPress={() => {
+                        const id = Number(this.props.user.credentials.userId)
+                        console.log(id)
+
+                        this.props.updateSwiperId({ id });
+                        Actions.ownerView()
+                    }}
+                    >Change to Owner</Text>
                 </View>
 
                 <Modal
@@ -147,8 +168,8 @@ class Main extends Component {
 }
 
 mapStateToProps = (state) => {
-    console.log(state)
     return {
+        swiperId: state.mainPage.swiperId,
       cards: state.mainPage.cards
       , user: state.login.user
     }
@@ -157,7 +178,8 @@ mapStateToProps = (state) => {
 const mapDispatchToActionCreators = {
     updateMain: updateMain,
     cardDeclined: cardDeclined,
-    cardAccepted: cardAccepted
+    cardAccepted: cardAccepted,
+    updateSwiperId: updateSwiperId
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Main)

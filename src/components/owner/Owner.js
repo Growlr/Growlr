@@ -22,7 +22,7 @@ class Owner extends Component {
             <ListView
                 contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}
                 dataSource={dataSource.cloneWithRows(items)}
-                renderRow={(rowData) => <OwnerCard name={rowData.pet_name} age={rowData.age} breed={rowData.breed} imgurl={rowData.img_link}/>}
+                renderRow={(rowData) => <OwnerCard pet_id={rowData.uniq_id} name={rowData.pet_name} age={rowData.age} breed={rowData.breed} imgurl={rowData.img_link}/>}
             />
 
         )
@@ -30,7 +30,6 @@ class Owner extends Component {
 }
 
 mapStateToProps = (state) => {
-    console.log(state)
     return {
         cards: state.mainPage.cards
         , user: state.login.user

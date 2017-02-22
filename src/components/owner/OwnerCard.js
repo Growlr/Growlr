@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
+import { updateSwiperId } from '../../actions/updateMainPageActions'
 import { View, Text, Dimensions, TouchableHighlight, Image, Modal, TextInput} from 'react-native'
 
 class OwnerCard extends Component{
@@ -16,7 +17,10 @@ class OwnerCard extends Component{
     let {width, height} = Dimensions.get('window')
         return(
             <View style={{ width: 120, height: 180, borderRadius: 8, overflow: 'hidden', backgroundColor: 'white', marginTop: 10, marginRight: 25, marginLeft: 25 }} >
-                <TouchableHighlight onPress={() => this.setModalVisible(true)}>
+                <TouchableHighlight onPress={() => {
+                    this.props.updateSwiperId({ id: this.props.pet_id})
+                    Actions.mainView()
+                }}>
                     <Image style={{ height: 120 , width: 120 }}  source={{uri: this.props.imgurl}}/>
                 </TouchableHighlight>
                 <View style={{paddingTop: 4, paddingLeft: 5}}>
@@ -59,7 +63,6 @@ class OwnerCard extends Component{
     }
 }
 mapStateToProps = (state) => {
-    console.log(state)
     return {
         cards: state.mainPage.cards
         , user: state.login.user
@@ -67,9 +70,9 @@ mapStateToProps = (state) => {
 }
 
 const mapDispatchToActionCreators = {
-    updateOwnerPet: updateOwnerPet
+    updateSwiperId: updateSwiperId
 
 }
-export default connect(mapStateToProps, null)(OwnerCard);
+export default connect(mapStateToProps, mapDispatchToActionCreators)(OwnerCard);
 
 
