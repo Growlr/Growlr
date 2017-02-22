@@ -10,7 +10,8 @@ import {
     View,
     TextInput,
     Modal,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    TouchableHighlight
 } from 'react-native'
 
 import PetTypes from './petTypes/PetTypes';
@@ -42,72 +43,74 @@ class ShowMe extends Component {
         };
         return (
 
-            <View style={styles.container}>
+            <TouchableHighlight style={styles.test}>
+              <View style={styles.container}>
 
-                {/* ----- Start Show Me Option ----  */}
+                  {/* ----- Start Show Me Option ----  */}
 
-                <View style={styles.default}>
-                    <Text>Show Me</Text>
+                  <View style={styles.default}>
+                      <Text>Show Me</Text>
 
-                    <TouchableWithoutFeedback onPress={this._setModalVisible.bind(this, true)}>
-                        <View >
+                      <TouchableWithoutFeedback onPress={this._setModalVisible.bind(this, true)}>
+                          <View >
+                            <View style={styles.rowWrap}>
+                                <View style={styles.rowItem}>
+                                  <Text>
+                                    {(this.props.Dogs)? 'Dogs ' : ''}
+                                    {(this.props.Cats)? 'Cats ' : ''}
+                                    {(this.props.Hamsters)? 'Hamsters ' : ''}
+                                    {(this.props.Bunnies)? 'Bunnies ' : ''}
+                                    {(this.props.Exotic)? 'Exotic' : ''}
+                                  </Text>
+                                </View>
+                                <View style={styles.rowItem2}>
+                                  <Text style={styles.rowItem2, styles.rowItemArrow}>></Text>
+                                </View>
+                            </View>
+                          </View>
+                      </TouchableWithoutFeedback>
+                  </View>
+
+                    {/* ---- Show Me Modal -----  */}
+
+                  <Modal
+                    animationType={this.props.animationType}
+                    transparent={this.props.transparent}
+                    visible={this.props.modalVisible}
+                    onRequestClose={() => this._setModalVisible(false)}
+              // }} supportedOrientations={supportedOrientationsPickerValues[this.props.selectedSupportedOrientation]} // onOrientationChange={evt => this.setState({currentOrientation: evt.nativeEvent.orientation})
+              // }}
+                  >
+                      <View style={[styles.modalContainer, modalBackgroundStyle]}>
                           <View style={styles.rowWrap}>
-                              <View style={styles.rowItem}>
-                                <Text>
-                                  {(this.props.Dogs)? 'Dogs ' : ''}
-                                  {(this.props.Cats)? 'Cats ' : ''}
-                                  {(this.props.Hamsters)? 'Hamsters ' : ''}
-                                  {(this.props.Bunnies)? 'Bunnies ' : ''}
-                                  {(this.props.Exotic)? 'Exotic' : ''}
-                                </Text>
-                              </View>
-                              <View style={styles.rowItem2}>
-                                <Text style={styles.rowItem2, styles.rowItemArrow}>></Text>
-                              </View>
+                            <View>
+                              <Text
+                                onPress={this._setModalVisible.bind(this,false)}
+                                title="< Settings"
+                                color="#000"
+                                style={styles.modalButton}
+                                >
+                                  {"< Settings"}
+                              </Text>
+                            </View>
+                            <View>
+                              <Text style={styles.modalButton}> Show Me </Text>
+                            </View>
+                            <Text></Text>
                           </View>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </View>
+                          <View style={{flex:9}}>
+                            <View style={{flex:2}}>
+                                <PetTypes></PetTypes>
 
-                  {/* ---- Show Me Modal -----  */}
-
-                <Modal
-                  animationType={this.props.animationType}
-                  transparent={this.props.transparent}
-                  visible={this.props.modalVisible}
-                  onRequestClose={() => this._setModalVisible(false)}
-            // }} supportedOrientations={supportedOrientationsPickerValues[this.props.selectedSupportedOrientation]} // onOrientationChange={evt => this.setState({currentOrientation: evt.nativeEvent.orientation})
-            // }}
-                >
-                    <View style={[styles.modalContainer, modalBackgroundStyle]}>
-                        <View style={styles.rowWrap}>
-                          <View>
-                            <Text
-                              onPress={this._setModalVisible.bind(this,false)}
-                              title="< Settings"
-                              color="#000"
-                              style={styles.modalButton}
-                              >
-                                {"< Settings"}
-                            </Text>
-                          </View>
-                          <View>
-                            <Text style={styles.modalButton}> Show Me </Text>
-                          </View>
-                          <Text></Text>
-                        </View>
-                        <View style={{flex:9}}>
-                          <View style={styles.test}>
-                              <PetTypes></PetTypes>
+                            </View>
 
                           </View>
+                      </View>
+                  </Modal>
 
-                        </View>
-                    </View>
-                </Modal>
-
-                {/* ----- End Show Me Option ----  */}
-            </View>
+                  {/* ----- End Show Me Option ----  */}
+              </View>
+            </TouchableHighlight>
         )
     }
 }
@@ -135,7 +138,10 @@ const mapDispatchToActionCreators = {
 
 const styles = StyleSheet.create({
     test:{
-      flex:2
+      flex:1,
+      backgroundColor: '#ccc',
+      borderRadius: 10,
+      borderWidth: 2
     },
     rowWrap:{
       flex: 1,
@@ -160,16 +166,17 @@ const styles = StyleSheet.create({
       padding: 20,
     },
     container: {
-        marginTop: 64,
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#FDF7EB'
+        backgroundColor: '#FDF7EB',
+        borderRadius: 10
     },
     default: {
         margin: 10,
         height: 50,
         width: 300,
-        backgroundColor: '#fff'
+        // backgroundColor: '#ccc',
+
     }
 });
 
