@@ -42,20 +42,25 @@ class ShowMe extends Component {
           backgroundColor: '#ddd'
         };
         return (
-
-            <TouchableHighlight style={styles.test}>
-              <View style={styles.container}>
+          <View style={{marginBottom: 5}}>
+            <View>
+              <Text style={[styles.fontTitle, styles.fontDefault]}>
+                Discovery Settings
+              </Text>
+            </View>
+            <TouchableHighlight style={[styles.radius, {height: 60}]}>
+              <View style={[styles.container, styles.radius]}>
 
                   {/* ----- Start Show Me Option ----  */}
 
-                  <View style={styles.default}>
-                      <Text>Show Me</Text>
+                  <View style={styles.innerContainer}>
+                      <Text style={[styles.fontSubTitle,styles.fontDefault, {flex:1}]}>Show Me</Text>
 
-                      <TouchableWithoutFeedback onPress={this._setModalVisible.bind(this, true)}>
+                      <TouchableWithoutFeedback style={{flex:1}} onPress={this._setModalVisible.bind(this, true)}>
                           <View >
                             <View style={styles.rowWrap}>
                                 <View style={styles.rowItem}>
-                                  <Text>
+                                  <Text style={[styles.fontDefault, styles.fontParagraph]}>
                                     {(this.props.Dogs)? 'Dogs ' : ''}
                                     {(this.props.Cats)? 'Cats ' : ''}
                                     {(this.props.Hamsters)? 'Hamsters ' : ''}
@@ -64,7 +69,7 @@ class ShowMe extends Component {
                                   </Text>
                                 </View>
                                 <View style={styles.rowItem2}>
-                                  <Text style={styles.rowItem2, styles.rowItemArrow}>></Text>
+                                  <Text style={[styles.rowItem2, styles.rowItemArrow]}>></Text>
                                 </View>
                             </View>
                           </View>
@@ -78,8 +83,6 @@ class ShowMe extends Component {
                     transparent={this.props.transparent}
                     visible={this.props.modalVisible}
                     onRequestClose={() => this._setModalVisible(false)}
-              // }} supportedOrientations={supportedOrientationsPickerValues[this.props.selectedSupportedOrientation]} // onOrientationChange={evt => this.setState({currentOrientation: evt.nativeEvent.orientation})
-              // }}
                   >
                       <View style={[styles.modalContainer, modalBackgroundStyle]}>
                           <View style={styles.rowWrap}>
@@ -101,9 +104,7 @@ class ShowMe extends Component {
                           <View style={{flex:9}}>
                             <View style={{flex:2}}>
                                 <PetTypes></PetTypes>
-
                             </View>
-
                           </View>
                       </View>
                   </Modal>
@@ -111,6 +112,8 @@ class ShowMe extends Component {
                   {/* ----- End Show Me Option ----  */}
               </View>
             </TouchableHighlight>
+          </View>
+
         )
     }
 }
@@ -137,28 +140,53 @@ const mapDispatchToActionCreators = {
 };
 
 const styles = StyleSheet.create({
+    radius:{
+      borderRadius: 5,
+      shadowColor: "#CBCBCB",
+      shadowOffset:{
+        hight: 1
+      },
+      shadowRadius: 1,
+      shadowOpacity: 1000
+      // borderWidth: .25,
+      // borderColor: '#ccc'
+    },
     test:{
-      flex:1,
-      backgroundColor: '#ccc',
-      borderRadius: 10,
-      borderWidth: 2
+      borderRadius: 5,
+      borderWidth: 2,
     },
     rowWrap:{
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'space-between',
-
     },
     rowItem:{
       flex:9,
       height: 20
+    },
+    fontDefault:{
+      fontSize: 13
+    },
+    fontSubTitle:{
+      color: '#F16A6A',
+      fontWeight: "600",
+    },
+    fontTitle:{
+      fontWeight: "700",
+      paddingBottom: 5,
+      paddingTop: 5,
+    },
+    fontParagraph:{
+      color: '#555'
     },
     rowItem2:{
       flex:1,
       height: 20
     },
     rowItemArrow:{
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',
+      fontWeight: '900',
+      color: "#ccc"
     },
     modalContainer: {
       flex: 1,
@@ -168,16 +196,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#FDF7EB',
-        borderRadius: 10
+        backgroundColor: '#fff',
     },
-    default: {
+    innerContainer: {
         margin: 10,
-        height: 50,
+        height: 23,
         width: 300,
-        // backgroundColor: '#ccc',
-
-    }
+        backgroundColor: '#fff',
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(ShowMe)
