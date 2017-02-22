@@ -9,6 +9,7 @@ import Mystyles from './styles'
 import {updateMatches} from '../../actions/updateMatchesPageActions';
 import Communications from 'react-native-communications';
 import {Actions} from 'react-native-router-flux';
+import axios from 'axios'
 // import {updateMain} from '../actions/updateMainPageActions';
 
 import {
@@ -26,6 +27,8 @@ import {
 class Match extends Component {
 
     updateUserInput() {}
+
+    
 
     render() {
         let {width, height} = Dimensions.get('window');
@@ -45,18 +48,18 @@ class Match extends Component {
 
           {/* --- New Matches Section --- */}
 
-            <NewMatch></NewMatch>
+              <NewMatch></NewMatch>
 
-            <View>
+              <View>
 
           {/* --- Start of the Modal --- */}
 
-          <MatchModal></MatchModal>
-          </View>
+                <MatchModal></MatchModal>
+              </View>
 
           {/* --- Matches Section --- */}
 
-          <OldMatch></OldMatch>
+                <OldMatch></OldMatch>
 
 
             </ScrollView>
@@ -65,7 +68,6 @@ class Match extends Component {
         )
     }
 }
-
 
 
           {/* --- Style Section --- */}
