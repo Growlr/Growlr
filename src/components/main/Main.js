@@ -30,6 +30,38 @@ class Main extends Component {
         }
     }
 
+
+        getUserInfo = () => {
+          console.log('getUserInfo Firing');
+          console.log(this.props);
+            axios.get(`http://138.197.144.223/api/user/${this.props.user.userId}`)
+                .then((res) => {
+                    this.props.updateLogin({user: res.data})
+                })
+                .catch((err) => {
+                  console.log(err);
+                axios.get(`http://graph.facebook.com/v2.8/${this.props.user.userId}?fields=first_name,last_name,email,picture,gender&redirect=false&access_token=${this.props.user.token}`)
+                  .then((res) => {
+                    console.log(res);
+                    const postBody = {
+                      fid: res.data.id,
+                      firstname: res.data.first_name,
+                      lastname: res.data.last_name,
+                      email: res.data.email,
+                      gender: res.data.gender,
+                      image: res.data.picture.data.url
+                    }
+
+                    axios.post(`http://138.197.144.223/api/user/${this.props.user.userId}`, postBody)
+                      .then((res) => {
+                        console.log('wut it is');
+                        console.log(res);
+                      })
+                  })
+                console.error(err)
+                })
+        }
+
     cardRemoval = (card) => {}
 
     getPets = (update) => {
@@ -44,11 +76,11 @@ class Main extends Component {
         }).catch((err) => {
             console.error('why?', err);
         })
-
-    }
+}
 
     updateYes = (card) => {
-        let userParsed = Number(this.props.user.userId)
+      //Added credentials to the statment in the Number () -- also in the updateNo method
+        let userParsed = Number(this.props.user.credentials.userId)
         console.log(userParsed, card.uniq_id)
         const yesBody = {
             user_id: userParsed,
@@ -66,7 +98,7 @@ class Main extends Component {
     }
 
     updateNo = (card) => {
-        let userParsed = Number(this.props.user.userId)
+        let userParsed = Number(this.props.user.credentials.userId)
         console.log(userParsed, card.uniq_id)
         const noBody = {
             user_id: userParsed,
@@ -81,6 +113,10 @@ class Main extends Component {
             .catch((err) => {
             console.error(err)
             })
+    }
+
+    componentDidUpdate(){
+      this.getUserInfo()
     }
 
 

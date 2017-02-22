@@ -10,17 +10,6 @@ const { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 class Login extends Component {
 
 
-    getUserInfo = () => {
-        axios.get('http://138.197.144.223/api/user/${this.props.user.userId}')
-            .then((res) => {
-                this.props.updateLogin({user: res.data})
-            })
-            .catch((err) => {
-            axios.get('')
-            console.error(err)
-            })
-    }
-
 
 
 
@@ -37,15 +26,6 @@ class Login extends Component {
         permissions={["email","user_friends"]}
         loginBehavior={FBLoginManager.LoginBehaviors.Native}
         onLogin={function(data){
-          // console.log('here, yo');
-          // let user = data.credentials
-          // console.log(user);
-          // let api = `https://graph.facebook.com/v2.4/${user.userId}&access_token=${user.token}`
-          // axios.get(api)
-          //   .then((res) => {
-          //     console.log(res)
-          //
-          //   })
           console.log("Logged in!");
           console.log(data);
           _this.props.updateLogin({user: data})
