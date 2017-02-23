@@ -47,7 +47,7 @@ class Login extends Component {
             .then((res) => {
               console.log('you did it');
               console.log(res);
-              _this.props.updateLogin({ user: res.data});
+              _this.props.updateLogin({ user: res.data[0]});
             })
         }}
         onLoginNotFound={function(){
