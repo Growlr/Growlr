@@ -26,11 +26,17 @@ const growlrCtrl = {
     })
   },
   GetSeenById: (req, res) => {
-    db.get_seen_by_id([req.params.id], (err, seen) => {
+    db.get_seen_by_id([req.body.fid], (err, seen) => {
       if(err){
         console.error(err)
       } else {
-        res.send(seen);
+        db.get_pets((er, pets) => {
+          if(er){
+            console.error(er)
+          } else {
+            console.log(pets, seen)
+          }
+        })
       }
     })
   },

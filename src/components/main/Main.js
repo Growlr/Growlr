@@ -42,19 +42,19 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
-        console.log(this.props.cards.length)
-            console.log('getting pets')
-        if(this.props.cards.length == 0) {
-            axios.get('http://138.197.144.223/api/').then((res) => {
-                console.log(res.data)
-                let petData = res.data
-                this.getPets(petData)
-            }).catch((err) => {
-                console.log('why?', err);
-            })
-        }
-
+        // console.log(this.props)
+        // console.log(this.props.cards.length)
+        //     console.log('getting pets')
+        // if(this.props.cards.length == 0) {
+        //     axios.get('http://138.197.144.223/api/').then((res) => {
+        //         console.log(res.data)
+        //         let petData = res.data
+        //         this.getPets(petData)
+        //     }).catch((err) => {
+        //         console.log('why?', err);
+        //     })
+        // }
+        //
 
             console.log('getting humans')
             axios.get('http://138.197.144.223/api/humans')
@@ -163,6 +163,7 @@ class Main extends Component {
                       }
                       cardRemoved={(card) => this.cardRemoval(card)}
                       onClickHandler={() => console.log("stuff")}
+
                     />
                 </View>
             </View>

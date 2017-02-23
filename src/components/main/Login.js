@@ -10,7 +10,13 @@ const { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 class Login extends Component {
 
 
-
+ componentDidUpdate(){
+     console.log(this.props.user.fid)
+     axios.post('http://138.197.144.223/api/unSeen', {fid: this.props.user.fid})
+         .then((res) => {
+         console.log(res, 'we did it')
+         })
+ }
 
 
   render () {
