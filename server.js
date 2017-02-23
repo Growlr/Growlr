@@ -43,7 +43,7 @@ app.post('/api/login/', function (req, res){
           .then((res) => {
             console.log(res);
              let postBody = {
-              fid: res.data.id,
+              fid: Number(res.data.id),
               firstname: res.data.first_name,
               lastname: res.data.last_name,
               email: res.data.email,
@@ -57,13 +57,19 @@ app.post('/api/login/', function (req, res){
                         , postBody.gender
                         , postBody.image], function(er, newUser){
                           if(er){
-                            console.log('postUser error');
+                            console.error('postUser error', er);
                             res.status(500).json(er)
                           }
                           else {
                             console.log('postUser Success');
-                            res.status(200).json(newUser)
-
+                            db.get_user([newUser], function(e, newUsr){
+                              if (e){
+                                console.error(e);
+                                res.send(e)
+                              } else {
+                                res.status(200).json(newUsr)
+                              }
+                            }
                           }
                     })
           })
