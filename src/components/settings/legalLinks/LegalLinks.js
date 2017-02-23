@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#FDF7EB'
+        backgroundColor: '#F5F5F5'
     },
     default: {
         margin: 10,
