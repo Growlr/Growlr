@@ -10,7 +10,6 @@ import {updateMatches} from '../../actions/updateMatchesPageActions';
 import Communications from 'react-native-communications';
 import {Actions} from 'react-native-router-flux';
 import axios from 'axios'
-// import {updateMain} from '../actions/updateMainPageActions';
 
 import {
   StyleSheet,
@@ -26,9 +25,17 @@ import {
 
 class Match extends Component {
 
-    updateUserInput() {}
+    // updateUserInput() {}
 
-
+    componentDidMount() {
+        axios.get('http://138.197.144.223/api/matches/:id').then((res, err) => {
+            console.log(res)
+            let matchData = res.data
+            this.getMatches(matchData)
+        }).catch((err) => {
+            console.error('oops', err);
+        })
+    }
 
     render() {
         let {width, height} = Dimensions.get('window');
@@ -165,9 +172,9 @@ class Match extends Component {
 
 
 
- mapStateToProps = (state) => {
-   return {userInput: state.matchPage.matches}
- }
+ // mapStateToProps = (state) => {
+ //   return {userInput: state.matchPage.matches}
+ // }
 
 const mapDispatchToActionCreators = {
     updateMatches: updateMatches
