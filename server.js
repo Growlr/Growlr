@@ -33,7 +33,7 @@ app.post('/api/pet', growlrCtrl.AddPet)
 app.post('/api/user/:id', growlrCtrl.AddUserById)
 
 app.post('/api/login/', function (req, res){
-  db.get_user([req.body.credentials.userId], function(err, user){
+  db.get_user([Number(req.body.credentials.userId)], function(err, user){
     if(err){
       res.status(500).json(err)
     }
@@ -43,36 +43,44 @@ app.post('/api/login/', function (req, res){
           .then((res) => {
             console.log(res);
              let postBody = {
-              fid: res.data.id,
+              fid: Number(res.data.id),
               firstname: res.data.first_name,
               lastname: res.data.last_name,
               email: res.data.email,
               gender: res.data.gender,
               image: res.data.picture.data.url
             }
-            db.postUser([postBody.fid
+            db.post_user( [postBody.fid
                         , postBody.firstname
                         , postBody.lastname
                         , postBody.email
                         , postBody.gender
-                        , postBody.image], (er, newUser) => {
+                        , postBody.image], function(er, newUser){
                           if(er){
-                            console.log('postUser error');
+                            console.error('postUser error', er);
                             res.status(500).json(er)
                           }
                           else {
                             console.log('postUser Success');
-                            res.status(200).json(newUser)
-
+                            db.get_user([Number(newUser)], function(e, newUsr){
+                              if (e){
+                                console.error(e);
+                                res.send(e)
+                              } else {
+                                res.status(200).json(newUsr)
+                              }
+                            })
                           }
                     })
           })
         } else{
           console.log('there was a user on the db');
-          return user
+          console.log(user);
+          res.send(user)
         }
       }
-      })})
+      })
+    })
 
 
 

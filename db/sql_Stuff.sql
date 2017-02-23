@@ -19,4 +19,5 @@ ALTER TABLE public."user"
 insert into user_table
 (fid, firstname, lastname, email, gender, fb_img)
 values
-(10154319532907816, 'Jon', 'Low', 'lowjonc@gmail.com', 'male', 'https://scontent.xx.fbcdn.net/v/t1.0-1/c37.37.465.465/s50x50/255640_10150126795982816_7574770_n.jpg?oh=6cd914013d0ccbf58575ec1755f922ad&oe=5935169F')
+(10154319532907815, 'Jon', 'Low', 'lowjonc@gmail.com', 'male', 'https://scontent.xx.fbcdn.net/v/t1.0-1/c37.37.465.465/s50x50/255640_10150126795982816_7574770_n.jpg?oh=6cd914013d0ccbf58575ec1755f922ad&oe=5935169F')
+-- this is not actually my fbId... changed it so Jacob can have dummy data, but so that I can fix the new user post from the server.

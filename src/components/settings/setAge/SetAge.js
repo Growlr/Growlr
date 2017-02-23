@@ -36,7 +36,7 @@ class SetAge extends Component {
 
         return (
 
-            <View style={styles.container}>
+            <View style={[styles.container, styles.radius, {marginBottom: 5}]}>
 
                 {/* ----- Start Age Option ----  */}
 
@@ -49,33 +49,26 @@ class SetAge extends Component {
                       min={this.props.setAgeMin}
                       max={this.props.setAgeMax}
                       sliderLength={300}
+                      trackStyle = 	{{ borderRadius: 7, height: 4 }}
+                      selectedStyle = {{backgroundColor: '#F16A6A'}}
+                      unselectedStyle = {{backgroundColor: '#F5F5F5'}}
+                      markerStyle = {{
+                        height:20,
+                        width: 20,
+                        borderRadius: 15,
+                        backgroundColor:'#F16A6A',
+                        borderWidth: 0.5,
+                        borderColor: '#FFF'}}
+                      pressedMarkerStyle = {{backgroundColor:'#F16A6A'}}
                       onValuesChangeStart={this.SliderOneValuesChangeStart}
                       onValuesChange={this.SliderOneValuesChange}
                       onValuesChangeFinish={this.SliderOneValuesChangeFinish}
 
                     />
 
-                    {/* ---- if we want to only use the default slider props
-                    uncomment the code below ----- */}
-
-                    {/* <Text>Age:{this.props.setAge}</Text> */}
-
-                    {/* <Slider
-                      step= {1}
-                      value= {this.props.setAge}
-                      minimumValue={this.props.setAgeMin}
-                      maximumValue={this.props.setAgeMax}
-                      onValueChange={(value) => this._setAge(value)}
-                    ></Slider> */}
-
                 </View>
-
                 {/* ----- End Age Option ----  */}
-
-
-
             </View>
-
         )
     }
 }
@@ -97,22 +90,43 @@ const mapDispatchToActionCreators = {
 };
 
 const styles = StyleSheet.create({
+    radius:{
+      borderRadius: 5,
+      shadowColor: "#CBCBCB",
+      shadowOffset:{
+        hight: 1
+      },
+      shadowRadius: 1,
+      shadowOpacity: 100
+    },
     row: {
       alignItems: 'center',
       flex: 1,
       flexDirection: 'row',
       marginBottom: 20,
     },
+    fontDefault:{
+      fontSize: 13
+    },
+    fontSubTitle:{
+      color: '#F16A6A',
+      fontWeight: "600",
+    },
+    fontParagraph:{
+      color: '#555'
+    },
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#FDF7EB'
+        backgroundColor: '#fff'
     },
     default: {
         margin: 10,
         height: 50,
         width: 300,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        height: 60,
+        flex:1
     }
 });
 

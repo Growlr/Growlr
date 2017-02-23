@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         marginTop: 64,
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#FDF7EB'
+        backgroundColor: '#F5F5F5'
     }
 });
 
