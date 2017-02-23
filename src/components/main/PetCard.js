@@ -21,11 +21,11 @@ class PetCard extends Component{
     return (
         <View style={{ width: width - 20, borderRadius: 8, overflow: 'hidden', backgroundColor: 'white', marginTop: -133 }} >
             <TouchableHighlight onPress={() => this.setModalVisible(true)}>
-            <Image style={{ height: height/2 + 40 , width: width - 20 }}  source={{uri: this.props.img_link}}/>
+            <Image style={{ height: height/2 + 40 , width: width - 20 }}  source={{uri: (this.props.img_link) ? this.props.img_link: this.props.fb_img}}/>
             </TouchableHighlight>
             <View style={{paddingTop: 20, paddingLeft: 15}}>
-                <Text><Text style={{fontWeight: 'bold'}}>{this.props.pet_name},</Text> {this.props.age}</Text>
-                <Text style={{ paddingBottom: 15, fontSize: 14, color: 'gray' }}>{this.props.breed}</Text>
+                <Text><Text style={{fontWeight: 'bold'}}>{this.props.pet_name ? this.props.pet_name: this.props.firstname},</Text> {this.props.age}</Text>
+                <Text style={{ paddingBottom: 15, fontSize: 14, color: 'gray' }}>{this.props.breed ? this.props.breed: this.props.email}</Text>
             </View>
 
 
@@ -51,7 +51,7 @@ class PetCard extends Component{
           }} loop>
 
                                 <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
-                                    <Image style={{ width, flex: 1}} source={{uri: this.props.img_link}} />
+                                    <Image style={{ width, flex: 1}} source={{uri: (this.props.img_link) ? this.props.img_link: this.props.fb_img}} />
                                 </TouchableHighlight>
 
                             </Swiper>
@@ -60,9 +60,12 @@ class PetCard extends Component{
 
                     <View style={{paddingTop: 20, paddingLeft: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
 
-                        <Text><Text style={{fontWeight: 'bold'}}>{this.props.pet_name},</Text> {this.props.age}</Text>
+                        <Text><Text style={{fontWeight: 'bold'}}>{this.props.pet_name ? this.props.pet_name: this.props.firstname},</Text> {this.props.age}</Text>
                         <Text style={{ paddingBottom: 5, fontSize: 12, color: 'gray' }}>Occupation</Text>
                         <Text style={{ paddingBottom: 15, fontSize: 10, color: 'gray' }}>Distance from</Text>
+                    </View>
+                    <View>
+                        <Text> {this.props.description}</Text>
                     </View>
                 </View>
             </Modal>

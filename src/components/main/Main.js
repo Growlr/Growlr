@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
-import {updateMain, cardDeclined, cardAccepted} from '../../actions/updateMainPageActions'
+import {updateMain, cardDeclined, cardAccepted, updateSwiperId, updateHumans} from '../../actions/updateMainPageActions'
 import SwipeCards from 'react-native-swipe-cards'
 import axios from 'axios'
 
@@ -30,65 +30,51 @@ class Main extends Component {
             modalVisible: true
         }
     }
-        //
-        //
-        // getUserInfo = () => {
-        //   let postBody = {}
-        //   console.log('getUserInfo Firing');
-        //   console.log(this.props);
-        //     axios.get(`http://138.197.144.223/api/user/${this.props.user.userId}`)
-        //         .then((res) => {
-        //             this.props.updateLogin({user: res.data})
-        //         })
-        //         .catch((err) => {
-        //           console.log('heres the catch');
-        //         axios.get(`https://graph.facebook.com/v2.8/${this.props.user.credentials.userId}?fields=first_name,last_name,email,picture,gender&redirect=false&access_token=${this.props.user.credentials.token}`)
-        //           .then((res) => {
-        //             console.log(res);
-        //              return postBody = {
-        //               fid: res.data.id,
-        //               firstname: res.data.first_name,
-        //               lastname: res.data.last_name,
-        //               email: res.data.email,
-        //               gender: res.data.gender,
-        //               image: res.data.picture.data.url
-        //             }
-        //           }).then((postBody) => {
-        //             console.log(postBody);
-        //             axios.post(`http://138.197.144.223/api/user/${this.props.user.credentials.userId}`, postBody)
-        //             .then((res) => {
-        //               console.log('wut it is');
-        //               console.log(res);
-        //             })
-        //           }
-        //             )
-        //         console.error(err)
-        //         })
-        // }
+
 
     cardRemoval = (card) => {}
 
     getPets = (update) => {
-        console.log('getPets here');
         this.props.updateMain(update)
+    }
+    getHumans = ( update ) => {
+        this.props.updateHumans(update)
     }
 
     componentDidMount() {
-        axios.get('http://138.197.144.223/api/').then((res, err) => {
-            let petData = res.data
-            this.getPets(petData)
-        }).catch((err) => {
-            console.error('why?', err);
-        })
-}
+        console.log(this.props)
+        console.log(this.props.cards.length)
+            console.log('getting pets')
+        if(this.props.cards.length == 0) {
+            axios.get('http://138.197.144.223/api/').then((res) => {
+                console.log(res.data)
+                let petData = res.data
+                this.getPets(petData)
+            }).catch((err) => {
+                console.log('why?', err);
+            })
+        }
+
+
+            console.log('getting humans')
+            axios.get('http://138.197.144.223/api/humans')
+                .then((res) => {
+                console.log(res.data)
+                let humanData = res.data
+                    this.getHumans(humanData)
+                })
+    }
 
     updateYes = (card) => {
-      //Added credentials to the statment in the Number () -- also in the updateNo method
-        let userParsed = Number(this.props.user.credentials.userId)
-        console.log(userParsed, card.uniq_id)
+        console.log(card, this.props.user, this.props)
+        let userParsed = Number(this.props.swiperId.id)
+        if(!this.props.swiperId.id){
+            userParsed = Number(this.props.user.fid)
+        }
+
         const yesBody = {
             user_id: userParsed,
-            swipee: card.uniq_id,
+            swipee: card.uniq_id ? card.uniq_id: Number(card.fid),
             liked: true
         }
         console.log(yesBody)
@@ -102,11 +88,15 @@ class Main extends Component {
     }
 
     updateNo = (card) => {
-        let userParsed = Number(this.props.user.credentials.userId)
-        console.log(userParsed, card.uniq_id)
+        console.log(card, this.props.user, this.props)
+        let userParsed = Number(this.props.swiperId.id)
+        if(!this.props.swiperId.id){
+            userParsed = Number(this.props.user.fid)
+        }
+
         const noBody = {
             user_id: userParsed,
-            swipee: card.uniq_id,
+            swipee: card.uniq_id ? card.uniq_id: Number(card.fid),
             liked: false
         }
         console.log(noBody)
@@ -115,58 +105,56 @@ class Main extends Component {
                 return res
             })
             .catch((err) => {
-            console.error(err)
+                console.error(err)
             })
     }
 
-    // componentDidUpdate(){
-    //   this.getUserInfo()
-    // }
 
 
 
     render() {
         let {width, height} = Dimensions.get('window')
         return (
-
             <View>
 
               <NavBar />
 
+
+                <View>
+                    <Text onPress={() => {
+                        console.log(this.props)
+                        const id = Number(this.props.user.fid)
+                        this.props.updateSwiperId({ id });
+                        Actions.ownerView()
+                    }}
+                    >Change to Owner</Text>
+                </View>
                 <Modal
                   transparent={false}
                   visible={this.props.user ? false : true}
                   // visible={true}
                   // visible={false}
                 >
-
                   <View
                     style={{flex: 1, alignItems: "center", justifyContent: "center", width: width, height: height, backgroundColor: 'white'}}
                   >
                     {/* <Image
                       source={'./Growlr Logo.png'} /> */}
-
                     <Login />
-
                   </View>
-
                 </Modal>
-
                 <View style={{
                     marginTop: 0,
                     alignSelf: 'center',
 
                 }}>
-
                     <SwipeCards
-                      cards={this.props.cards}
+                      cards={this.props.swiperId.id > 5555555 || !this.props.swiperId.id ? this.props.cards: this.props.humanCards}
                       renderCard={(cardData) => <PetCard { ...cardData }/>}
                       handleYup={(card) => {
                         this.cardRemoval(card)
                         this.updateYes(card)
                         this.props.cardAccepted(card)}
-
-
                       }
                       handleNope={(card) => {
                         this.cardRemoval(card)
@@ -177,7 +165,6 @@ class Main extends Component {
                       onClickHandler={() => console.log("stuff")}
                     />
                 </View>
-
             </View>
 
         )
@@ -185,9 +172,10 @@ class Main extends Component {
 }
 
 mapStateToProps = (state) => {
-    console.log(state)
     return {
+        swiperId: state.mainPage.swiperId,
       cards: state.mainPage.cards
+        , humanCards: state.mainPage.humanCards
       , user: state.login.user
     }
 }
@@ -195,7 +183,9 @@ mapStateToProps = (state) => {
 const mapDispatchToActionCreators = {
     updateMain: updateMain,
     cardDeclined: cardDeclined,
-    cardAccepted: cardAccepted
+    cardAccepted: cardAccepted,
+    updateSwiperId: updateSwiperId,
+    updateHumans: updateHumans
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Main)
