@@ -33,7 +33,7 @@ app.post('/api/pet', growlrCtrl.AddPet)
 app.post('/api/user/:id', growlrCtrl.AddUserById)
 
 app.post('/api/login/', function (req, res){
-  db.get_user([req.body.credentials.userId], function(err, user){
+  db.get_user([Number(req.body.credentials.userId)], function(err, user){
     if(err){
       res.status(500).json(err)
     }
@@ -62,14 +62,14 @@ app.post('/api/login/', function (req, res){
                           }
                           else {
                             console.log('postUser Success');
-                            db.get_user([newUser], function(e, newUsr){
+                            db.get_user([Number(newUser)], function(e, newUsr){
                               if (e){
                                 console.error(e);
                                 res.send(e)
                               } else {
                                 res.status(200).json(newUsr)
                               }
-                            }
+                            })
                           }
                     })
           })
