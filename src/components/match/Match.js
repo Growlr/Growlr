@@ -28,7 +28,7 @@ class Match extends Component {
 
     updateUserInput() {}
 
-    
+
 
     render() {
         let {width, height} = Dimensions.get('window');
@@ -166,11 +166,11 @@ class Match extends Component {
 
 
  mapStateToProps = (state) => {
-   return {userInput: state.landingPage.userInput}
+   return {userInput: state.matchPage.matches}
  }
 
 const mapDispatchToActionCreators = {
-    // updateMain: updateMain
+    updateMatches: updateMatches
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Match)
