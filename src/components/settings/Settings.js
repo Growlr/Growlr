@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { updateSettings } from '../../actions/updateSettingsPageActions';
+import NavBar from '../navbar/NavBar';
 import { Actions } from 'react-native-router-flux';
 
 import {
@@ -24,6 +25,10 @@ class Settings extends Component {
     render() {
 
         return (
+
+          <View>
+          <NavBar />
+
             <ScrollView>
                 <View style={styles.container}>
 
@@ -41,6 +46,7 @@ class Settings extends Component {
                     {/* ----- End Settings Components ----  */}
                 </View>
             </ScrollView>
+            </View>
         )
     }
 }

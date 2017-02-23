@@ -8,6 +8,7 @@ import axios from 'axios'
 import Login from './Login';
 import NavBar from '../navbar/NavBar'
 
+
 import PetCard from './PetCard';
 
 import {
@@ -130,7 +131,7 @@ class Main extends Component {
 
             <View>
 
-              <NavBar></NavBar>
+              <NavBar />
 
                 <Modal
                   transparent={false}
