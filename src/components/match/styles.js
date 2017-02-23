@@ -25,7 +25,7 @@ import {StyleSheet} from 'react-native';
             textAlign: 'center'
         },
         match: {
-            color: '#D85050',
+            color: '#F16A6A',
             fontSize: 18,
             marginLeft: 15,
             marginRight: 15,
@@ -74,10 +74,10 @@ import {StyleSheet} from 'react-native';
             borderRadius: 5
         },
         closeModal: {
-            color: '#D85050',
+            color: '#F16A6A',
             fontWeight: 'bold',
             borderWidth: 1,
-            borderColor: '#D85050',
+            borderColor: '#F16A6A',
             padding: 5,
             borderRadius: 5,
             position: 'absolute',
@@ -85,7 +85,7 @@ import {StyleSheet} from 'react-native';
             left: -138
         },
         tapCall: {
-            color: '#D85050',
+            color: '#F16A6A',
             paddingTop: 25,
             fontSize: 20
         }
