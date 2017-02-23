@@ -40,7 +40,7 @@ class Main extends Component {
         this.props.updateHumans(update)
     }
 
-    componentWillMount() {
+    componentDidMount() {
         console.log(this.props)
         console.log(this.props.cards.length)
             console.log('getting pets')
@@ -65,8 +65,12 @@ class Main extends Component {
     }
 
     updateYes = (card) => {
-      //Added credentials to the statment in the Number () -- also in the updateNo method
-        let userParsed = Number(this.props.user.credentials.userId)
+        console.log(card, this.props.user, this.props)
+        let userParsed = Number(this.props.swiperId.id)
+        if(!this.props.swiperId.id){
+            userParsed = Number(this.props.user.fid)
+        }
+
         const yesBody = {
             user_id: userParsed,
             swipee: card.uniq_id ? card.uniq_id: Number(card.fid),
@@ -83,10 +87,10 @@ class Main extends Component {
     }
 
     updateNo = (card) => {
-        console.log(card, this.props.user, this.props.swiperId)
+        console.log(card, this.props.user, this.props)
         let userParsed = Number(this.props.swiperId.id)
         if(!this.props.swiperId.id){
-            userParsed = Number(this.props.user.credentials.userId)
+            userParsed = Number(this.props.user.fid)
         }
 
         const noBody = {
@@ -94,6 +98,7 @@ class Main extends Component {
             swipee: card.uniq_id ? card.uniq_id: Number(card.fid),
             liked: false
         }
+        console.log(noBody)
         axios.post('http://138.197.144.223/api/seen',  noBody)
             .then((res) => {
                 return res
@@ -113,7 +118,8 @@ class Main extends Component {
               <NavBar></NavBar>
                 <View>
                     <Text onPress={() => {
-                        const id = Number(this.props.user.credentials.userId)
+                        console.log(this.props)
+                        const id = Number(this.props.user.fid)
                         this.props.updateSwiperId({ id });
                         Actions.ownerView()
                     }}
