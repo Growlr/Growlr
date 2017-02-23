@@ -28,11 +28,11 @@ class Login extends Component {
         onLogin={function(data){
           console.log("Logged in!");
           console.log(data);
-          _this.props.updateLogin({user: data})
           axios.post('http://138.197.144.223/api/login/', data)
             .then((res) => {
               console.log('you did it');
               console.log(res);
+              _this.props.updateLogin({user: res.data[0]})
             })
         }}
 
