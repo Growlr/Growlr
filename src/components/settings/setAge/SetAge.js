@@ -36,7 +36,7 @@ class SetAge extends Component {
 
         return (
 
-            <View style={[styles.container, styles.radius]}>
+            <View style={[styles.container, styles.radius, {marginBottom: 5}]}>
 
                 {/* ----- Start Age Option ----  */}
 
