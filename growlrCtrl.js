@@ -39,12 +39,12 @@ const growlrCtrl = {
               var seenList = seen.map(val => {
                   return {swipee: Number(val.swipee)}
               })
-              let arr1_ids = _.pluck(seenList, 'swipee');
-              let arr2_ids = _.pluck(pets, 'uniq_id');
+              let arr1_ids = _.map(seenList, 'swipee');
+              let arr2_ids = _.map(pets, 'uniq_id');
               let same_ids = _.intersection(arr1_ids, arr2_ids);
               let trimmedList = _.remove(pets, function(e) { return !_.contains(same_ids, e.uniq_id); });
 
-              console.log(trimmedList)
+              res.send(trimmedList)
 
           }
         })

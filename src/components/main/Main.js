@@ -60,7 +60,8 @@ class Main extends Component {
         console.log(this.props.user.fid)
         axios.post('http://138.197.144.223/api/unSeen', {fid: this.props.user.fid})
             .then((res) => {
-                console.log(res, 'we did it')
+                let petData = res.data;
+                this.getPets(petData)
             })
 
 
