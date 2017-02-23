@@ -26,15 +26,16 @@ class NewMatch extends Component {
     this.setState({modalVisible: visible});
   }
 
-  componentDidMount() {
-      axios.get('http://138.197.144.223/api/matches/:id').then((res, err) => {
-          console.log(res)
-          let matchData = res.data
-          this.getMatches(matchData)
-      }).catch((err) => {
-          console.error('oops', err);
-      })
-  }
+  // componentDidMount() {
+  //     axios.get('http://138.197.144.223/api/matches/:id').then((res, err) => {
+  //         console.log(res)
+  //         let matchData = res.data
+  //         this.getMatches(matchData)
+  //     }).catch((err) => {
+  //         console.error('oops', err);
+  //     })
+  // }
+
 
 
 
