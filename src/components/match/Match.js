@@ -9,7 +9,7 @@ import Mystyles from './styles'
 import {updateMatches} from '../../actions/updateMatchesPageActions';
 import Communications from 'react-native-communications';
 import {Actions} from 'react-native-router-flux';
-// import {updateMain} from '../actions/updateMainPageActions';
+import axios from 'axios'
 
 import {
   StyleSheet,
@@ -25,7 +25,17 @@ import {
 
 class Match extends Component {
 
-    updateUserInput() {}
+    // updateUserInput() {}
+
+    componentDidMount() {
+        axios.get('http://138.197.144.223/api/matches/:id').then((res, err) => {
+            console.log(res)
+            let matchData = res.data
+            this.getMatches(matchData)
+        }).catch((err) => {
+            console.error('oops', err);
+        })
+    }
 
     render() {
         let {width, height} = Dimensions.get('window');
@@ -45,18 +55,18 @@ class Match extends Component {
 
           {/* --- New Matches Section --- */}
 
-            <NewMatch></NewMatch>
+              <NewMatch></NewMatch>
 
-            <View>
+              <View>
 
           {/* --- Start of the Modal --- */}
 
-          <MatchModal></MatchModal>
-          </View>
+                <MatchModal></MatchModal>
+              </View>
 
           {/* --- Matches Section --- */}
 
-          <OldMatch></OldMatch>
+                <OldMatch></OldMatch>
 
 
             </ScrollView>
@@ -65,7 +75,6 @@ class Match extends Component {
         )
     }
 }
-
 
 
           {/* --- Style Section --- */}
@@ -163,12 +172,12 @@ class Match extends Component {
 
 
 
- mapStateToProps = (state) => {
-   return {userInput: state.landingPage.userInput}
- }
+ // mapStateToProps = (state) => {
+ //   return {userInput: state.matchPage.matches}
+ // }
 
 const mapDispatchToActionCreators = {
-    // updateMain: updateMain
+    updateMatches: updateMatches
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Match)

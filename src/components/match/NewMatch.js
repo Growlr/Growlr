@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Mystyles from './styles';
 import Communications from 'react-native-communications';import {updateMatches} from '../../actions/updateMatchesPageActions';
 import {Actions} from 'react-native-router-flux';
+import axios from 'axios'
 import {
     StyleSheet,
     Text,
@@ -25,6 +26,18 @@ class NewMatch extends Component {
     this.setState({modalVisible: visible});
   }
 
+  // componentDidMount() {
+  //     axios.get('http://138.197.144.223/api/matches/:id').then((res, err) => {
+  //         console.log(res)
+  //         let matchData = res.data
+  //         this.getMatches(matchData)
+  //     }).catch((err) => {
+  //         console.error('oops', err);
+  //     })
+  // }
+
+  
+
   render() {
 
     return (
@@ -35,8 +48,8 @@ class NewMatch extends Component {
         <TouchableOpacity onPress = { () => this.setModalVisible(true)}>
           <View style = {              Mystyles.bottomBorder}>
             <Image style = {Mystyles.matchImage}
-            source={require('../../img/Growlr_Logo.png')} />
-            <Text style = {Mystyles.matchName}>Pet Name</Text>
+            source={{uri: this.props.img_link}} />
+            <Text style = {Mystyles.matchName}>{this.props.pet_name}</Text>
           <View style = {Mystyles.moreInfo}>
             <Text style = {{'color': 'lightgray'}}>More Info</Text>
           </View>

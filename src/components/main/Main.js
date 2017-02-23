@@ -30,6 +30,7 @@ class Main extends Component {
         }
     }
 
+
     cardRemoval = (card) => {}
 
     getPets = (update) => {
@@ -61,23 +62,18 @@ class Main extends Component {
                 let humanData = res.data
                     this.getHumans(humanData)
                 })
-
-
     }
 
     updateYes = (card) => {
-        console.log(card, this.props.user, this.props.swiperId)
-        let userParsed = Number(this.props.swiperId.id)
-        if(!this.props.swiperId.id){
-            userParsed = Number(this.props.user.credentials.userId)
-        }
+      //Added credentials to the statment in the Number () -- also in the updateNo method
+        let userParsed = Number(this.props.user.credentials.userId)
         const yesBody = {
             user_id: userParsed,
             swipee: card.uniq_id ? card.uniq_id: Number(card.fid),
             liked: true
         }
         console.log(yesBody)
-        axios.post('http://138.197.144.223/api/seen',  yesBody)
+        axios.post('http://138.197.144.223/api/seen/',  yesBody)
             .then((res) => {
                 return res
             })
@@ -92,6 +88,7 @@ class Main extends Component {
         if(!this.props.swiperId.id){
             userParsed = Number(this.props.user.credentials.userId)
         }
+
         const noBody = {
             user_id: userParsed,
             swipee: card.uniq_id ? card.uniq_id: Number(card.fid),
@@ -105,6 +102,7 @@ class Main extends Component {
                 console.error(err)
             })
     }
+
 
 
 
@@ -125,6 +123,7 @@ class Main extends Component {
                   transparent={false}
                   visible={this.props.user ? false : true}
                   // visible={true}
+                  // visible={false}
                 >
                   <View
                     style={{flex: 1, alignItems: "center", justifyContent: "center", width: width, height: height, backgroundColor: 'white'}}

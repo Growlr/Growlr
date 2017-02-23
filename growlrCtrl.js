@@ -53,7 +53,7 @@ const growlrCtrl = {
     })
     },
     AddUserById: (req, res) => {
-        db.post_user([req.params.id, req.body.firstname, req.body.lastname, req.body.email, req.body.age, req.body.image], (err, user) => {
+        db.post_user([req.params.fid, req.body.firstname, req.body.lastname, req.body.email, req.body.gender, req.body.image], (err, user) => {
             if(err){
                 console.error(err)
             } else {

@@ -18,6 +18,7 @@ class NavBar extends Component {
                     <Image  source={this.props.rightButton}/>
                 </TouchableHighlight>
                 <Text onPress={Actions.settingsView}>Settings</Text>
+                <Text onPress={Actions.matchView}>Matches</Text>
 
             </View>
         )
