@@ -11,30 +11,36 @@ import {StyleSheet} from 'react-native';
         },
         profile: {
             position: 'absolute',
-            top: 14,
+            top: 16,
             left: 20,
-            width: 18,
-            height: 24
+            width: 15,
+            height: 18
         },
         matches: {
             position: 'absolute',
-            top: 14,
+            top: 16,
             right: 20,
-            width: 18,
-            height: 24
+            width: 19,
+            height: 21
         },
         navbar: {
           position: 'absolute',
           top: 0,
           right: 0,
           left: 0,
-          backgroundColor: '#eee',
+          backgroundColor: '#f5f5f5',
           alignItems: 'center',
           paddingTop: 10,
           paddingBottom: 10,
-          height: 60,
+          height: 64,
           borderBottomWidth: 0.4,
-          borderBottomColor: 'lightgray'
+          borderBottomColor: 'lightgray',
+          shadowColor: '#CBCBCB',
+          shadowOffset: {
+            height: 0.5
+          },
+          shadowRadius: 1,
+          shadowOpacity: 250
         }
     })
 export default NavStyles;

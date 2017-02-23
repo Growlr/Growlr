@@ -14,7 +14,7 @@ class NavBar extends Component {
           onPress={Actions.settingsView}
           style={NavStyles.profile}>
             <Image
-            source={require('../../img/Growlr_Logo.png')} style={NavStyles.profile} />
+            source={require('../../img/profile.png')} style={NavStyles.profile} />
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -27,7 +27,7 @@ class NavBar extends Component {
             onPress={Actions.matchView}
             style={NavStyles.matches}>
               <Image
-              source={require('../../img/Growlr_Logo.png')} style={NavStyles.matches} />
+              source={require('../../img/match.png')} style={NavStyles.matches} />
             </TouchableOpacity>
 
           </View>
