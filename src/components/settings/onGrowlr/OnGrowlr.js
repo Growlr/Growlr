@@ -6,9 +6,10 @@ import { Actions }  from 'react-native-router-flux';
 import {
     StyleSheet,
     Text,
-    View,
-    Switch
+    View
 } from 'react-native'
+
+import Switch from 'react-native-material-switch-finale'
 
 class OnGrowlr extends Component {
 
@@ -16,7 +17,28 @@ class OnGrowlr extends Component {
       this.props.updateSettings({showOnGrowlr:value})
     }
 
+
     render() {
+        const switchProps = {
+          padding: 10,
+          inactiveButtonColor: '#ededed',
+          activeButtonColor: '#F16A6A',
+          activeBackgroundColor: '#FBD0D0',
+          inactiveBackgroundColor: '#ccc',
+          buttonShadow: {
+            shadowColor: '#000',
+            shadowOpacity: 0.5,
+            shadowRadius: 1,
+            shadowOffset: { height: 1, width: 0 },
+          },
+          buttonRadius: 10,
+          switchWidth: 26,
+          switchHeight: 13,
+          buttonContent: null,
+          enableSlide: true,
+          switchAnimationTime: 200,
+        }
+        console.log(switchProps.inactiveButtonColor);
         return (
                 <View style={[styles.container, styles.radius]}>
 
@@ -27,7 +49,14 @@ class OnGrowlr extends Component {
                         <Switch
                           onValueChange={(value) => this._ToggleShowMeOnGrowlr(value)}
                           value={this.props.showOnGrowlr}
-                          onTintColor = "#F16A6A"
+                          inactiveButtonColor = {switchProps.inactiveButtonColor}
+                          activeButtonColor = {switchProps.activeButtonColor}
+                          activeBackgroundColor = {switchProps.activeBackgroundColor}
+                          inactiveBackgroundColor = {switchProps.inactiveBackgroundColor}
+                          onTintColor = {switchProps.onTintColor}
+                          buttonRadius = {switchProps.buttonRadius}
+                          switchWidth = {switchProps.switchWidth}
+                          switchHeight = {switchProps.switchHeight}
                         />
                     </View>
                 </View>

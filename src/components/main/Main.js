@@ -134,7 +134,8 @@ class Main extends Component {
 
                 <Modal
                   transparent={false}
-                  visible={this.props.user ? false : true}
+                  //changed to default false so that stuffs would work until JoLo fixed stuffs
+                  visible={this.props.user ? false : false}
                   // visible={true}
                 >
 
@@ -145,9 +146,7 @@ class Main extends Component {
                       source={'./Growlr Logo.png'} /> */}
 
                     <Login />
-
                   </View>
-
                 </Modal>
 
                 <View style={{

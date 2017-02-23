@@ -6,10 +6,10 @@ import { Actions } from 'react-native-router-flux';
 import {
     StyleSheet,
     Text,
-    View,
-    Switch
+    View
 } from 'react-native'
 
+import Switch from 'react-native-material-switch-finale'
 
 class Notifications extends Component {
 
@@ -34,6 +34,25 @@ class Notifications extends Component {
     }
 
     render() {
+      const switchProps = {
+        padding: 10,
+        inactiveButtonColor: '#ededed',
+        activeButtonColor: '#F16A6A',
+        activeBackgroundColor: '#FBD0D0',
+        inactiveBackgroundColor: '#ccc',
+        buttonShadow: {
+          shadowColor: '#000',
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          shadowOffset: { height: 1, width: 0 },
+        },
+        buttonRadius: 10,
+        switchWidth: 26,
+        switchHeight: 13,
+        buttonContent: null,
+        enableSlide: true,
+        switchAnimationTime: 200,
+      }
         return (
             <View style={styles.container}>
 
@@ -43,6 +62,14 @@ class Notifications extends Component {
                       <Switch
                         onValueChange={(value) => this._ToggleNotificationNewMatch(value)}
                         value={this.props.notificationNewMatch}
+                        inactiveButtonColor = {switchProps.inactiveButtonColor}
+                        activeButtonColor = {switchProps.activeButtonColor}
+                        activeBackgroundColor = {switchProps.activeBackgroundColor}
+                        inactiveBackgroundColor = {switchProps.inactiveBackgroundColor}
+                        onTintColor = {switchProps.onTintColor}
+                        buttonRadius = {switchProps.buttonRadius}
+                        switchWidth = {switchProps.switchWidth}
+                        switchHeight = {switchProps.switchHeight}
                       />
                     </View>
                     <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
@@ -50,6 +77,14 @@ class Notifications extends Component {
                       <Switch
                         onValueChange={(value) => this._ToggleNotificationMessages(value)}
                         value={this.props.notificationMessages}
+                        inactiveButtonColor = {switchProps.inactiveButtonColor}
+                        activeButtonColor = {switchProps.activeButtonColor}
+                        activeBackgroundColor = {switchProps.activeBackgroundColor}
+                        inactiveBackgroundColor = {switchProps.inactiveBackgroundColor}
+                        onTintColor = {switchProps.onTintColor}
+                        buttonRadius = {switchProps.buttonRadius}
+                        switchWidth = {switchProps.switchWidth}
+                        switchHeight = {switchProps.switchHeight}
                       />
                     </View>
                     <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
@@ -57,6 +92,14 @@ class Notifications extends Component {
                       <Switch
                         onValueChange={(value) => this._ToggleNotificationMessageLikes(value)}
                         value={this.props.notificationMessageLikes}
+                        inactiveButtonColor = {switchProps.inactiveButtonColor}
+                        activeButtonColor = {switchProps.activeButtonColor}
+                        activeBackgroundColor = {switchProps.activeBackgroundColor}
+                        inactiveBackgroundColor = {switchProps.inactiveBackgroundColor}
+                        onTintColor = {switchProps.onTintColor}
+                        buttonRadius = {switchProps.buttonRadius}
+                        switchWidth = {switchProps.switchWidth}
+                        switchHeight = {switchProps.switchHeight}
                       />
                     </View>
                     <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
@@ -64,6 +107,14 @@ class Notifications extends Component {
                       <Switch
                         onValueChange={(value) => this._TogglenotificationSuperLikes(value)}
                         value={this.props.notificationSuperLikes}
+                        inactiveButtonColor = {switchProps.inactiveButtonColor}
+                        activeButtonColor = {switchProps.activeButtonColor}
+                        activeBackgroundColor = {switchProps.activeBackgroundColor}
+                        inactiveBackgroundColor = {switchProps.inactiveBackgroundColor}
+                        onTintColor = {switchProps.onTintColor}
+                        buttonRadius = {switchProps.buttonRadius}
+                        switchWidth = {switchProps.switchWidth}
+                        switchHeight = {switchProps.switchHeight}
                       />
                     </View>
                     <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
@@ -71,6 +122,14 @@ class Notifications extends Component {
                       <Switch
                         onValueChange={(value) => this._ToggleNotificationInAppVibrations(value)}
                         value={this.props.notificationInAppVibrations}
+                        inactiveButtonColor = {switchProps.inactiveButtonColor}
+                        activeButtonColor = {switchProps.activeButtonColor}
+                        activeBackgroundColor = {switchProps.activeBackgroundColor}
+                        inactiveBackgroundColor = {switchProps.inactiveBackgroundColor}
+                        onTintColor = {switchProps.onTintColor}
+                        buttonRadius = {switchProps.buttonRadius}
+                        switchWidth = {switchProps.switchWidth}
+                        switchHeight = {switchProps.switchHeight}
                       />
                     </View>
                     <View  style={[styles.row, {height: 70, width:280, justifyContent:"space-between"}]}>
@@ -78,6 +137,14 @@ class Notifications extends Component {
                       <Switch
                         onValueChange={(value) => this._TogglenotificationInAppSounds(value)}
                         value={this.props.notificationInAppSounds}
+                        inactiveButtonColor = {switchProps.inactiveButtonColor}
+                        activeButtonColor = {switchProps.activeButtonColor}
+                        activeBackgroundColor = {switchProps.activeBackgroundColor}
+                        inactiveBackgroundColor = {switchProps.inactiveBackgroundColor}
+                        onTintColor = {switchProps.onTintColor}
+                        buttonRadius = {switchProps.buttonRadius}
+                        switchWidth = {switchProps.switchWidth}
+                        switchHeight = {switchProps.switchHeight}
                       />
                     </View>
                 </View>
