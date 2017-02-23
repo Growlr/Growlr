@@ -50,12 +50,12 @@ app.post('/api/login/', function (req, res){
               gender: res.data.gender,
               image: res.data.picture.data.url
             }
-            db.postUser([postBody.fid
+            db.post_user( [postBody.fid
                         , postBody.firstname
                         , postBody.lastname
                         , postBody.email
                         , postBody.gender
-                        , postBody.image], (er, newUser) => {
+                        , postBody.image], function(er, newUser){
                           if(er){
                             console.log('postUser error');
                             res.status(500).json(er)
@@ -69,10 +69,12 @@ app.post('/api/login/', function (req, res){
           })
         } else{
           console.log('there was a user on the db');
-          return user
+          console.log(user);
+          res.send(user)
         }
       }
-      })})
+      })
+    })
 
 
 

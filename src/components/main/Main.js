@@ -136,6 +136,7 @@ class Main extends Component {
                   transparent={false}
                   visible={this.props.user ? false : true}
                   // visible={true}
+                  // visible={false}
                 >
 
                   <View
