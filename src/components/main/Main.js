@@ -8,6 +8,7 @@ import axios from 'axios'
 import Login from './Login';
 import NavBar from '../navbar/NavBar'
 
+
 import PetCard from './PetCard';
 
 import {
@@ -115,7 +116,10 @@ class Main extends Component {
         let {width, height} = Dimensions.get('window')
         return (
             <View>
-              <NavBar></NavBar>
+
+              <NavBar />
+
+
                 <View>
                     <Text onPress={() => {
                         console.log(this.props)

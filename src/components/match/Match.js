@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import SearchBar from './SearchBar';
-import MatchNavBar from './MatchNavBar';
+// import MatchNavBar from './MatchNavBar';
+import NavBar from '../navbar/NavBar';
 import NewMatch from './NewMatch';
 import OldMatch from './OldMatch';
 import MatchModal from './MatchModal';
@@ -45,7 +46,7 @@ class Match extends Component {
 
           {/* --- Header / NavBar --- */}
 
-            <MatchNavBar></MatchNavBar>
+            <NavBar></NavBar>
 
           {/* --- Search Bar --- */}
 

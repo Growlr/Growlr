@@ -11,7 +11,8 @@ import Profile from './components/profile/Profile'
 import Match from './components/match/Match'
 import Settings from './components/settings/Settings'
 import Login from './components/main/Login'
-import NavBar from './components/navbar/NavBar'
+import NavBar from './components/navbar/NavBar';
+import NavStyles from './components/navbar/NavStyles';
 import Owner from './components/owner/Owner'
 import {
   AppRegistry,
@@ -30,13 +31,18 @@ export default class Growlr extends Component {
             <Scene key="root" >
 
 
+              <Scene key="mainView" navBar={NavBar} navigationBarStyle={{position: 'absolute', top: 0}} panHandler={null} sceneStyle={{ backgroundColor: 'lightgray'}} component={Main} title="Discover Pets" initial={true}/>
+              <Scene key="landingPage" component={Landing} title="Landing Page" />
+              <Scene key="profileView" navBar={NavBar} component={Profile} title="Your Profile"/>
               <Scene key="mainView" navBar={ NavBar} navigationBarStyle={{ position: 'absolute', top: 0}} panHandlers={null} sceneStyle={{ backgroundColor: 'lightgray'}} component={Main} title="Discover Pets" initial={true}/>
               <Scene key="landingPage" component={Landing} title="Landing Page" />
               <Scene key="profileView" component={Profile} title="Your Profile"/>
               <Scene key="ownerView" sceneStyle={{ paddingTop: 65 }} component={Owner} title="Your Pets"/>
               <Scene key="petDetailView" component={PetDetail} title="Pet Details"/>
-              <Scene key="matchView" component={Match} title="Match View"/>
-              <Scene key="settingsView" component={Settings} title="Settings View"/>
+              <Scene key="matchView"
+              navBar={NavBar} component={Match} title="Match View"/>
+              <Scene key="settingsView"
+              navBar={NavBar} component={Settings} title="Settings View"/>
               </Scene>
 
 
