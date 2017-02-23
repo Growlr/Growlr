@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { View, Text, Image, TouchableHighlight, Dimensions } from 'react-native'
+import { View, Text, Image, TouchableHighlight, TouchableOpacity, Dimensions } from 'react-native';
+import NavStyles from './NavStyles';
 import {Actions} from 'react-native-router-flux';
 
 class NavBar extends Component {
@@ -7,20 +8,29 @@ class NavBar extends Component {
     render(){
         let {width, height} = Dimensions.get('window')
         return (
-            <View style={{ height: 50, paddingTop: 18, backgroundColor: '#fff'}}>
-                <TouchableHighlight onPress={this.props.leftButtonView}>
-                    <Image style={{marginLeft: 5}} source={this.props.leftButton}/>
-                </TouchableHighlight>
-                <TouchableHighlight style={{ position: 'absolute', right: 5, top: 18}} onPress={this.props.rightButtonView}>
-                    <Image  source={this.props.rightButton}/>
-                </TouchableHighlight>
-                <TouchableHighlight style={{ position: 'absolute', right: width/2 - 10, top: 18}} onPress={this.props.rightButtonView}>
-                    <Image  source={this.props.rightButton}/>
-                </TouchableHighlight>
-                <Text onPress={Actions.settingsView}>Settings</Text>
-                <Text onPress={Actions.matchView}>Matches</Text>
+          <View style={NavStyles.navbar}>
 
-            </View>
+          <TouchableOpacity
+          onPress={Actions.settingsView}
+          style={NavStyles.profile}>
+            <Image
+            source={require('../../img/Growlr_Logo.png')} style={NavStyles.profile} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+          onPress={Actions.mainView}>
+            <Image style={NavStyles.main}
+            source={require('../../img/Growlr_Logo.png')} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+            onPress={Actions.matchView}
+            style={NavStyles.matches}>
+              <Image
+              source={require('../../img/Growlr_Logo.png')} style={NavStyles.matches} />
+            </TouchableOpacity>
+
+          </View>
         )
     }
 }
