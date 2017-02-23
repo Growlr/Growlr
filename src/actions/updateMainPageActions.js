@@ -1,4 +1,5 @@
 export const UPDATE_MAIN = 'UPDATE_MAIN'
+export const UPDATE_HUMANS = 'UPDATE_HUMANS'
 export const CARD_ACCEPTED = 'CARD_ACCEPTED'
 export const CARD_DECLINE = 'CARD_DECLINE'
 export const UPDATE_SWIPER_ID = 'UPDATE_SWIPER_ID'
@@ -6,6 +7,13 @@ export const UPDATE_SWIPER_ID = 'UPDATE_SWIPER_ID'
 export const updateMain = update => {
   return {
     type: UPDATE_MAIN
+    , update
+  }
+}
+
+export const updateHumans = update => {
+  return {
+    type: UPDATE_HUMANS
     , update
   }
 }
