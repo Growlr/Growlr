@@ -22,7 +22,7 @@ const growlrCtrl  = require('./growlrCtrl.js')
 
 
 app.get('/api/', growlrCtrl.Read)
-app.get('/api/humans', growlrCtrl.ReadHumans)
+app.get('/api/humans/:id', growlrCtrl.getPetsSeenById)
 app.get('/api/pet/:id', growlrCtrl.GetOne)
 app.get('/api/user/:id', growlrCtrl.GetUserById)
 app.get('/api/matches/:id', growlrCtrl.GetMatchesById)

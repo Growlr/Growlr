@@ -42,36 +42,22 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        // console.log(this.props)
-        // console.log(this.props.cards.length)
-        //     console.log('getting pets')
-        // if(this.props.cards.length == 0) {
-        //     axios.get('http://138.197.144.223/api/').then((res) => {
-        //         console.log(res.data)
-        //         let petData = res.data
-        //         this.getPets(petData)
-        //     }).catch((err) => {
-        //         console.log('why?', err);
-        //     })
-        // }
-        //
-
-
         console.log(this.props.user.fid)
         axios.post('http://138.197.144.223/api/unSeen', {fid: this.props.user.fid})
             .then((res) => {
                 let petData = res.data;
                 this.getPets(petData)
             })
-
-
-            console.log('getting humans')
-            axios.get('http://138.197.144.223/api/humans')
+        console.log('getting humans')
+        if(this.props.swiperId.id < 5555555) {
+            let petId = this.props.swiperId.id
+            axios.get(`http://138.197.144.223/api/humans/${petId}`)
                 .then((res) => {
-                console.log(res.data)
-                let humanData = res.data
+                    console.log(res.data)
+                    let humanData = res.data
                     this.getHumans(humanData)
                 })
+        }
     }
 
     updateYes = (card) => {
@@ -183,19 +169,19 @@ class Main extends Component {
 
 mapStateToProps = (state) => {
     return {
-        swiperId: state.mainPage.swiperId,
-      cards: state.mainPage.cards
+          swiperId: state.mainPage.swiperId
+        , cards: state.mainPage.cards
         , humanCards: state.mainPage.humanCards
-      , user: state.login.user
+        , user: state.login.user
     }
 }
 
 const mapDispatchToActionCreators = {
-    updateMain: updateMain,
-    cardDeclined: cardDeclined,
-    cardAccepted: cardAccepted,
-    updateSwiperId: updateSwiperId,
-    updateHumans: updateHumans
+      updateMain: updateMain
+    , cardDeclined: cardDeclined
+    , cardAccepted: cardAccepted
+    , updateSwiperId: updateSwiperId
+    , updateHumans: updateHumans
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Main)
