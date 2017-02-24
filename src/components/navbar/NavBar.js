@@ -51,8 +51,19 @@ class NavBar extends Component {
             source={require('../../img/profile.png')} style={NavStyles.profile} />
           </TouchableOpacity>
 
-          <Switch value={this.props.value}onValueChange={(value) => {
+          <Switch
+          inactiveButtonColor={'#F16A6A'}
+          activeButtonColor={'#F16A6A'}
+          activeBackgroundColor={'#ccc'}
+          inactiveBackgroundColor={'#ccc'}
+          buttonShadow={null}
+          switchHeight={30}
+          switchWidth={60}
+          enableSlide={true}
+          switchAnimationTime={200}
+           value={this.props.value}onValueChange={(value) => {
             this.props.updateView({value}, this.changePage(value))
+
 
 
           }}/>
