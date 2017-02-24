@@ -120,7 +120,7 @@ class Main extends Component {
               <NavBar />
 
 
-                <View style={{marginTop: 68}}>
+                <View style={{marginTop: 0}}>
                     <Text onPress={() => {
                         console.log(this.props)
                         const id = Number(this.props.user.fid)
