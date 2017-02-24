@@ -37,8 +37,6 @@ class NewMatch extends Component {
   // }
 
 
-
-
   render() {
 
     return (
