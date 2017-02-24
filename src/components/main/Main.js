@@ -121,7 +121,6 @@ class Main extends Component {
 
               <NavBar />
 
-
                 <View >
                     <Text style={{ position: 'absolute', bottom: 0}} onPress={() => {
                         console.log(this.props)
@@ -133,7 +132,8 @@ class Main extends Component {
                 </View>
                 <Modal
                   transparent={false}
-                  visible={this.props.user ? false : true}
+                  //changed to default false so that stuffs would work until JoLo fixed stuffs
+                  visible={this.props.user ? false : false}
                   // visible={true}
                   // visible={false}
                 >

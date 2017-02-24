@@ -22,6 +22,7 @@ import {StyleSheet} from 'react-native';
             borderRadius: 5,
             backgroundColor: '#EEE9E9',
             margin: 10,
+            marginTop: 80,
             textAlign: 'center'
         },
         match: {
