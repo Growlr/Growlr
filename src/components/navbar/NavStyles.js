@@ -23,6 +23,13 @@ import {StyleSheet} from 'react-native';
             width: 19,
             height: 21
         },
+        owner: {
+            position: 'absolute',
+            top: 16,
+            right: 55,
+            width: 19,
+            height: 21
+        },
         navbar: {
           position: 'absolute',
           top: 0,

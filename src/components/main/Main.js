@@ -54,7 +54,7 @@ class Main extends Component {
         }
 
         if(this.props.swiperId.id < 5555555) {
-            console.log('getting humans')
+            console.log('getting humans', this.props)
             console.log(this.props.swiperId.id)
             let petId = this.props.swiperId.id
             console.log(`http://138.197.144.223/api/humans/${petId}`)
@@ -133,7 +133,7 @@ class Main extends Component {
                 <Modal
                   transparent={false}
                   //changed to default false so that stuffs would work until JoLo fixed stuffs
-                  visible={this.props.user ? false : false}
+                  visible={this.props.user ? false : true}
                   // visible={true}
                   // visible={false}
                 >
