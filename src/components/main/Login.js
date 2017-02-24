@@ -24,8 +24,8 @@ class Login extends Component {
     return (
       <View>
         {/* <InfoCarousel /> */}
-        <Text>Welcome to Growlr</Text>
-        <Text>please login to begin</Text>
+        <Text style={{textAlign: 'center', fontWeight: 'bold', }}>Welcome to Growlr</Text>
+        <Text style={{textAlign: 'center', fontWeight: 'bold', marginBottom: 20,  }}>Please login to begin.</Text>
         <FBLogin
         style={{ marginBottom: 10 }}
         ref={(fbLogin) => { this.fbLogin = fbLogin  }}

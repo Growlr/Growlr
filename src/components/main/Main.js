@@ -45,12 +45,15 @@ class Main extends Component {
     componentDidMount() {
         if(this.props.cards == 0) {
             console.log(this.props.user, 'userid')
-            axios.post('http://138.197.144.223/api/unSeen', {fid: 114537902401642})
-                .then((res) => {
-                    console.log(res.data)
-                    let petData = res.data;
-                    this.getPets(petData)
-                })
+            setTimeout(() => {
+              axios.post('http://138.197.144.223/api/unSeen', {fid: this.props.user.fid})
+                  .then((res) => {
+                      console.log(res.data)
+                      let petData = res.data;
+                      this.getPets(petData)
+                  })
+            }, 250)
+
         }
 
         if(this.props.swiperId.id < 5555555) {
@@ -119,30 +122,19 @@ class Main extends Component {
         return (
             <View>
 
-
-
-
-                <View >
-                    <Text style={{ position: 'absolute', bottom: 0}} onPress={() => {
-                        console.log(this.props)
-                        const id = Number(this.props.user.fid)
-                        this.props.updateSwiperId({ id });
-                        Actions.ownerView()
-                    }}
-                    >Change to Owner</Text>
-                </View>
                 <Modal
                   transparent={false}
                   //changed to default false so that stuffs would work until JoLo fixed stuffs
-                  visible={this.props.user ? false : false}
+                  visible={this.props.user ? false : true}
                   // visible={true}
                   // visible={false}
                 >
                   <View
                     style={{flex: 1, alignItems: "center", justifyContent: "center", width: width, height: height, backgroundColor: 'white'}}
                   >
-                    {/* <Image
-                      source={'./Growlr Logo.png'} /> */}
+                    <Image
+                      style={{marginBottom: 20,}}
+                      source={require('./Growlr Logo.png')} />
                     <Login />
                   </View>
                 </Modal>
