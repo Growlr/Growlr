@@ -133,7 +133,7 @@ class Main extends Component {
                 <Modal
                   transparent={false}
                   //changed to default false so that stuffs would work until JoLo fixed stuffs
-                  visible={this.props.user ? false : false}
+                  visible={this.props.user ? false : true}
                   // visible={true}
                   // visible={false}
                 >
