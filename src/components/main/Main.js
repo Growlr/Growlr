@@ -119,17 +119,6 @@ class Main extends Component {
         return (
             <View>
 
-              {/* <NavBar />
-
-                <View >
-                    <Text style={{ position: 'absolute', bottom: 0}} onPress={() => {
-                        console.log(this.props)
-                        const id = Number(this.props.user.fid)
-                        this.props.updateSwiperId({ id });
-                        Actions.ownerView()
-                    }}
-                    >Change to Owner</Text>
-                </View> */}
                 <Modal
                   transparent={false}
                   //changed to default false so that stuffs would work until JoLo fixed stuffs
