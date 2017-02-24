@@ -119,7 +119,7 @@ class Main extends Component {
         return (
             <View>
 
-              <NavBar />
+              {/* <NavBar />
 
                 <View >
                     <Text style={{ position: 'absolute', bottom: 0}} onPress={() => {
@@ -129,19 +129,20 @@ class Main extends Component {
                         Actions.ownerView()
                     }}
                     >Change to Owner</Text>
-                </View>
+                </View> */}
                 <Modal
                   transparent={false}
                   //changed to default false so that stuffs would work until JoLo fixed stuffs
-                  visible={this.props.user ? false : true}
-                  // visible={true}
+                  // visible={this.props.user ? false : true}
+                  visible={true}
                   // visible={false}
                 >
                   <View
                     style={{flex: 1, alignItems: "center", justifyContent: "center", width: width, height: height, backgroundColor: 'white'}}
                   >
-                    {/* <Image
-                      source={'./Growlr Logo.png'} /> */}
+                    <Image
+                      style={{marginBottom: 20,}}
+                      source={require('./Growlr Logo.png')} />
                     <Login />
                   </View>
                 </Modal>
