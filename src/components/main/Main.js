@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
 import {updateMain, cardDeclined, cardAccepted, updateSwiperId, updateHumans, humanCardAccepted, humanCardDeclined} from '../../actions/updateMainPageActions'
+import { updateView } from '../../actions/updateViewActions'
 import SwipeCards from 'react-native-swipe-cards'
 import axios from 'axios'
 
@@ -52,7 +53,9 @@ class Main extends Component {
                       let petData = res.data;
                       this.getPets(petData)
                   })
-            }, 250)
+            }, 1000)
+
+
 
         }
 
@@ -68,6 +71,7 @@ class Main extends Component {
                     this.getHumans(humanData)
                 })
         }
+        this.props.updateView({value: false})
     }
 
     updateYes = (card) => {
@@ -193,6 +197,7 @@ const mapDispatchToActionCreators = {
     , humanCardDeclined: humanCardDeclined
     , updateSwiperId: updateSwiperId
     , updateHumans: updateHumans
+    , updateView: updateView
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Main)
