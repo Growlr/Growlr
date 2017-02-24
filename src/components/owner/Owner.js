@@ -1,15 +1,45 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
+import {updatePet} from '../../actions/updateOwnerPageActions'
+import axios from 'axios'
+
 import OwnerCard from './OwnerCard'
-import { View, ScrollView, Text, Dimensions, ListView } from 'react-native'
+import { View, ScrollView, Text, Dimensions, ListView, Modal, TouchableHighlight, Image, TextInput } from 'react-native'
 
 class Owner extends Component {
+    state = {
+        modalVisible: false,
+    };
 
+    setModalVisible(visible){
+        this.setState({modalVisible: visible});
+    }
+
+    createNewPet = () => {
+        console.log('creating pet')
+        const petBody = {
+            source_link: this.props.pet.source_link,
+            img_link: this.props.pet.img_link,
+            pet_id: this.props.pet.pet_id,
+            gender: this.props.pet.gender,
+            breed: this.props.pet.breed,
+            color: this.props.pet.color,
+            age: this.props.pet.age,
+            description: this.props.pet.description,
+            pet_name: this.props.pet.pet_name,
+            owner_id: Number(this.props.user.fid)
+        };
+        console.log(petBody)
+        axios.post('http://138.197.144.223/api/pet', petBody)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
+    }
 
 
 
     render(){
+        let {width, height} = Dimensions.get('window')
         const dataSource = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1.id !== r2.id
         });
@@ -18,12 +48,115 @@ class Owner extends Component {
 
 
         return (
-
+            <View>
+            <View><Text onPress={() => this.setModalVisible(true)}>Add Pet</Text></View>
             <ListView
                 contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}
                 dataSource={dataSource.cloneWithRows(items)}
                 renderRow={(rowData) => <OwnerCard pet_id={rowData.uniq_id} name={rowData.pet_name} age={rowData.age} breed={rowData.breed} imgurl={rowData.img_link}/>}
             />
+                <View style={{marginTop: 22}}>
+                    <Modal
+                        transparent={false}
+                        visible={this.state.modalVisible}
+                    >
+
+
+
+                        <ScrollView style={{ width: width, backgroundColor: 'white' }}>
+
+                            <View>
+
+                                    <TouchableHighlight style={{ justifyContent: 'center', backgroundColor: 'transparent', height: 240, width}} onPress={() => this.setModalVisible(false)}>
+                                        <Image style={{ width, flex: 1}} source={{uri: this.props.pet.img_link}} />
+                                    </TouchableHighlight>
+
+                            </View>
+
+
+
+                            <View style={{paddingTop: 20, paddingBottom: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
+                                <Text onPress={() => {
+                                    this.createNewPet() }}>Create Pet</Text>
+                                <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                    <TextInput
+                                        placeholder="Enter Image Link"
+                                        autoCorrect={false}
+                                        style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                        value={this.props.pet.img_link}
+                                        onChangeText={(value) => this.props.updatePet({ prop: 'img_link', value})}
+                                    />
+                                </View>
+                            </View>
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                {/*<Text style={{ fontSize: 18, paddingLeft: 20, }}>Enter Name</Text>*/}
+                                <TextInput
+                                    placeholder="Enter Pets Name"
+                                    autoCorrect={false}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    value={this.props.pet.pet_name}
+                                    onChangeText={(value) => this.props.updatePet({ prop: 'pet_name', value})}
+                                />
+                            </View>
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                <TextInput
+                                    placeholder="Enter Breed"
+                                    autoCorrect={false}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    value={this.props.pet.breed}
+                                    onChangeText={(value) => this.props.updatePet({ prop: 'breed', value})}
+                                />
+                            </View>
+
+
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                <TextInput
+                                    placeholder="Enter Color"
+                                    autoCorrect={false}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    value={this.props.pet.color}
+                                    onChangeText={(value) => this.props.updatePet({ prop: 'color', value})}
+                                />
+                            </View>
+
+
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                <TextInput
+                                    placeholder="Enter Age"
+                                    autoCorrect={false}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    value={this.props.pet.age}
+                                    onChangeText={(value) => this.props.updatePet({ prop: 'age', value})}
+                                />
+                            </View>
+
+
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                <TextInput
+                                    placeholder="Enter Gender"
+                                    autoCorrect={false}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    value={this.props.pet.gender}
+                                    onChangeText={(value) => this.props.updatePet({ prop: 'gender', value})}
+                                />
+                            </View>
+
+                            <View style={{ height: 200, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                <TextInput
+                                    placeholder="Enter Description"
+                                    autoCorrect={false}
+                                    multiline={true}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    value={this.props.pet.description}
+                                    onChangeText={(value) => this.props.updatePet({ prop: 'description', value})}
+                                />
+                            </View>
+
+
+                        </ScrollView>
+                    </Modal>
+                </View>
+            </View>
 
         )
     }
@@ -31,12 +164,16 @@ class Owner extends Component {
 
 mapStateToProps = (state) => {
     return {
-        cards: state.mainPage.cards
-        , user: state.login.user
+            pet: state.ownerPage
+           , cards: state.mainPage.cards
+        ,   user: state.login.user
     }
 }
 
 const mapDispatchToActionCreators = {
+    updatePet: updatePet
 
 }
-export default connect(mapStateToProps, null)(Owner);
+
+
+export default connect(mapStateToProps, mapDispatchToActionCreators)(Owner);
