@@ -119,11 +119,9 @@ class Main extends Component {
         return (
             <View>
 
-              <NavBar />
 
 
-                <View style={{marginTop: 0}}>
-                    <Text onPress={() => {
+
                 <View >
                     <Text style={{ position: 'absolute', bottom: 0}} onPress={() => {
                         console.log(this.props)
