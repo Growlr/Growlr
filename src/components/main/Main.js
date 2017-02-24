@@ -121,6 +121,7 @@ class Main extends Component {
 
 
 
+
                 <View >
                     <Text style={{ position: 'absolute', bottom: 0}} onPress={() => {
                         console.log(this.props)
