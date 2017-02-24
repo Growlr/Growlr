@@ -51,8 +51,11 @@ class NavBar extends Component {
             source={require('../../img/profile.png')} style={NavStyles.profile} />
           </TouchableOpacity>
 
-          <Switch value={this.props.value}onValueChange={(value) => {
+          <Switch
+          
+           value={this.props.value}onValueChange={(value) => {
             this.props.updateView({value}, this.changePage(value))
+
 
 
           }}/>

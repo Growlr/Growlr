@@ -1,5 +1,6 @@
-const app = require('./server.js')
-const db = app.get('db')
+const app = require('./server.js');
+const db = app.get('db');
+const _ = require('lodash');
 
 const growlrCtrl = {
   Read: (req, res) => {
@@ -26,13 +27,32 @@ const growlrCtrl = {
     })
   },
   GetSeenById: (req, res) => {
-    db.get_seen_by_id([req.params.id], (err, seen) => {
-      if(err){
-        console.error(err)
-      } else {
-        res.send(seen);
-      }
-    })
+        db.get_seen_by_id([req.body.fid], (err, seen) => {
+            if (err) {
+                console.error(err)
+            } else {
+                db.get_pets((er, pets) => {
+                    if (er) {
+                        console.error(er)
+                    } else {
+                        console.log(pets, seen)
+                        let seenList = seen.map(val => {
+                            return {swipee: Number(val.swipee)}
+                        });
+                        let arr1_ids = _.map(seenList, 'swipee');
+                        let arr2_ids = _.map(pets, 'uniq_id');
+                        let same_ids = _.intersection(arr1_ids, arr2_ids);
+                        let trimmedList = _.remove(pets, function (e) {
+                            return !_.contains(same_ids, e.uniq_id);
+                        });
+
+                        res.send(trimmedList)
+
+                    }
+                })
+            }
+        })
+
   },
     PostSeen: (req, res) => {
     db.add_seen([req.body.user_id, req.body.swipee, req.body.liked], (err, seen) => {
@@ -76,6 +96,32 @@ const growlrCtrl = {
         console.error(err)
       } else {
         res.send(pet)
+      }
+    })
+    },
+    getPetsSeenById: (req, res) => {
+    db.get_seen_by_id([req.params.id], (err, seen) => {
+      if(err){
+        console.error(err)
+      } else {
+        db.get_humans((er, owners) => {
+          if(er){
+            console.error(er)
+          } else {
+              console.log(owners, seen)
+              let seenList = seen.map(val => {
+                  return {swipee: val.swipee}
+              })
+              let arr1_ids = _.map(seenList, 'swipee');
+              let arr2_ids = _.map(owners, 'fid');
+              let same_ids = _.intersection(arr1_ids, arr2_ids);
+              let trimmedList = _.remove(owners, function (e) {
+                  return !_.contains(same_ids, e.fid);
+              });
+
+              res.send(trimmedList)
+          }
+        })
       }
     })
     }
