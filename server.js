@@ -61,11 +61,12 @@ app.post('/api/login/', function (req, res){
                             res.status(500).json(er)
                           }
                           else {
+                              let newUserNumber = Number(newUser)
                             console.log('postUser Success');
-                            db.get_user([Number(newUser)], function(e, newUsr){
+                            db.get_user([newUserNumber], function(e, newUsr){
                               if (e){
                                 console.error(e);
-                                res.send(e)
+                                //res.send(e)
                               } else {
                                 res.status(200).json(newUsr)
                               }

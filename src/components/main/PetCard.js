@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Swiper from 'react-native-swiper'
 import { Text, View, Image, Dimensions, TouchableHighlight, Modal } from 'react-native'
 
 
@@ -40,21 +39,14 @@ class PetCard extends Component{
 
 
 
-                <View style={{ width: width, backgroundColor: 'white' }}>
+                <View style={{ width: width, height, backgroundColor: 'white' }}>
 
-                        <View>
-                            <Swiper height={240}
-                                    dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-                                    activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-                                    paginationStyle={{
-            bottom: -23, left: null, right: 10
-          }} loop>
+                        <View style={{ height: 240}}>
 
                                 <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
                                     <Image style={{ width, flex: 1}} source={{uri: (this.props.img_link) ? this.props.img_link: this.props.fb_img}} />
                                 </TouchableHighlight>
 
-                            </Swiper>
                         </View>
 
 

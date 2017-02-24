@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
-import {updateMain, cardDeclined, cardAccepted, updateSwiperId, updateHumans} from '../../actions/updateMainPageActions'
+import {updateMain, cardDeclined, cardAccepted, updateSwiperId, updateHumans, humanCardAccepted, humanCardDeclined} from '../../actions/updateMainPageActions'
 import SwipeCards from 'react-native-swipe-cards'
 import axios from 'axios'
 
@@ -38,19 +38,26 @@ class Main extends Component {
         this.props.updateMain(update)
     }
     getHumans = ( update ) => {
+        console.log(update)
         this.props.updateHumans(update)
     }
 
     componentDidMount() {
-        console.log(this.props.user.fid)
-        axios.post('http://138.197.144.223/api/unSeen', {fid: this.props.user.fid})
-            .then((res) => {
-                let petData = res.data;
-                this.getPets(petData)
-            })
-        console.log('getting humans')
+        if(this.props.cards == 0) {
+            console.log(this.props.user, 'userid')
+            axios.post('http://138.197.144.223/api/unSeen', {fid: 114537902401642})
+                .then((res) => {
+                    console.log(res.data)
+                    let petData = res.data;
+                    this.getPets(petData)
+                })
+        }
+
         if(this.props.swiperId.id < 5555555) {
+            console.log('getting humans')
+            console.log(this.props.swiperId.id)
             let petId = this.props.swiperId.id
+            console.log(`http://138.197.144.223/api/humans/${petId}`)
             axios.get(`http://138.197.144.223/api/humans/${petId}`)
                 .then((res) => {
                     console.log(res.data)
@@ -115,8 +122,8 @@ class Main extends Component {
               <NavBar />
 
 
-                <View>
-                    <Text onPress={() => {
+                <View >
+                    <Text style={{ position: 'absolute', bottom: 0}} onPress={() => {
                         console.log(this.props)
                         const id = Number(this.props.user.fid)
                         this.props.updateSwiperId({ id });
@@ -149,12 +156,21 @@ class Main extends Component {
                       handleYup={(card) => {
                         this.cardRemoval(card)
                         this.updateYes(card)
-                        this.props.cardAccepted(card)}
-                      }
+                         if(this.props.swiperId.id > 5555555 || !this.props.swiperId.id){
+                            this.props.cardAccepted(card)
+                        } else {
+                            this.props.humanCardAccepted(card)
+                        }
+                      }}
                       handleNope={(card) => {
                         this.cardRemoval(card)
                         this.updateNo(card)
-                        this.props.cardDeclined(card)}
+                        if(this.props.swiperId.id > 5555555 || !this.props.swiperId.id){
+                            this.props.cardDeclined(card)
+                        } else {
+                            this.props.humanCardDeclined(card)
+                        }
+                      }
                       }
                       cardRemoved={(card) => this.cardRemoval(card)}
                       onClickHandler={() => console.log("stuff")}
@@ -180,6 +196,8 @@ const mapDispatchToActionCreators = {
       updateMain: updateMain
     , cardDeclined: cardDeclined
     , cardAccepted: cardAccepted
+    , humanCardAccepted: humanCardAccepted
+    , humanCardDeclined: humanCardDeclined
     , updateSwiperId: updateSwiperId
     , updateHumans: updateHumans
 };
