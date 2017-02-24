@@ -110,7 +110,7 @@ const growlrCtrl = {
           } else {
               console.log(owners, seen)
               let seenList = seen.map(val => {
-                  return {swipee: Number(val.swipee)}
+                  return {swipee: val.swipee}
               })
               let arr1_ids = _.map(seenList, 'swipee');
               let arr2_ids = _.map(owners, 'fid');
