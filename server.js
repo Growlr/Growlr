@@ -22,13 +22,13 @@ const growlrCtrl  = require('./growlrCtrl.js')
 
 
 app.get('/api/', growlrCtrl.Read)
-app.get('/api/humans', growlrCtrl.ReadHumans)
+app.get('/api/humans/:id', growlrCtrl.getPetsSeenById)
 app.get('/api/pet/:id', growlrCtrl.GetOne)
-app.get('/api/seen/:id', growlrCtrl.GetSeenById)
 app.get('/api/user/:id', growlrCtrl.GetUserById)
 app.get('/api/matches/:id', growlrCtrl.GetMatchesById)
 
 app.post('/api/seen/', growlrCtrl.PostSeen)
+app.post('/api/unSeen', growlrCtrl.GetSeenById)
 app.post('/api/pet', growlrCtrl.AddPet)
 app.post('/api/user/:id', growlrCtrl.AddUserById)
 
@@ -61,11 +61,12 @@ app.post('/api/login/', function (req, res){
                             res.status(500).json(er)
                           }
                           else {
+                              let newUserNumber = Number(newUser)
                             console.log('postUser Success');
-                            db.get_user([Number(newUser)], function(e, newUsr){
+                            db.get_user([newUserNumber], function(e, newUsr){
                               if (e){
                                 console.error(e);
-                                res.send(e)
+                                //res.send(e)
                               } else {
                                 res.status(200).json(newUsr)
                               }
