@@ -1,9 +1,11 @@
-select * from 
-seen as A
-inner join
-seen as B
-on A.user_id = B.swipee
-and B.user_id = A.swipee
-inner join pet_data 
-	on uniq_id = B.user_id
-where A.user_id = 3 and B.liked = true and A.liked = true
+SELECT * FROM seen as seena
+INNER JOIN seen
+AS  seenb
+on seena.user_id = seenb.swipee
+and seenb.user_id = seena.swipee
+inner join pet_data
+	on pet_data.uniq_id = seenb.user_id
+where seena.user_id = $1
+and seenb.liked = true
+and seena.liked = true
+

@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
-import {updatePet} from '../../actions/updateOwnerPageActions'
+import {updatePet, updateMyPets, editPet} from '../../actions/updateOwnerPageActions'
+import {updateSwiperId} from '../../actions/updateMainPageActions'
 import axios from 'axios'
 
 import OwnerCard from './OwnerCard'
@@ -31,9 +32,21 @@ class Owner extends Component {
             owner_id: Number(this.props.user.fid)
         };
         console.log(petBody)
-        axios.post('http://138.197.144.223/api/pet', petBody)
+        axios.post('http://localhost:3000/api/pet', petBody)
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
+    }
+
+    componentDidMount(){
+        if(this.props.myPets == 0){
+            axios.get(`http://localhost:3000/api/myPets/${this.props.user.fid}`)
+                .then((res) => {
+                console.log(res.data)
+                    let myPets = res.data
+                    this.props.updateMyPets(myPets)
+                })
+        }
+        this.props.updateSwiperId({id: this.props.user.fid})
     }
 
 
@@ -44,7 +57,7 @@ class Owner extends Component {
             rowHasChanged: (r1, r2) => r1.id !== r2.id
         });
 
-        const items = this.props.cards
+        const items = this.props.myPets
 
 
         return (
@@ -53,7 +66,7 @@ class Owner extends Component {
             <ListView
                 contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}
                 dataSource={dataSource.cloneWithRows(items)}
-                renderRow={(rowData) => <OwnerCard pet_id={rowData.uniq_id} name={rowData.pet_name} age={rowData.age} breed={rowData.breed} imgurl={rowData.img_link}/>}
+                renderRow={(rowData) => <OwnerCard uniq={rowData.uniq_id} color={rowData.color} description={rowData.description} name={rowData.pet_name} gender={rowData.gender} age={rowData.age} breed={rowData.breed} imgurl={rowData.img_link}/>}
             />
                 <View style={{marginTop: 22}}>
                     <Modal
@@ -76,8 +89,7 @@ class Owner extends Component {
 
 
                             <View style={{paddingTop: 20, paddingBottom: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
-                                <Text onPress={() => {
-                                    this.createNewPet() }}>Create Pet</Text>
+                                <Text onPress={() => {this.createNewPet() }}>Create Pet</Text>
                                 <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
                                     <TextInput
                                         placeholder="Enter Image Link"
@@ -165,13 +177,18 @@ class Owner extends Component {
 mapStateToProps = (state) => {
     return {
             pet: state.ownerPage
-           , cards: state.mainPage.cards
+        ,   cards: state.mainPage.cards
         ,   user: state.login.user
+        ,   myPets: state.ownerPage.myPets
     }
 }
 
 const mapDispatchToActionCreators = {
-    updatePet: updatePet
+        updatePet: updatePet
+    ,   updateSwiperId: updateSwiperId
+    ,   updateMyPets: updateMyPets
+    ,   editPet: editPet
+
 
 }
 

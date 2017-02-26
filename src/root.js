@@ -5,6 +5,7 @@ import updateMainPageActions from './reducers/updateMainPageReducer'
 import updateLoginReducer from './reducers/updateLoginReducer'
 import updateViewReducer from './reducers/updateViewReducer'
 import updateOwnerPageReducer from './reducers/updateOwnerPageReducer'
+import updateMatchesPageReducer from './reducers/updateMatchesPageReducer'
 
 export default combineReducers({
   ownerPage: updateOwnerPageReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   settingsPage: updateSettingsPageReducer,
     mainPage: updateMainPageActions,
     login: updateLoginReducer,
-    view: updateViewReducer
+    view: updateViewReducer,
+    matchPage: updateMatchesPageReducer
 });

@@ -47,7 +47,7 @@ class Main extends Component {
         if(this.props.cards == 0) {
             console.log(this.props.user, 'userid')
             setTimeout(() => {
-              axios.post('http://138.197.144.223/api/unSeen', {fid: this.props.user.fid})
+              axios.post('http://localhost:3000/api/unSeen', {fid: this.props.user.fid})
                   .then((res) => {
                       console.log(res.data)
                       let petData = res.data;
@@ -63,8 +63,8 @@ class Main extends Component {
             console.log('getting humans')
             console.log(this.props.swiperId.id)
             let petId = this.props.swiperId.id
-            console.log(`http://138.197.144.223/api/humans/${petId}`)
-            axios.get(`http://138.197.144.223/api/humans/${petId}`)
+            console.log(`http://localhost:3000/api/humans/${petId}`)
+            axios.get(`http://localhost:3000/api/humans/${petId}`)
                 .then((res) => {
                     console.log(res.data)
                     let humanData = res.data
@@ -87,7 +87,7 @@ class Main extends Component {
             liked: true
         }
         console.log(yesBody)
-        axios.post('http://138.197.144.223/api/seen/',  yesBody)
+        axios.post('http://localhost:3000/api/seen/',  yesBody)
             .then((res) => {
                 return res
             })
@@ -109,7 +109,7 @@ class Main extends Component {
             liked: false
         }
         console.log(noBody)
-        axios.post('http://138.197.144.223/api/seen',  noBody)
+        axios.post('http://localhost:3000/api/seen',  noBody)
             .then((res) => {
                 return res
             })

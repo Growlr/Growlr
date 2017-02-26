@@ -22,27 +22,34 @@ import {
   Dimensions,
   TouchableHighlight,
   TouchableOpacity,
+  ListView,
   Modal} from 'react-native';
 
 class Match extends Component {
 
     // updateUserInput() {}
 
-      // componentDidMount() {
-      //     axios.get('http://138.197.144.223/api/matches/:id').then((res, err) => {
-      //         console.log(res)
-      //         let matchData = res.data
-      //         this.getMatches(matchData)
-      //     }).catch((err) => {
-      //         console.error('oops', err);
-      //     })
-      // }
+      componentDidMount() {
+          console.log(this.props.swiper.id)
+          axios.get(`http://localhost:3000/api/matches/${this.props.swiper.id}`)
+              .then((res) => {
+              console.log(res)
+              let matchData = res.data
+              this.props.updateMatches(matchData)
+          })
+      }
 
 
     render() {
         let {width, height} = Dimensions.get('window');
+        const dataSource = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1.id !== r2.id
+        });
+
+       let items = this.props.matches
 
         return (
+
           <View>
 
           {/* --- Header / NavBar --- */}
@@ -53,25 +60,28 @@ class Match extends Component {
 
             <SearchBar></SearchBar>
 
-            <ScrollView>
+
 
           {/* --- New Matches Section --- */}
 
-              <NewMatch></NewMatch>
+              {/*<NewMatch></NewMatch>*/}
 
-              <View>
+              {/*<View>*/}
 
-          {/* --- Start of the Modal --- */}
+          {/*/!* --- Start of the Modal --- *!/*/}
 
-                <MatchModal></MatchModal>
-              </View>
+                {/*<MatchModal></MatchModal>*/}
+              {/*</View>*/}
 
           {/* --- Matches Section --- */}
+                <Text style={Mystyles.match}>Matches</Text>
+                <ListView
+                    contentContainerStyle={{ flexDirection: 'column', justifyContent: 'center'}}
+                    dataSource={dataSource.cloneWithRows(items)}
+                    renderRow={(rowData) => <OldMatch pet_id={rowData.uniq_id} name={rowData.pet_name} age={rowData.age} description={rowData.description} gender={rowData.gender} breed={rowData.breed} imgurl={rowData.img_link}/>}
+                />
 
-                <OldMatch></OldMatch>
 
-
-            </ScrollView>
           </View>
 
         )
@@ -174,12 +184,18 @@ class Match extends Component {
 
 
 
- // mapStateToProps = (state) => {
- //   return {userInput: state.matchPage.matches}
- // }
+ mapStateToProps = (state) => {
+    console.log(state)
+   return {
+       matches: state.matchPage.matches,
+       swiper: state.mainPage.swiperId,
+       user: state.login.user
+   }
+ }
 
 const mapDispatchToActionCreators = {
     updateMatches: updateMatches
+
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Match)

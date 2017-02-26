@@ -12,7 +12,7 @@ const db = massive.connectSync({
 const app = module.exports = express()
 app.set('db', db)
 
-const port = 8080
+const port = 3000
 
 
 app.use(bodyParser.json())
@@ -23,6 +23,7 @@ const growlrCtrl  = require('./growlrCtrl.js')
 
 app.get('/api/', growlrCtrl.Read)
 app.get('/api/humans/:id', growlrCtrl.getPetsSeenById)
+app.get('/api/myPets/:id', growlrCtrl.getOwnersPets)
 app.get('/api/pet/:id', growlrCtrl.GetOne)
 app.get('/api/user/:id', growlrCtrl.GetUserById)
 app.get('/api/matches/:id', growlrCtrl.GetMatchesById)
@@ -31,6 +32,8 @@ app.post('/api/seen/', growlrCtrl.PostSeen)
 app.post('/api/unSeen', growlrCtrl.GetSeenById)
 app.post('/api/pet', growlrCtrl.AddPet)
 app.post('/api/user/:id', growlrCtrl.AddUserById)
+
+app.put('/api/pet/:id', growlrCtrl.updatePetInfo)
 
 app.post('/api/login/', function (req, res){
   db.get_user([Number(req.body.credentials.userId)], function(err, user){

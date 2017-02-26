@@ -20,29 +20,35 @@ class OldMatch extends Component {
 
   state = {
     modalVisible: false,
+      secondModalVisible: false
   }
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
+  setSecondModalVisible(visible) {
+      this.setState({secondModalVisible: visible})
+  }
+
   render() {
+      let {width, height} = Dimensions.get('window')
 
     return (
 
       <View>
-        <Text style={Mystyles.match}>Matches</Text>
 
-        <TouchableOpacity onPress={() =>  this.setModalVisible(true)}>
+
+        <TouchableOpacity onPress={() => this.setSecondModalVisible(true)}>
 
         <View style={Mystyles.bottomBorder}>
           <Image style={Mystyles.matchImage}
-        source={require('../../img/Growlr_Logo.png')} />
+        source={{uri: this.props.imgurl }} />
 
-          <Text style={Mystyles.matchName}>Pet Name</Text>
+          <Text style={Mystyles.matchName}>{this.props.name}</Text>
 
         <View style={Mystyles.moreInfo}>
 
-          <Text style={{'color': 'lightgray'}}>More Info</Text>
+          <Text style={{'color': 'lightgray'}} onPress={() =>  this.setModalVisible(true)} >More Info</Text>
         </View>
         </View>
       </TouchableOpacity>
@@ -73,6 +79,32 @@ class OldMatch extends Component {
           </TouchableOpacity>
 
       </Modal>
+
+          <Modal
+              visible={this.state.secondModalVisible}>
+              <View style={{ width: width, height, backgroundColor: 'white' }}>
+
+                  <View style={{ height: 240}}>
+
+                      <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setSecondModalVisible(false)}>
+                          <Image style={{ width, flex: 1}} source={{uri: (this.props.imgurl) ? this.props.imgurl: this.props.fb_img}} />
+                      </TouchableHighlight>
+
+                  </View>
+
+
+                  <View style={{paddingTop: 20, paddingLeft: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
+
+                      <Text><Text style={{fontWeight: 'bold'}}>{this.props.name ? this.props.name: this.props.firstname},</Text> {this.props.age}</Text>
+                      <Text style={{ paddingBottom: 15, fontSize: 12, color: 'gray' }}>{this.props.gender}</Text>
+                      {/*<Text style={{ paddingBottom: 15, fontSize: 10, color: 'gray' }}>Distance from</Text>*/}
+                  </View>
+                  <View>
+                      <Text style={{ paddingTop: 20, paddingLeft: 15, paddingRight: 15}}> {this.props.description}</Text>
+                  </View>
+              </View>
+
+          </Modal>
     </View>
     )
   }
