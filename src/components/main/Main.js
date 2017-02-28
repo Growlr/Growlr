@@ -169,7 +169,10 @@ class Main extends Component {
                       onClickHandler={() => console.log("stuff")}
 
                     />
+                    <Text style={{position: 'absolute', marginTop: 500, alignSelf: 'center'}} onPress={Actions.profileView}> To the Profile View! </Text>
                 </View>
+
+
             </View>
 
         )
