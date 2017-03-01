@@ -44,20 +44,6 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        if(this.props.cards == 0) {
-            console.log(this.props.user, 'userid')
-            setTimeout(() => {
-              axios.post('http://localhost:3000/api/unSeen', {fid: this.props.user.fid})
-                  .then((res) => {
-                      console.log(res.data)
-                      let petData = res.data;
-                      this.getPets(petData)
-                  })
-            }, 1000)
-
-
-
-        }
 
         if(this.props.swiperId.id < 5555555) {
             console.log('getting humans')

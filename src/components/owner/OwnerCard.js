@@ -49,7 +49,7 @@ class OwnerCard extends Component{
                     this.props.updateSwiperId({ id: this.props.uniq })
                     Actions.mainView()
                 }}>
-                    <Image style={{ height: 120 , width: 120 }}  source={{uri: this.props.imgurl}}/>
+                    <Image style={{ height: 120 , width: 120 }}  source={{uri: this.props.imgurl ? this.props.imgurl: 'http://vignette3.wikia.nocookie.net/simpsons/images/6/60/No_Image_Available.png/revision/latest/scale-to-width-down/480?cb=20170219125728'}}/>
                 </TouchableHighlight>
                 <View style={{paddingTop: 4, paddingLeft: 5}}>
                     <Text style={{fontSize: 9}}><Text style={{fontWeight: 'bold', fontSize: 10}}>{this.props.name},</Text> {this.props.age}</Text>
@@ -87,7 +87,7 @@ class OwnerCard extends Component{
                             <View style={{ height: 240, width}}>
 
                                     <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
-                                        <Image style={{ width, flex: 1}} source={{uri: this.props.pet.edit_img_link}} />
+                                        <Image style={{ width, flex: 1}} source={{uri: this.props.pet.edit_img_link ? this.props.pet.edit_img_link: 'https://facebook.github.io/react/img/logo_og.png' }} />
                                     </TouchableHighlight>
 
                             </View>

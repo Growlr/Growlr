@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive')
 const axios = require('axios')
+const _ = require('lodash');
 
 
 
@@ -78,9 +79,33 @@ app.post('/api/login/', function (req, res){
                     })
           })
         } else{
-          console.log('there was a user on the db');
-          console.log(user);
-          res.send(user)
+          db.get_seen_by_id([req.body.credentials.userId], (err, seen) => {
+              if (err) {
+                  console.error(err)
+              } else {
+                  db.get_pets((er, pets) => {
+                      if (er) {
+                          console.error(er)
+                      } else {
+                          let seenList = seen.map(val => {
+                              return {swipee: Number(val.swipee)}
+                          });
+                          let arr1_ids = _.map(seenList, 'swipee');
+                          let arr2_ids = _.map(pets, 'uniq_id');
+                          let same_ids = _.intersection(arr1_ids, arr2_ids);
+                          let trimmedList = _.remove(pets, function (e) {
+                              return !_.contains(same_ids, e.uniq_id);
+                          });
+                          let currentUser = {user, trimmedList: trimmedList}
+                            console.log(user, 'current user')
+
+                          res.send(currentUser)
+
+                      }
+                  })
+              }
+          })
+
         }
       }
       })
