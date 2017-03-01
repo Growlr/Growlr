@@ -39,6 +39,8 @@ class Login extends Component {
             .then((res) => {
               console.log('you did it');
               console.log(res);
+              _this.props.updateMain(res.data.trimmedList)
+              _this.props.updateSwiperId({id: res.data.user[0].fid })
               _this.props.updateLogin({user: res.data[0]})
             })
         }}

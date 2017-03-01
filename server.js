@@ -43,7 +43,7 @@ app.post('/api/login/', function (req, res){
     }
     else {
       if(!user.length){
-        axios.get(`https://graph.facebook.com/v2.8/${req.body.credentials.userId}?fields=first_name,last_name,email,picture,gender&redirect=false&access_token=${req.body.credentials.token}`)
+        axios.get(`https://graph.facebook.com/v2.8/${req.body.credentials.userId}?fields=first_name,last_name,email,picture.width(400),gender&redirect=false&access_token=${req.body.credentials.token}`)
           .then((res) => {
             console.log(res);
              let postBody = {
