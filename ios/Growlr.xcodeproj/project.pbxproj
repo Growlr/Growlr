@@ -42,6 +42,7 @@
 		FC9D72B71E565EF5009B53CF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9D72B41E565EF5009B53CF /* FBSDKCoreKit.framework */; };
 		FC9D72B81E565EF5009B53CF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9D72B51E565EF5009B53CF /* FBSDKLoginKit.framework */; };
 		FC9D72B91E565EF5009B53CF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9D72B61E565EF5009B53CF /* FBSDKShareKit.framework */; };
+		FCDE797E1E66675400E0A8CE /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDE79601E66671700E0A8CE /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +263,13 @@
 			remoteGlobalIDString = 00E356EE1AD99517003FC87E;
 			remoteInfo = SliderTests;
 		};
+		FCDE795F1E66671700E0A8CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCDE795B1E66671700E0A8CE /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -296,6 +304,7 @@
 		FC9D72B41E565EF5009B53CF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		FC9D72B51E565EF5009B53CF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		FC9D72B61E565EF5009B53CF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		FCDE795B1E66671700E0A8CE /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCDE797E1E66675400E0A8CE /* libBVLinearGradient.a in Frameworks */,
 				FC9D72B21E565CF5009B53CF /* libRCTFBLogin.a in Frameworks */,
 				FC9381921E53AA5700431026 /* libRCTCamera.a in Frameworks */,
 				FC9D72B81E565EF5009B53CF /* FBSDKLoginKit.framework in Frameworks */,
@@ -483,6 +493,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				FCDE795B1E66671700E0A8CE /* BVLinearGradient.xcodeproj */,
 				FC9D72921E565CA7009B53CF /* RCTFBLogin.xcodeproj */,
 				FC9381731E53A9AE00431026 /* RCTCamera.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -565,6 +576,14 @@
 			children = (
 				FC9D72F11E5660C7009B53CF /* Slider.app */,
 				FC9D72F31E5660C7009B53CF /* SliderTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FCDE795C1E66671700E0A8CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FCDE79601E66671700E0A8CE /* libBVLinearGradient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -684,6 +703,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = FCDE795C1E66671700E0A8CE /* Products */;
+					ProjectRef = FCDE795B1E66671700E0A8CE /* BVLinearGradient.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -955,6 +978,13 @@
 			remoteRef = FC9D72F21E5660C7009B53CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		FCDE79601E66671700E0A8CE /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = FCDE795F1E66671700E0A8CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1148,7 +1178,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Growlr;
 				PRODUCT_NAME = Growlr;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1169,7 +1199,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Growlr;
 				PRODUCT_NAME = Growlr;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
