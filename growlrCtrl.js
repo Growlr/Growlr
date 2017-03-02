@@ -93,7 +93,7 @@ const growlrCtrl = {
             })
         } else {
             db.get_owner_matches([req.params.id], (er, matched) => {
-                if(err){
+                if(er){
                     console.log(er)
                 } else {
                     res.send(matched)
