@@ -185,7 +185,6 @@ class Match extends Component {
 
 
  mapStateToProps = (state) => {
-    console.log(state)
    return {
        matches: state.matchPage.matches,
        swiper: state.mainPage.swiperId,
