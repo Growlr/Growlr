@@ -62,7 +62,6 @@ class SearchDistance  extends Component {
 }
 
 mapStateToProps = (state) => {
-  console.log(state);
     return {
       searchDistance: state.settingsPage.searchDistance,
       searchDistanceMin: state.settingsPage.searchDistanceMin,

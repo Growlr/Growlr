@@ -46,6 +46,7 @@ class OwnerCard extends Component{
         return(
             <View style={{ width: 120, height: 180, borderRadius: 8, borderWidth: 1, borderColor: 'lightgray', overflow: 'hidden', backgroundColor: 'white', marginTop: 10, marginRight: 25, marginLeft: 25 }} >
                 <TouchableHighlight onPress={() => {
+                    console.log(this.props.uniq)
                     this.props.updateSwiperId({ id: this.props.uniq })
                     Actions.mainView()
                 }}>
