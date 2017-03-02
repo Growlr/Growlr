@@ -35,7 +35,7 @@ class Login extends Component {
         onLogin={function(data){
           console.log("Logged in!");
           console.log(data);
-          axios.post('http://localhost:3000/api/login/', data)
+          axios.post('http://138.197.144.223/api/login/', data)
             .then((res) => {
               console.log('you did it');
               console.log(res);
@@ -52,7 +52,7 @@ class Login extends Component {
         onLoginFound={function(data){
           console.log("Existing login found.");
           console.log(data);
-          axios.post('http://localhost:3000/api/login/', data)
+          axios.post('http://138.197.144.223/api/login/', data)
             .then((res) => {
               console.log('you did it');
               console.log(res);

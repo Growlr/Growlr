@@ -31,7 +31,7 @@ class Match extends Component {
 
       componentDidMount() {
           console.log(this.props.swiper.id)
-          axios.get(`http://localhost:3000/api/matches/${this.props.swiper.id}`)
+          axios.get(`http://138.197.144.223/api/matches/${this.props.swiper.id}`)
               .then((res) => {
               console.log(res)
               let matchData = res.data

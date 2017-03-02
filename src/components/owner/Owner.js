@@ -32,14 +32,14 @@ class Owner extends Component {
             owner_id: Number(this.props.user.fid)
         };
         console.log(petBody)
-        axios.post('http://localhost:3000/api/pet', petBody)
+        axios.post('http://138.197.144.223/api/pet', petBody)
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
     }
 
     componentDidMount(){
         if(this.props.myPets == 0){
-            axios.get(`http://localhost:3000/api/myPets/${this.props.user.fid}`)
+            axios.get(`http://138.197.144.223/api/myPets/${this.props.user.fid}`)
                 .then((res) => {
                 console.log(res.data)
                     let myPets = res.data

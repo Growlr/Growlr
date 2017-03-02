@@ -29,9 +29,9 @@ class OwnerCard extends Component{
             pet_name: this.props.pet.edit_pet_name
         };
         console.log(editPetData)
-        axios.put(`http://localhost:3000/api/pet/${this.props.uniq}`, editPetData)
+        axios.put(`http://138.197.144.223/api/pet/${this.props.uniq}`, editPetData)
             .then((res) => {
-                axios.get(`http://localhost:3000/api/myPets/${this.props.user.fid}`)
+                axios.get(`http://138.197.144.223/api/myPets/${this.props.user.fid}`)
                     .then((res) => {
                         console.log(res.data)
                         let myPets = res.data
