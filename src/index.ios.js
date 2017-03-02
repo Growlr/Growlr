@@ -33,10 +33,7 @@ export default class Growlr extends Component {
 
               <Scene key="mainView" navBar={NavBar} navigationBarStyle={{position: 'absolute', top: 0}} panHandler={null} sceneStyle={{ backgroundColor: 'lightgray'}} component={Main} title="Discover Pets" initial={true}/>
               <Scene key="landingPage" component={Landing} title="Landing Page" />
-              <Scene key="profileView" navBar={NavBar} component={Profile} title="Your Profile"/>
-              <Scene key="mainView" navBar={ NavBar} navigationBarStyle={{ position: 'absolute', top: 0}} panHandlers={null} sceneStyle={{ backgroundColor: 'lightgray'}} component={Main} title="Discover Pets" initial={true}/>
-              <Scene key="landingPage" component={Landing} title="Landing Page" />
-              <Scene key="profileView" component={Profile} title="Your Profile"/>
+              <Scene key="profileView" navBar={NavBar} component={Profile} title="Your Profile" />
               <Scene key="ownerView" navBar={NavBar} sceneStyle={{ paddingTop: 65 }} component={Owner} title="Your Pets"/>
               <Scene key="petDetailView" component={PetDetail} title="Pet Details"/>
               <Scene key="matchView"

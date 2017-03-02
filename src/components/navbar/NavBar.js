@@ -45,7 +45,7 @@ class NavBar extends Component {
           <View style={NavStyles.navbar}>
 
           <TouchableOpacity
-          onPress={Actions.settingsView}
+          onPress={Actions.profileView}
           style={NavStyles.profile}>
             <Image
             source={require('../../img/profile.png')} style={NavStyles.profile} />
