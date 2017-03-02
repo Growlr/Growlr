@@ -13,7 +13,7 @@ const db = massive.connectSync({
 const app = module.exports = express()
 app.set('db', db)
 
-const port = 3000
+const port = 8080
 
 
 app.use(bodyParser.json())
