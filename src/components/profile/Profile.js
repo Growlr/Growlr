@@ -61,7 +61,7 @@ class Profile extends Component {
                                           , marginTop: 30
                                           , alignItems: 'center'}}
                                           //this button should go to the edit profile view that doesnt exist yet
-                                  onClick={this.clickEditProfile()}
+                                  onPress={ Actions.settingsView }
                                           >
                 <Text style={{color: '#D85050'
                               , fontWeight: '600'
