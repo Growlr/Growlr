@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Actions} from 'react-native-router-flux';
-import {updatePet} from '../../actions/updateOwnerPageActions'
+import {updatePet, updateMyPets, editPet} from '../../actions/updateOwnerPageActions'
+import {updateSwiperId} from '../../actions/updateMainPageActions'
 import axios from 'axios'
 
 import OwnerCard from './OwnerCard'
@@ -36,6 +37,18 @@ class Owner extends Component {
             .catch((err) => console.log(err))
     }
 
+    componentDidMount(){
+        if(this.props.myPets == 0){
+            axios.get(`http://138.197.144.223/api/myPets/${this.props.user.fid}`)
+                .then((res) => {
+                console.log(res.data)
+                    let myPets = res.data
+                    this.props.updateMyPets(myPets)
+                })
+        }
+        this.props.updateSwiperId({id: this.props.user.fid})
+    }
+
 
 
     render(){
@@ -44,7 +57,7 @@ class Owner extends Component {
             rowHasChanged: (r1, r2) => r1.id !== r2.id
         });
 
-        const items = this.props.cards
+        const items = this.props.myPets
 
 
         return (
@@ -53,7 +66,8 @@ class Owner extends Component {
             <ListView
                 contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}
                 dataSource={dataSource.cloneWithRows(items)}
-                renderRow={(rowData) => <OwnerCard pet_id={rowData.uniq_id} name={rowData.pet_name} age={rowData.age} breed={rowData.breed} imgurl={rowData.img_link}/>}
+                enableEmptySections={true}
+                renderRow={(rowData) => <OwnerCard uniq={rowData.uniq_id} color={rowData.color} description={rowData.description} name={rowData.pet_name} gender={rowData.gender} age={rowData.age} breed={rowData.breed} imgurl={rowData.img_link}/>}
             />
                 <View style={{marginTop: 22}}>
                     <Modal
@@ -76,77 +90,81 @@ class Owner extends Component {
 
 
                             <View style={{paddingTop: 20, paddingBottom: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
-                                <Text onPress={() => {
-                                    this.createNewPet() }}>Create Pet</Text>
-                                <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                                <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column'}}>
+                                <Text style={{ backgroundColor: 'green', width: 150, height: 35}} onPress={() => {this.createNewPet() }}>Create Pet</Text>
+                                </View>
+                                <Text style={{ marginTop: 15, marginLeft: 25}}>Image Link</Text>
+                                <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25}}>
                                     <TextInput
                                         placeholder="Enter Image Link"
                                         autoCorrect={false}
-                                        style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                        style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width - 40, borderWidth: 1, borderColor: 'lightgray'}}
                                         value={this.props.pet.img_link}
                                         onChangeText={(value) => this.props.updatePet({ prop: 'img_link', value})}
                                     />
                                 </View>
                             </View>
-                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                            <Text style={{ marginTop: 15, marginLeft: 25}}>Pet Name</Text>
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25}}>
                                 {/*<Text style={{ fontSize: 18, paddingLeft: 20, }}>Enter Name</Text>*/}
                                 <TextInput
                                     placeholder="Enter Pets Name"
                                     autoCorrect={false}
-                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width - 40, borderWidth: 1, borderColor: 'lightgray'}}
                                     value={this.props.pet.pet_name}
                                     onChangeText={(value) => this.props.updatePet({ prop: 'pet_name', value})}
                                 />
                             </View>
-                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                            <Text style={{ marginTop: 15, marginLeft: 25}}>Breed</Text>
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
                                 <TextInput
                                     placeholder="Enter Breed"
                                     autoCorrect={false}
-                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width - 40, borderWidth: 1, borderColor: 'lightgray'}}
                                     value={this.props.pet.breed}
                                     onChangeText={(value) => this.props.updatePet({ prop: 'breed', value})}
                                 />
                             </View>
 
-
-                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                            <Text style={{ marginTop: 15, marginLeft: 25}}>Color</Text>
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
                                 <TextInput
                                     placeholder="Enter Color"
                                     autoCorrect={false}
-                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width - 40, borderWidth: 1, borderColor: 'lightgray'}}
                                     value={this.props.pet.color}
                                     onChangeText={(value) => this.props.updatePet({ prop: 'color', value})}
                                 />
                             </View>
 
-
-                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                            <Text style={{ marginTop: 15, marginLeft: 25}}>Age</Text>
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
                                 <TextInput
                                     placeholder="Enter Age"
                                     autoCorrect={false}
-                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width - 40, borderWidth: 1, borderColor: 'lightgray'}}
                                     value={this.props.pet.age}
                                     onChangeText={(value) => this.props.updatePet({ prop: 'age', value})}
                                 />
                             </View>
 
-
-                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                            <Text style={{ marginTop: 15, marginLeft: 25}}>Gender</Text>
+                            <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
                                 <TextInput
                                     placeholder="Enter Gender"
                                     autoCorrect={false}
-                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width - 40, borderWidth: 1, borderColor: 'lightgray'}}
                                     value={this.props.pet.gender}
                                     onChangeText={(value) => this.props.updatePet({ prop: 'gender', value})}
                                 />
                             </View>
-
-                            <View style={{ height: 200, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginTop: 15 }}>
+                            <Text style={{ marginTop: 15, marginLeft: 25}}>Description</Text>
+                            <View style={{ height: 200, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
                                 <TextInput
                                     placeholder="Enter Description"
                                     autoCorrect={false}
                                     multiline={true}
-                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width / 2, borderWidth: 1, borderColor: 'lightgray'}}
+                                    style={{color: '#000', paddingRight: 5,paddingLeft: 5,fontSize: 18,lineHeight: 23, width: width - 40, borderWidth: 1, borderColor: 'lightgray'}}
                                     value={this.props.pet.description}
                                     onChangeText={(value) => this.props.updatePet({ prop: 'description', value})}
                                 />
@@ -165,13 +183,18 @@ class Owner extends Component {
 mapStateToProps = (state) => {
     return {
             pet: state.ownerPage
-           , cards: state.mainPage.cards
+        ,   cards: state.mainPage.cards
         ,   user: state.login.user
+        ,   myPets: state.ownerPage.myPets
     }
 }
 
 const mapDispatchToActionCreators = {
-    updatePet: updatePet
+        updatePet: updatePet
+    ,   updateSwiperId: updateSwiperId
+    ,   updateMyPets: updateMyPets
+    ,   editPet: editPet
+
 
 }
 

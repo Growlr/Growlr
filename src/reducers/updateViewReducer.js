@@ -11,6 +11,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_VIEW:
+      console.log(action)
 
       return Object.assign({}, state, action.update)
 

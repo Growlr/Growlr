@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { updateLogin } from '../../actions/updateLogin'
+import { updateMain, updateSwiperId } from '../../actions/updateMainPageActions'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
 import axios from 'axios'
@@ -38,6 +39,8 @@ class Login extends Component {
             .then((res) => {
               console.log('you did it');
               console.log(res);
+              _this.props.updateMain(res.data.trimmedList)
+              _this.props.updateSwiperId({id: res.data.user[0].fid })
               _this.props.updateLogin({user: res.data[0]})
             })
         }}
@@ -53,7 +56,11 @@ class Login extends Component {
             .then((res) => {
               console.log('you did it');
               console.log(res);
-              _this.props.updateLogin({ user: res.data[0]});
+              console.log(res.data.trimmedList)
+              _this.props.updateMain(res.data.trimmedList)
+              _this.props.updateSwiperId({id: res.data.user[0].fid })
+              _this.props.updateLogin({ user: res.data.user[0]});
+
             })
         }}
         onLoginNotFound={function(){
@@ -85,7 +92,9 @@ mapStateToProps = (state) => {
 }
 
 const mapDispatchToActionCreators = {
-    updateLogin: updateLogin
+    updateLogin: updateLogin,
+    updateMain: updateMain
+    , updateSwiperId: updateSwiperId
 };
 
 export default connect(mapStateToProps, mapDispatchToActionCreators)(Login)
