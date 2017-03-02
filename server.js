@@ -45,7 +45,6 @@ app.post('/api/login/', function (req, res){
       if(!user.length){
         axios.get(`https://graph.facebook.com/v2.8/${req.body.credentials.userId}?fields=first_name,last_name,email,picture.width(400),gender&redirect=false&access_token=${req.body.credentials.token}`)
           .then((res) => {
-            console.log(res);
              let postBody = {
               fid: Number(res.data.id),
               firstname: res.data.first_name,
@@ -97,7 +96,6 @@ app.post('/api/login/', function (req, res){
                               return !_.contains(same_ids, e.uniq_id);
                           });
                           let currentUser = {user, trimmedList: trimmedList}
-                            console.log(user, 'current user')
 
                           res.send(currentUser)
 
