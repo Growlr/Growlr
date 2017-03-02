@@ -82,14 +82,25 @@ const growlrCtrl = {
     },
     GetMatchesById: (req, res) => {
       console.log(req.params.id)
-    db.get_matches([req.params.id], (err, matches) => {
-      if(err) {
-        console.log(err)
-      } else {
-          console.log(matches)
-        res.send(matches)
-      }
-    })
+        if(req.params.id < 5555555){
+            db.get_matches([req.params.id], (err, matches) => {
+                if(err) {
+                    console.log(err)
+                } else {
+                    console.log(matches)
+                    res.send(matches)
+                }
+            })
+        } else {
+            db.get_owner_matches([req.params.id], (er, matched) => {
+                if(err){
+                    console.log(er)
+                } else {
+                    res.send(matched)
+                }
+            })
+        }
+
     },
     AddPet: (req, res) => {
     db.add_pet([req.body.source_link, req.body.img_link, req.body.pet_id, req.body.gender, req.body.breed, req.body.color, req.body.age, req.body.description, req.body.pet_name, req.body.owner_id], (err, pet) => {
