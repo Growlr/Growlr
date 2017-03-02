@@ -27,7 +27,6 @@ import {
 
 class Match extends Component {
 
-    // updateUserInput() {}
 
       componentDidMount() {
           console.log(this.props.swiper.id)
@@ -78,7 +77,7 @@ class Match extends Component {
                 <ListView
                     contentContainerStyle={{ flexDirection: 'column', justifyContent: 'center'}}
                     dataSource={dataSource.cloneWithRows(items)}
-                    renderRow={(rowData) => <OldMatch pet_id={rowData.uniq_id} name={rowData.pet_name} age={rowData.age} description={rowData.description} gender={rowData.gender} breed={rowData.breed} imgurl={rowData.img_link}/>}
+                    renderRow={(rowData) => (this.props.swiper.id < 5555555) ? <OldMatch name={rowData.firstname} age={rowData.gender} gender={rowData.email} description={rowData.description} imgurl={rowData.fb_img}/>:<OldMatch pet_id={rowData.uniq_id} name={rowData.pet_name} age={rowData.age} description={rowData.description} gender={rowData.gender} breed={rowData.breed} imgurl={rowData.img_link}/>}
                 />
 
 
