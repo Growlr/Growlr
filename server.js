@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive')
 const axios = require('axios')
+const _ = require('lodash');
 
 
 
@@ -12,7 +13,7 @@ const db = massive.connectSync({
 const app = module.exports = express()
 app.set('db', db)
 
-const port = 8080
+const port = 3000
 
 
 app.use(bodyParser.json())
@@ -23,6 +24,7 @@ const growlrCtrl  = require('./growlrCtrl.js')
 
 app.get('/api/', growlrCtrl.Read)
 app.get('/api/humans/:id', growlrCtrl.getPetsSeenById)
+app.get('/api/myPets/:id', growlrCtrl.getOwnersPets)
 app.get('/api/pet/:id', growlrCtrl.GetOne)
 app.get('/api/user/:id', growlrCtrl.GetUserById)
 app.get('/api/matches/:id', growlrCtrl.GetMatchesById)
@@ -32,6 +34,8 @@ app.post('/api/unSeen', growlrCtrl.GetSeenById)
 app.post('/api/pet', growlrCtrl.AddPet)
 app.post('/api/user/:id', growlrCtrl.AddUserById)
 
+app.put('/api/pet/:id', growlrCtrl.updatePetInfo)
+
 app.post('/api/login/', function (req, res){
   db.get_user([Number(req.body.credentials.userId)], function(err, user){
     if(err){
@@ -39,9 +43,8 @@ app.post('/api/login/', function (req, res){
     }
     else {
       if(!user.length){
-        axios.get(`https://graph.facebook.com/v2.8/${req.body.credentials.userId}?fields=first_name,last_name,email,picture,gender&redirect=false&access_token=${req.body.credentials.token}`)
+        axios.get(`https://graph.facebook.com/v2.8/${req.body.credentials.userId}?fields=first_name,last_name,email,picture.width(400),gender&redirect=false&access_token=${req.body.credentials.token}`)
           .then((res) => {
-            console.log(res);
              let postBody = {
               fid: Number(res.data.id),
               firstname: res.data.first_name,
@@ -75,9 +78,32 @@ app.post('/api/login/', function (req, res){
                     })
           })
         } else{
-          console.log('there was a user on the db');
-          console.log(user);
-          res.send(user)
+          db.get_seen_by_id([req.body.credentials.userId], (err, seen) => {
+              if (err) {
+                  console.error(err)
+              } else {
+                  db.get_pets((er, pets) => {
+                      if (er) {
+                          console.error(er)
+                      } else {
+                          let seenList = seen.map(val => {
+                              return {swipee: Number(val.swipee)}
+                          });
+                          let arr1_ids = _.map(seenList, 'swipee');
+                          let arr2_ids = _.map(pets, 'uniq_id');
+                          let same_ids = _.intersection(arr1_ids, arr2_ids);
+                          let trimmedList = _.remove(pets, function (e) {
+                              return !_.contains(same_ids, e.uniq_id);
+                          });
+                          let currentUser = {user, trimmedList: trimmedList}
+
+                          res.send(currentUser)
+
+                      }
+                  })
+              }
+          })
+
         }
       }
       })

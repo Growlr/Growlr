@@ -35,7 +35,6 @@ const growlrCtrl = {
                     if (er) {
                         console.error(er)
                     } else {
-                        console.log(pets, seen)
                         let seenList = seen.map(val => {
                             return {swipee: Number(val.swipee)}
                         });
@@ -82,10 +81,12 @@ const growlrCtrl = {
         })
     },
     GetMatchesById: (req, res) => {
+      console.log(req.params.id)
     db.get_matches([req.params.id], (err, matches) => {
       if(err) {
-        console.error(err)
+        console.log(err)
       } else {
+          console.log(matches)
         res.send(matches)
       }
     })
@@ -108,7 +109,6 @@ const growlrCtrl = {
           if(er){
             console.error(er)
           } else {
-              console.log(owners, seen)
               let seenList = seen.map(val => {
                   return {swipee: val.swipee}
               })
@@ -124,6 +124,34 @@ const growlrCtrl = {
         })
       }
     })
+    },
+    getOwnersPets: (req, res) => {
+      db.get_owner_pets_by_id([req.params.id], (err, pets) => {
+          if(err){
+              console.log(err)
+          } else {
+              res.send(pets)
+          }
+      })
+    },
+    updatePetInfo: (req, res) => {
+      console.log(req.body)
+      db.update_pet_data([
+          req.body.img_link,
+          req.body.pet_id,
+          req.body.gender,
+          req.body.breed,
+          req.body.color,
+          req.body.age,
+          req.body.description,
+          req.body.pet_name,
+          req.params.id], (err, pet) =>{
+          if(err){
+              console.log(err)
+          } else {
+              res.send(pet)
+          }
+      })
     }
 
 
