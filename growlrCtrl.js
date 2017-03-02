@@ -82,7 +82,7 @@ const growlrCtrl = {
     },
     GetMatchesById: (req, res) => {
       console.log(req.params.id)
-        if(req.params.id < 5555555){
+        if(req.params.id > 5555555){
             db.get_matches([req.params.id], (err, matches) => {
                 if(err) {
                     console.log(err)
@@ -92,10 +92,12 @@ const growlrCtrl = {
                 }
             })
         } else {
+            console.log('do this please')
             db.get_owner_matches([req.params.id], (er, matched) => {
                 if(er){
                     console.log(er)
                 } else {
+                    console.log('this should work but it doesnt')
                     res.send(matched)
                 }
             })
