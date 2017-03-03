@@ -34,7 +34,7 @@ class Profile extends Component {
                             , borderRadius: width / 4
                           }} source={{uri: this.props.user.fb_img}}>
             </Image>
-            <TouchableHighlight onClick={this.clickEditProfile()} >
+            <TouchableHighlight onPress={Actions.cameraView} >
               <Image style={{   width: 40
                               , height: 40
                               , borderRadius: 20
