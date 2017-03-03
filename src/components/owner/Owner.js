@@ -90,9 +90,9 @@ class Owner extends Component {
 
 
                             <View style={{paddingTop: 20, paddingBottom: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
-                                <View style={{ alignItems: 'center'}} onPress={() => {this.createNewPet() }}>
+                                <View style={{ alignItems: 'center'}} >
                                 <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', backgroundColor: 'lightgray', width: 150, height: 35, borderRadius: 8 }}>
-                                <Text style={{ flexDirection: 'column'}} >Create Pet</Text>
+                                <Text style={{ flexDirection: 'column'}} onPress={() => {this.createNewPet() }}>Create Pet</Text>
                                 </View>
                                 </View>
                                 <Text style={{ marginTop: 15, marginLeft: 25}}>Image Link</Text>
