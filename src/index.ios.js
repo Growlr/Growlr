@@ -14,6 +14,7 @@ import Login from './components/main/Login'
 import NavBar from './components/navbar/NavBar';
 import NavStyles from './components/navbar/NavStyles';
 import Owner from './components/owner/Owner'
+import MyCamera from './components/camera/MyCamera'
 import {
   AppRegistry,
   StyleSheet,
@@ -40,6 +41,7 @@ export default class Growlr extends Component {
               navBar={NavBar} component={Match} title="Match View"/>
               <Scene key="settingsView"
               navBar={NavBar} component={Settings} title="Settings View"/>
+              <Scene key='cameraView' component={MyCamera} />
               </Scene>
 
 
