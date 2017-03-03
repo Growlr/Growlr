@@ -82,7 +82,7 @@ class Owner extends Component {
                             <View>
 
                                     <TouchableHighlight style={{ justifyContent: 'center', backgroundColor: 'transparent', height: 240, width}} onPress={() => this.setModalVisible(false)}>
-                                        <Image style={{ width, flex: 1}} source={{uri: this.props.pet.img_link}} />
+                                        <Image style={{ width, flex: 1}} source={{uri: this.props.pet.img_link}}/>
                                     </TouchableHighlight>
 
                             </View>
