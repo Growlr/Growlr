@@ -86,11 +86,9 @@ class OwnerCard extends Component{
                         <ScrollView style={{ width: width, backgroundColor: 'white' }}>
 
                             <View style={{ height: 240, width}}>
-
                                     <TouchableHighlight style={{ flex: 1, justifyContent: 'center', backgroundColor: 'transparent'}} onPress={() => this.setModalVisible(false)}>
                                         <Image style={{ width, flex: 1}} source={{uri: this.props.pet.edit_img_link ? this.props.pet.edit_img_link: 'https://facebook.github.io/react/img/logo_og.png' }} />
                                     </TouchableHighlight>
-
                             </View>
 
 

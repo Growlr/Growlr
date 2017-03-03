@@ -62,7 +62,7 @@ class Owner extends Component {
 
         return (
             <View>
-            <View><Text onPress={() => this.setModalVisible(true)}>Add Pet</Text></View>
+            <View style={{ alignItems: 'center', backgroundColor: 'lightgray', borderRadius: 8 }}><Text onPress={() => this.setModalVisible(true)}>Add Pet</Text></View>
             <ListView
                 contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}
                 dataSource={dataSource.cloneWithRows(items)}
@@ -90,8 +90,10 @@ class Owner extends Component {
 
 
                             <View style={{paddingTop: 20, paddingBottom: 15, borderBottomWidth: 1, borderColor: 'lightgray' }}>
-                                <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column'}}>
-                                <Text style={{ backgroundColor: 'green', width: 150, height: 35}} onPress={() => {this.createNewPet() }}>Create Pet</Text>
+                                <View style={{ alignItems: 'center'}} onPress={() => {this.createNewPet() }}>
+                                <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', backgroundColor: 'lightgray', width: 150, height: 35, borderRadius: 8 }}>
+                                <Text style={{ flexDirection: 'column'}} >Create Pet</Text>
+                                </View>
                                 </View>
                                 <Text style={{ marginTop: 15, marginLeft: 25}}>Image Link</Text>
                                 <View style={{ height: 40, width, flexDirection: 'row', alignItems: 'center', marginLeft: 25}}>
@@ -179,6 +181,7 @@ class Owner extends Component {
         )
     }
 }
+
 
 mapStateToProps = (state) => {
     return {
